@@ -1,0 +1,21 @@
+This file contains colors for the Ariadne color scheme.
+
+@define-color bg0    #040e0d;
+@define-color bg1    #0a1816;
+@define-color bg2    #0f211f;
+@define-color bg3    #152a26;
+@define-color bg4    #1d3631;
+
+@define-color fg     #f5e2c5;
+
+@define-color red    #ff6048;
+@define-color orange #ffa478;
+@define-color yellow #f5cd5b;
+@define-color green  #7ad9a8;
+@define-color aqua   #3dd1b0;
+@define-color blue   #5fc8d4;
+@define-color purple #e89aa8;
+
+@define-color grey0  #3a1a35;
+@define-color grey1  #5a4d3e;
+@define-color grey2  #c4b09a;

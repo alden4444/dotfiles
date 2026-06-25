@@ -1,0 +1,11 @@
+{
+    "barHeight": 37,
+    "ccColumns": 3,
+    "ccMedia": false,
+    "ccNotifications": true,
+    "ccSliders": true,
+    "ccTiles": "[{\"key\":\"wifi\",\"span\":1,\"enabled\":true},{\"key\":\"audio\",\"span\":1,\"enabled\":true},{\"key\":\"bluetooth\",\"span\":1,\"enabled\":true},{\"key\":\"display\",\"span\":1,\"enabled\":true},{\"key\":\"peace\",\"span\":1,\"enabled\":true},{\"key\":\"nightlight\",\"span\":1,\"enabled\":true}]",
+    "fontSize": 15,
+    "theme": "everforest",
+    "wallpaper": "/home/alden/.config/colorschemes/everforest/wallpapers/balloon.png"
+}
