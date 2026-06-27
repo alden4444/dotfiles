@@ -1,0 +1,22 @@
+:root {
+    --lwt-accent-color: {{background}};
+    --lwt-frame: {{background}};
+    --toolbar-bgimage: none;
+    
+    /* Toolbar and Tabs */
+    --toolbar-bgcolor: {{color0}};
+    --toolbar-background-color: {{color0}};
+    --toolbar-field-background-color: {{color8}};
+    --toolbar-field-color: {{foreground}};
+    --toolbar-field-focus-background-color: {{color1}};
+    
+    /* Active / Inactive States */
+    --tab-selected-bgcolor: {{color1}};
+    --tab-selected-textcolor: {{foreground}};
+    --tab-background-color: transparent;
+    
+    /* Subtle borders and selections */
+    --autocomplete-popup-background: {{color0}};
+    --button-hover-bgcolor: {{color2}};
+    --button-active-bgcolor: {{color3}};
+}

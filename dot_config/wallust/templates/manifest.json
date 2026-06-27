@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Wallust Dynamic Theme",
+  "theme": {
+    "colors": {
+      "frame": {{color0 | rgb}},
+      "frame_inactive": {{color0 | rgb}},
+      "frame_incognito": {{color8 | rgb}},
+      "frame_incognito_inactive": {{color8 | rgb}},
+      "background_tab": {{color0 | rgb}},
+      "background_tab_inactive": {{color0 | rgb}},
+      "background_tab_incognito": {{color8 | rgb}},
+      "background_tab_incognito_inactive": {{color8 | rgb}},
+      "tab_text": {{foreground | rgb}},
+      "tab_background_text": {{color7 | rgb}},
+      "bookmark_text": {{foreground | rgb}},
+      "ntp_background": {{background | rgb}},
+      "ntp_text": {{foreground | rgb}},
+      "toolbar": {{color0 | rgb}},
+      "toolbar_button_icon": {{foreground | rgb}},
+      "toolbar_text": {{foreground | rgb}},
+      "omnibox_background": {{color8 | rgb}},
+      "omnibox_text": {{foreground | rgb}}
+    },
+    "tints": {
+      "buttons": [0.5, 0.5, 0.5]
+    }
+  }
+}
