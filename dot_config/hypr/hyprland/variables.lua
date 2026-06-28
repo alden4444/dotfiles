@@ -6,9 +6,9 @@ hl.env("qsConfig", "ii")
 
 -- Apps
 -- PULL REQUESTS ADDING MORE WILL NOT BE ACCEPTED, CONFIG FOR YOURSELF
-terminal = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'kitty -1 --directory ~' 'alacritty' 'wezterm' 'konsole' 'kgx' 'uxterm' 'xterm'"
+terminal = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'kitty' 'alacritty' 'wezterm' 'konsole' 'kgx' 'uxterm' 'xterm'"
 fileManager = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'nautilus' 'dolphin' 'nemo' 'thunar' 'kitty -1 fish -c yazi'"
-browser = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'google-chrome-stable' 'zen-browser' 'firefox' 'brave' 'chromium' 'microsoft-edge-stable' 'opera' 'librewolf'"
+browser = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'firefox-nightly' 'firefox' 'google-chrome-stable --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations' 'zen-browser' 'brave' 'chromium' 'microsoft-edge-stable' 'opera' 'librewolf'"
 codeEditor = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'windsurf' 'antigravity' 'code' 'codium' 'cursor' 'zed' 'zedit' 'zeditor' 'kate' 'gnome-text-editor' 'emacs' 'command -v nvim && kitty -1 nvim' 'command -v micro && kitty -1 micro'"
 officeSoftware = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'wps' 'onlyoffice-desktopeditors' 'libreoffice'"
 textEditor = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'kate' 'gnome-text-editor' 'emacs'"

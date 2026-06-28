@@ -1,5 +1,7 @@
--- This file sources other files in `hyprland` and `custom` folders
--- You wanna add your stuff in files in `custom`
+-- Force Hyprland to strictly export these session identities globally
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 -- Internal stuff --
 require("hyprland.lib")
