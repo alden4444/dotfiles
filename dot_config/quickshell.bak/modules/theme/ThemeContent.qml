@@ -18,7 +18,6 @@ Item {
 
     function close() { GlobalState.themeSwitcherOpen = false; }
     function apply(name) {
-        Config.theme = name;
         Quickshell.execDetached(["bash", `${Quickshell.env("HOME")}/.config/wallust/theme-apply.sh`, name]);
     }
 

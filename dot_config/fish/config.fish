@@ -40,3 +40,5 @@ if status is-interactive
         echo -en "\e]133;A\e\\"
     end
 end
+
+alias blackarch="qemu-system-x86_64 -enable-kvm -m 4G -smp 2 -drive file=~/VMs/blackarch.qcow2,media=disk,if=virtio -display gtk,gl=on -device virtio-vga-gl -net nic,model=virtio -net user,hostfwd=tcp::2222-:22"

@@ -31,8 +31,8 @@ wallust cs "$scheme" -s || { echo "wallust cs failed" >&2; exit 1; }
 # --- sync the shell's Config (theme) + auto-apply this theme's last-used wallpaper ---
 # Keeps config.json in sync regardless of entry point (CLI or in-shell switcher),
 # and restores the wallpaper last chosen for this theme (else its first one).
-cfg="$HOME/.config/quickshell/config.json"
-state="$HOME/.config/quickshell/wallpaper-state"
+cfg="$HOME/.config/quickshell.bak/config.json"
+state="$HOME/.config/quickshell.bak/wallpaper-state"
 wpdir="$HOME/.config/colorschemes/$name/wallpapers"
 wp=""
 [ -f "$state" ] && wp="$(awk -F'\t' -v t="$name" '$1==t{print $2; exit}' "$state")"
@@ -95,5 +95,8 @@ if [ -f "$csdir/vscodium-theme" ] && [ -f "$vscfg" ] && command -v jq >/dev/null
     else
         rm -f "$tmp"
     fi
+fi
+if [ -f "$HOME/.config/VSCodium/update-theme.sh" ]; then
+    "$HOME/.config/VSCodium/update-theme.sh" wallust
 fi
 
