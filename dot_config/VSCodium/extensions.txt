@@ -1,0 +1,8 @@
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-python-envs
+pkief.material-icon-theme
+pkief.material-product-icons
+theqtcompany.qt-core
+theqtcompany.qt-qml
+vscodevim.vim
