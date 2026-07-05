@@ -1,14 +1,14 @@
 -- ######## Window rules ########
 
 -- Disable blur for xwayland context menus
-hl.window_rule({match = {class = "^()$", title = "^()$" },                   no_blur = true })
+hl.window_rule({match = {class = "^()$", title = "^()$" },                 no_blur = true })
 
 -- Disable blur for every window
 hl.window_rule({match = {class = ".*" }, no_blur = true })
 
 -- Floating
-hl.window_rule({match = {title = "^(Open File)(.*)$" },                      center = true})
-hl.window_rule({match = {title = "^(Open File)(.*)$" },                      float = true})
+hl.window_rule({match = {title = "^(Open File)(.*)$" },                     center = true})
+hl.window_rule({match = {title = "^(Open File)(.*)$" },                     float = true})
 hl.window_rule({match = {title = "^(Select a File)(.*)$" },                  center = true})
 hl.window_rule({match = {title = "^(Select a File)(.*)$" },                  float = true})
 hl.window_rule({match = {title = "^(Choose wallpaper)(.*)$" },               center = true})
@@ -38,7 +38,7 @@ hl.window_rule({match = {class = "^(nm-connection-editor)$" },               flo
 hl.window_rule({match = {class = "^(nm-connection-editor)$" },               size = {"(monitor_w*0.45)", "(monitor_h*0.45)"} })
 hl.window_rule({match = {class = "^(nm-connection-editor)$" },               center = true})
 hl.window_rule({match = {class = ".*plasmawindowed.*" },                     float = true})
-hl.window_rule({match = {class = "kcm_.*" },                                  float = true})
+hl.window_rule({match = {class = "kcm_.*" },                                 float = true})
 hl.window_rule({match = {class = ".*bluedevilwizard" },                      float = true})
 hl.window_rule({match = {title = ".*Welcome" },                              float = true})
 hl.window_rule({match = {title = "^(illogical-impulse Settings)$" },         float = true})
@@ -80,7 +80,24 @@ hl.window_rule({match = {class = "^(steam_app).*" }, immediate = true})
 -- No shadow for tiled windows
 hl.window_rule({match = {float = 0 }, no_shadow = true})
 
+-- ######## Monitor layout ########
+hl.monitor = {
+    "DP-1, 3440x1440@59.97, 0x0, 1",
+    "eDP-1, 1920x1080@60.00, 3440x0, 1"
+}
+
 -- ######## Workspace rules ########
+hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "4", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "5", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "6", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "7", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "8", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "9", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "10", monitor = "DP-1" })
+
 hl.workspace_rule({ workspace = "special:special", gaps_out = 30 })
 
 -- ######## Layer rules ########
@@ -167,3 +184,8 @@ hl.layer_rule({ match = { namespace = "quickshell:wTaskView" }, no_anim = true})
 
 -- Launchers need to be FAST
 hl.layer_rule({ match = { namespace = "gtk4-layer-shell" }, no_anim = true})
+
+if is_file_exists(HOME .. "/.config/hypr/custom/rules.lua") then
+    require("custom.rules")
+end
+

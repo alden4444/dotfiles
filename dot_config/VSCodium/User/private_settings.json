@@ -21,7 +21,6 @@
   "editor.padding.bottom": 15,
   "editor.padding.top": 15,
   "editor.fontFamily": "'GeistMono Nerd Font Propo', monospace",
-  
   "editor.hover.enabled": "off",
   "editor.quickSuggestions": {
     "other": false,
@@ -31,36 +30,30 @@
   "editor.lightbulb.enabled": "off",
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
-
   "workbench.colorCustomizations": {
-    "editor.background": "#040E0D",
-    "editor.foreground": "#F5E2C5",
-    "editorGutter.background": "#040E0D",
-    "editor.lineHighlightBackground": "#F5E2C515",
+    "editor.background": "#1A1B26",
+    "editor.foreground": "#C0CAF5",
+    "editorGutter.background": "#1A1B26",
+    "editor.lineHighlightBackground": "#C0CAF515",
     "editor.lineHighlightBorder": "#00000000",
-    "sideBar.background": "#040E0D",
-    "sideBar.foreground": "#F5E2C5",
-    "sideBarSectionHeader.background": "#3A1A35",
-    "activityBar.background": "#040E0D",
-    "activityBar.foreground": "#F5E2C5",
-    "activityBar.inactiveForeground": "#C4B09A",
-    "statusBar.background": "#040E0D",
-    "statusBar.foreground": "#F5E2C5",
-    "titleBar.activeBackground": "#040E0D",
-    "titleBar.activeForeground": "#F5E2C5",
-    "editorGroupHeader.tabsBackground": "#040E0D",
-    "tab.activeBackground": "#040E0D",
-    "tab.activeForeground": "#F5E2C5",
-    "tab.inactiveBackground": "#040E0D",
-    "tab.inactiveForeground": "#C4B09A",
-    "editorCursor.foreground": "#F5E2C5",
-    "editorLineNumber.foreground": "#3A1A35",
-    "editorLineNumber.activeForeground": "#F5E2C5",
-    "editorError.foreground": "#00000000",
-    "editorWarning.foreground": "#00000000",
-    "editorInfo.foreground": "#00000000",
-    "editorError.border": "#00000000",
-    "editorWarning.border": "#00000000"
+    "sideBar.background": "#1A1B26",
+    "sideBar.foreground": "#C0CAF5",
+    "sideBarSectionHeader.background": "#414868",
+    "activityBar.background": "#1A1B26",
+    "activityBar.foreground": "#C0CAF5",
+    "activityBar.inactiveForeground": "#A9B1D6",
+    "statusBar.background": "#1A1B26",
+    "statusBar.foreground": "#C0CAF5",
+    "titleBar.activeBackground": "#1A1B26",
+    "titleBar.activeForeground": "#C0CAF5",
+    "editorGroupHeader.tabsBackground": "#1A1B26",
+    "tab.activeBackground": "#1A1B26",
+    "tab.activeForeground": "#C0CAF5",
+    "tab.inactiveBackground": "#1A1B26",
+    "tab.inactiveForeground": "#A9B1D6",
+    "editorCursor.foreground": "#C0CAF5",
+    "editorLineNumber.foreground": "#414868",
+    "editorLineNumber.activeForeground": "#C0CAF5"
   },
   "workbench.editorAssociations": {
     "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
@@ -72,5 +65,7 @@
       "path": "/usr/bin/qmake"
     }
   ],
-  "terminal.integrated.initialHint": false
+  "terminal.integrated.initialHint": false,
+  "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+  "explorer.confirmDelete": false
 }

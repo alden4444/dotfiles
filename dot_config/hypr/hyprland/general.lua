@@ -81,7 +81,7 @@ hl.config({
         -- 2 = circle, higher = squircle, 4 = very obvious squircle
         -- Fuck clearly visible squircles. 100% Apple brainrot.
         rounding_power = 2.5,
-        rounding = 18,
+        rounding = 25,
 
         blur = {
             enabled = true,
