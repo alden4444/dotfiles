@@ -2,8 +2,8 @@
     {
         "key": "ctrl+'",
         "command": "workbench.action.createTerminalEditor"
-    }
-        {
+    },
+    {
         "key": "ctrl+tab",
         "command": "workbench.action.nextEditor"
     },
