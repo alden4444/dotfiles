@@ -1,0 +1,18 @@
+@import "colors.css";
+
+#TabsToolbar,
+#nav-bar,
+#titlebar {
+  background-color: var(--wallust-bg) !important;
+  color: var(--wallust-fg) !important;
+}
+
+.tab-background[selected="true"] {
+  background-color: var(--wallust-accent) !important;
+}
+
+toolbar,
+#urlbar-background {
+  background-color: var(--wallust-bg) !important;
+  color: var(--wallust-fg) !important;
+}

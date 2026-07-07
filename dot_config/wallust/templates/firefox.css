@@ -1,0 +1,19 @@
+:root {
+  --wallust-bg: {{background}};
+  --wallust-fg: {{foreground}};
+  --wallust-accent: {{color4}};
+
+  --lwt-accent-color: {{background}} !important;
+  --lwt-accent-color-inactive: {{background}} !important;
+  --lwt-text-color: {{foreground}} !important;
+  --lwt-selected-tab-background-color: {{color4}} !important;
+  --lwt-selected-tab-text-color: {{background}} !important;
+  --toolbar-bgcolor: {{background}} !important;
+  --toolbar-color: {{foreground}} !important;
+  --toolbar-field-background-color: {{background}} !important;
+  --toolbar-field-color: {{foreground}} !important;
+  --arrowpanel-background: {{background}} !important;
+  --arrowpanel-color: {{foreground}} !important;
+  --sidebar-background-color: {{background}} !important;
+  --sidebar-text-color: {{foreground}} !important;
+}

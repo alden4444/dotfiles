@@ -1,0 +1,7 @@
+@import "colors.css";
+
+@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {
+  body, #root, html {
+    background-color: var(--wallust-bg) !important;
+  }
+}
