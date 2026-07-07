@@ -16,6 +16,7 @@ hyprland   = { template = 'hyprland.lua', target = '~/.config/hypr/colors/custom
 foot       = { template = 'foot.ini',    target = '~/.config/foot/colors/custom/wallust' }
 discord    = { template = 'discord.css', target = '~/.config/vesktop/themes/custom/wallust.theme.css' }
 gtk4 = { template = 'nautilus.css', target = '~/.config/gtk-4.0/gtk.css' }
+firefox = { template = 'firefox.css', target = '~/.config/mozilla/firefox/k01wctt3.default-nightly/chrome/colors.css' }
 # GTK is NOT templated by wallust (option B): the custom GTK 3/4 themes are kept
 # and switched by theme-apply.sh (symlink the per-theme gtk-4.0 + gsettings name).
 

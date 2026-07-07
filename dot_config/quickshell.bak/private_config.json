@@ -6,6 +6,6 @@
   "ccSliders": true,
   "ccTiles": "[{\"key\":\"wifi\",\"span\":1,\"enabled\":true},{\"key\":\"audio\",\"span\":1,\"enabled\":true},{\"key\":\"bluetooth\",\"span\":1,\"enabled\":true},{\"key\":\"display\",\"span\":1,\"enabled\":true},{\"key\":\"peace\",\"span\":1,\"enabled\":true},{\"key\":\"nightlight\",\"span\":1,\"enabled\":true}]",
   "fontSize": 15,
-  "theme": "tokyo-night",
-  "wallpaper": "/home/alden/.config/colorschemes/nord/wallpapers/train at night.jpg"
+  "theme": "rxyhn",
+  "wallpaper": "/home/alden/.config/colorschemes/rxyhn/wallpapers/118016954_p0.png"
 }

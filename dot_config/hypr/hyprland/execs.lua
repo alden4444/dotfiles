@@ -7,14 +7,14 @@ hl.on("hyprland.start", function ()
     
     -- Clear Vulkan driver variables to prevent Chromium/Chrome launch timeouts
     hl.exec_cmd("systemctl --user set-environment VK_DRIVER_FILES=")
-    
+
     -- Bar, wallpaper
     hl.exec_cmd("$HOME/.config/hypr/hyprland/scripts/start_geoclue_agent.sh")
-    hl.exec_cmd("qs")
+    hl.exec_cmd("qs -p ~/.config/quickshell.bak")
 
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
-    hl.exec_cmd("hypridle")
+    hl.exec_cmd("pgrep -x hypridle || hypridle")
 
     -- Audio
     hl.exec_cmd("easyeffects --hide-window --service-mode")
