@@ -16,3 +16,14 @@ toolbar,
   background-color: var(--wallust-bg) !important;
   color: var(--wallust-fg) !important;
 }
+
+/* Target the entire Firefox user interface */
+* {
+    font-family: "Google Sans Flex", sans-serif !important;
+}
+
+/* Specifically target the URL/Search bar input box */
+#urlbar-input, #searchbar .searchbar-textbox {
+    font-family: "Google Sans Flex", sans-serif !important;
+}
+

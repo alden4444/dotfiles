@@ -16,6 +16,17 @@
   "workbench.startupEditor": "none",
   "security.workspace.trust.untrustedFiles": "open",
   "vim.useCtrlKeys": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
   "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
   "editor.padding.bottom": 15,
@@ -67,5 +78,6 @@
   ],
   "terminal.integrated.initialHint": false,
   "qt-qml.qmlls.useQmlImportPathEnvVar": true,
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "qt-qml.doNotAskForQmllsDownload": true
 }
