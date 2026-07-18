@@ -1,19 +1,27 @@
 @import "colors.css";
 
+:root {
+  --lwt-header-image: none !important;
+  --lwt-additional-images: none !important;
+}
+
 #TabsToolbar,
 #nav-bar,
 #titlebar {
   background-color: var(--wallust-bg) !important;
+  background-image: none !important;
   color: var(--wallust-fg) !important;
 }
 
 .tab-background[selected="true"] {
   background-color: var(--wallust-accent) !important;
+  background-image: none !important;
 }
 
 toolbar,
 #urlbar-background {
   background-color: var(--wallust-bg) !important;
+  background-image: none !important;
   color: var(--wallust-fg) !important;
 }
 

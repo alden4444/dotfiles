@@ -1,7 +1,11 @@
 @import "colors.css";
 
-@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {
-  body, #root, html {
+@-moz-document url("about:newtab"), url("about:home"), url("about:blank"), url("about:privatebrowsing") {
+  html, body, #root {
     background-color: var(--wallust-bg) !important;
+  }
+  :root {
+    --newtab-background-color: var(--wallust-bg) !important;
+    --newtab-background-color-secondary: var(--wallust-bg) !important;
   }
 }
