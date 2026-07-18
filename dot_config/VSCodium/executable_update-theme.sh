@@ -3,12 +3,15 @@
 
 set -euo pipefail
 
-VSCFG="$HOME/.config/VSCodium/User/settings.json"
 KITTY_COLORS="$HOME/.config/kitty/colors/wallust.conf"
 MATUGEN_COLORS="$HOME/.local/state/quickshell/user/generated/colors.json"
 
-if [ ! -f "$VSCFG" ]; then
-    echo "VSCodium settings.json not found at $VSCFG" >&2
+VSCFG_VSCodium="$HOME/.config/VSCodium/User/settings.json"
+VSCFG_Antigravity="$HOME/.config/Antigravity IDE/User/settings.json"
+
+# Check that at least one settings file exists
+if [ ! -f "$VSCFG_VSCodium" ] && [ ! -f "$VSCFG_Antigravity" ]; then
+    echo "Neither VSCodium nor Antigravity IDE settings.json found" >&2
     exit 1
 fi
 
@@ -162,7 +165,11 @@ customizations=$(jq -n \
     "editorLineNumber.activeForeground": $ln_act_fg
   }')
 
-# Safely update settings.json
-tmp="$(mktemp)"
-jq --argjson cust "$customizations" '.["workbench.colorCustomizations"] = $cust' "$VSCFG" > "$tmp"
-mv "$tmp" "$VSCFG"
+# Safely update settings files
+for cfg in "$VSCFG_VSCodium" "$VSCFG_Antigravity"; do
+    if [ -f "$cfg" ]; then
+        tmp="$(mktemp)"
+        jq --argjson cust "$customizations" '.["workbench.colorCustomizations"] = $cust' "$cfg" > "$tmp"
+        mv "$tmp" "$cfg"
+    fi
+done

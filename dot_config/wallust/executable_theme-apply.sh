@@ -102,16 +102,17 @@ if [ -f "$csdir/nvim/lua/chadrc.lua" ] && [ -f "$nvchadrc" ]; then
 fi
 
 # --- vscodium (option B): set workbench.colorTheme to the named extension theme ---
-vscfg="$HOME/.config/VSCodium/User/settings.json"
-if [ -f "$csdir/vscodium-theme" ] && [ -f "$vscfg" ] && command -v jq >/dev/null 2>&1; then
-    vsname="$(cat "$csdir/vscodium-theme")"
-    tmp="$(mktemp)"
-    if jq --arg t "$vsname" '.["workbench.colorTheme"]=$t' "$vscfg" >"$tmp" 2>/dev/null; then
-        mv "$tmp" "$vscfg"
-    else
-        rm -f "$tmp"
+for cfg in "$HOME/.config/VSCodium/User/settings.json" "$HOME/.config/Antigravity IDE/User/settings.json"; do
+    if [ -f "$csdir/vscodium-theme" ] && [ -f "$cfg" ] && command -v jq >/dev/null 2>&1; then
+        vsname="$(cat "$csdir/vscodium-theme")"
+        tmp="$(mktemp)"
+        if jq --arg t "$vsname" '.["workbench.colorTheme"]=$t' "$cfg" >"$tmp" 2>/dev/null; then
+            mv "$tmp" "$cfg"
+        else
+            rm -f "$tmp"
+        fi
     fi
-fi
+done
 if [ -f "$HOME/.config/VSCodium/update-theme.sh" ]; then
     "$HOME/.config/VSCodium/update-theme.sh" wallust
 fi

@@ -1,0 +1,86 @@
+{
+  "material-icon-theme.folders.theme": "classic",
+  "terminal.integrated.defaultLocation": "editor",
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "workbench.list.smoothScrolling": true,
+  "editor.smoothScrolling": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.productIconTheme": "material-product-icons",
+  "window.enableMenuBarMnemonics": false,
+  "window.customMenuBarAltFocus": false,
+  "window.menuBarVisibility": "hidden",
+  "window.customTitleBarVisibility": "never",
+  "window.titleBarStyle": "native",
+  "workbench.statusBar.visible": false,
+  "workbench.startupEditor": "none",
+  "security.workspace.trust.untrustedFiles": "open",
+  "vim.useCtrlKeys": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "breadcrumbs.enabled": false,
+  "editor.minimap.enabled": false,
+  "editor.padding.bottom": 15,
+  "editor.padding.top": 15,
+  "editor.fontFamily": "'Google Sans Code', monospace",
+  "editor.hover.enabled": "off",
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.lightbulb.enabled": "off",
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+  "workbench.colorCustomizations": {
+    "editor.background": "#1E1E2E",
+    "editor.foreground": "#CDD6F4",
+    "editorGutter.background": "#1E1E2E",
+    "editor.lineHighlightBackground": "#F5E0DC15",
+    "editor.lineHighlightBorder": "#00000000",
+    "sideBar.background": "#1E1E2E",
+    "sideBar.foreground": "#CDD6F4",
+    "sideBarSectionHeader.background": "#585B70",
+    "activityBar.background": "#1E1E2E",
+    "activityBar.foreground": "#F5E0DC",
+    "activityBar.inactiveForeground": "#BAC2DE",
+    "statusBar.background": "#1E1E2E",
+    "statusBar.foreground": "#CDD6F4",
+    "titleBar.activeBackground": "#1E1E2E",
+    "titleBar.activeForeground": "#CDD6F4",
+    "editorGroupHeader.tabsBackground": "#1E1E2E",
+    "tab.activeBackground": "#1E1E2E",
+    "tab.activeForeground": "#CDD6F4",
+    "tab.inactiveBackground": "#1E1E2E",
+    "tab.inactiveForeground": "#BAC2DE",
+    "editorCursor.foreground": "#F5E0DC",
+    "editorLineNumber.foreground": "#585B70",
+    "editorLineNumber.activeForeground": "#F5E0DC"
+  },
+  "workbench.editorAssociations": {
+    "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+    "*.qrc": "qt-core.qrcEditor"
+  },
+  "qt-core.additionalQtPaths": [
+    {
+      "name": "Qt-5.15.19-linux-g++-x86_64_from_PATH",
+      "path": "/usr/bin/qmake"
+    }
+  ],
+  "terminal.integrated.initialHint": false,
+  "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+  "explorer.confirmDelete": false,
+  "qt-qml.doNotAskForQmllsDownload": true,
+  "explorer.confirmDragAndDrop": false,
+  "material-icon-theme.hidesExplorerArrows": false
+}

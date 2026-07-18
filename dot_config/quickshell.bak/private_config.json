@@ -6,6 +6,6 @@
   "ccSliders": true,
   "ccTiles": "[{\"key\":\"wifi\",\"span\":1,\"enabled\":true},{\"key\":\"audio\",\"span\":1,\"enabled\":true},{\"key\":\"bluetooth\",\"span\":1,\"enabled\":true},{\"key\":\"display\",\"span\":1,\"enabled\":true},{\"key\":\"peace\",\"span\":1,\"enabled\":true},{\"key\":\"nightlight\",\"span\":1,\"enabled\":true}]",
   "fontSize": 15,
-  "theme": "ariadne",
+  "theme": "catppuccin",
   "wallpaper": "/home/alden/.config/colorschemes/ariadne/wallpapers/balloon.png"
 }
