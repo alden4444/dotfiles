@@ -1,4 +1,14 @@
 {
+  "vim.handleKeys": {
+    "ctrl+shift+i": false
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": false,
+  "[qml]": {
+    "editor.defaultFormatter": "delgan.qml-format"
+  },
   "material-icon-theme.folders.theme": "classic",
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.defaultProfile.linux": "fish",
@@ -43,29 +53,29 @@
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
   "workbench.colorCustomizations": {
-    "editor.background": "#1E1E2E",
-    "editor.foreground": "#CDD6F4",
-    "editorGutter.background": "#1E1E2E",
-    "editor.lineHighlightBackground": "#F5E0DC15",
+    "editor.background": "#040E0D",
+    "editor.foreground": "#F5E2C5",
+    "editorGutter.background": "#040E0D",
+    "editor.lineHighlightBackground": "#F5E2C515",
     "editor.lineHighlightBorder": "#00000000",
-    "sideBar.background": "#1E1E2E",
-    "sideBar.foreground": "#CDD6F4",
-    "sideBarSectionHeader.background": "#585B70",
-    "activityBar.background": "#1E1E2E",
-    "activityBar.foreground": "#F5E0DC",
-    "activityBar.inactiveForeground": "#BAC2DE",
-    "statusBar.background": "#1E1E2E",
-    "statusBar.foreground": "#CDD6F4",
-    "titleBar.activeBackground": "#1E1E2E",
-    "titleBar.activeForeground": "#CDD6F4",
-    "editorGroupHeader.tabsBackground": "#1E1E2E",
-    "tab.activeBackground": "#1E1E2E",
-    "tab.activeForeground": "#CDD6F4",
-    "tab.inactiveBackground": "#1E1E2E",
-    "tab.inactiveForeground": "#BAC2DE",
-    "editorCursor.foreground": "#F5E0DC",
-    "editorLineNumber.foreground": "#585B70",
-    "editorLineNumber.activeForeground": "#F5E0DC"
+    "sideBar.background": "#040E0D",
+    "sideBar.foreground": "#F5E2C5",
+    "sideBarSectionHeader.background": "#3A1A35",
+    "activityBar.background": "#040E0D",
+    "activityBar.foreground": "#F5E2C5",
+    "activityBar.inactiveForeground": "#C4B09A",
+    "statusBar.background": "#040E0D",
+    "statusBar.foreground": "#F5E2C5",
+    "titleBar.activeBackground": "#040E0D",
+    "titleBar.activeForeground": "#F5E2C5",
+    "editorGroupHeader.tabsBackground": "#040E0D",
+    "tab.activeBackground": "#040E0D",
+    "tab.activeForeground": "#F5E2C5",
+    "tab.inactiveBackground": "#040E0D",
+    "tab.inactiveForeground": "#C4B09A",
+    "editorCursor.foreground": "#F5E2C5",
+    "editorLineNumber.foreground": "#3A1A35",
+    "editorLineNumber.activeForeground": "#F5E2C5"
   },
   "workbench.editorAssociations": {
     "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
@@ -83,5 +93,8 @@
   "qt-qml.doNotAskForQmllsDownload": true,
   "explorer.confirmDragAndDrop": false,
   "material-icon-theme.hidesExplorerArrows": false,
-  "window.menuBarVisibility": "hidden"
+  "window.menuBarVisibility": "hidden",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }

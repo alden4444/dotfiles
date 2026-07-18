@@ -65,8 +65,52 @@ if command -v jq >/dev/null 2>&1 && [ -f "$cfg" ]; then
     fi
 fi
 
+# Check if any browser is running before reload
+active_proc=""
+for proc in "firefox-bin" "firefox" "firefox-nightly" "chrome" "google-chrome" "google-chrome-stable" "zen-browser" "zen" "brave" "chromium" "microsoft-edge-stable" "opera" "librewolf"; do
+    if pgrep -x "$proc" >/dev/null; then
+        active_proc="$proc"
+        break
+    fi
+done
+
+# Terminate the browser process immediately to avoid slow Wayland protocol crash during reload
+if [ -n "$active_proc" ]; then
+    pkill -x "$active_proc" || true
+    # Wait for the browser process to fully exit (up to 1.5 seconds)
+    timeout=30 # 30 * 0.05s = 1.5s
+    while [ $timeout -gt 0 ]; do
+        if ! pgrep -x "$active_proc" >/dev/null; then
+            break
+        fi
+        sleep 0.05
+        timeout=$((timeout - 1))
+    done
+    # Force kill if still running to guarantee it's closed instantly
+    if pgrep -x "$active_proc" >/dev/null; then
+        pkill -9 -x "$active_proc" || true
+        # Wait up to 0.5s for OS to release it
+        timeout=10
+        while [ $timeout -gt 0 ] && pgrep -x "$active_proc" >/dev/null; do
+            sleep 0.05
+            timeout=$((timeout - 1))
+        done
+    fi
+fi
+
 # --- non-GTK reloads (cs skips wallust [hooks]) ---
 hyprctl reload    >/dev/null 2>&1 || true
+
+# Relaunch the browser immediately in the background so it starts opening in parallel with the rest of the script
+if [ -n "$active_proc" ]; then
+    if command -v lua >/dev/null 2>&1; then
+        browser_cmd=$(lua -e 'HOME=os.getenv("HOME"); hl={env=function()end}; dofile(HOME.."/.config/hypr/hyprland/variables.lua"); if io.open(HOME.."/.config/hypr/custom/variables.lua") then dofile(HOME.."/.config/hypr/custom/variables.lua") end; print(browser)' 2>/dev/null)
+        if [ -n "$browser_cmd" ]; then
+            eval "${browser_cmd/#\~/$HOME} &"
+        fi
+    fi
+fi
+
 pkill -USR1 kitty 2>/dev/null      || true
 # foot: new windows pick up colors. vesktop: hot-reloads CSS. quickshell: live FileView.
 
@@ -116,4 +160,6 @@ done
 if [ -f "$HOME/.config/VSCodium/update-theme.sh" ]; then
     "$HOME/.config/VSCodium/update-theme.sh" wallust
 fi
+
+# Relaunch complete
 

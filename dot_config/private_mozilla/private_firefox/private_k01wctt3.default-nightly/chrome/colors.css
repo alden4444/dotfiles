@@ -1,19 +1,19 @@
 :root {
-  --wallust-bg: #1E1E2E;
-  --wallust-fg: #CDD6F4;
-  --wallust-accent: #89B4FA;
+  --wallust-bg: #040E0D;
+  --wallust-fg: #F5E2C5;
+  --wallust-accent: #5FC8D4;
 
-  --lwt-accent-color: #1E1E2E !important;
-  --lwt-accent-color-inactive: #1E1E2E !important;
-  --lwt-text-color: #CDD6F4 !important;
-  --lwt-selected-tab-background-color: #89B4FA !important;
-  --lwt-selected-tab-text-color: #1E1E2E !important;
-  --toolbar-bgcolor: #1E1E2E !important;
-  --toolbar-color: #CDD6F4 !important;
-  --toolbar-field-background-color: #1E1E2E !important;
-  --toolbar-field-color: #CDD6F4 !important;
-  --arrowpanel-background: #1E1E2E !important;
-  --arrowpanel-color: #CDD6F4 !important;
-  --sidebar-background-color: #1E1E2E !important;
-  --sidebar-text-color: #CDD6F4 !important;
+  --lwt-accent-color: #040E0D !important;
+  --lwt-accent-color-inactive: #040E0D !important;
+  --lwt-text-color: #F5E2C5 !important;
+  --lwt-selected-tab-background-color: #5FC8D4 !important;
+  --lwt-selected-tab-text-color: #040E0D !important;
+  --toolbar-bgcolor: #040E0D !important;
+  --toolbar-color: #F5E2C5 !important;
+  --toolbar-field-background-color: #040E0D !important;
+  --toolbar-field-color: #F5E2C5 !important;
+  --arrowpanel-background: #040E0D !important;
+  --arrowpanel-color: #F5E2C5 !important;
+  --sidebar-background-color: #040E0D !important;
+  --sidebar-text-color: #F5E2C5 !important;
 }
