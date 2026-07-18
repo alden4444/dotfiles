@@ -10,7 +10,7 @@ palette = "salience-dark"
 
 [templates]
 # Quickshell shell: writes colors.json; Theme.qml reads it live (no reload hook).
-quickshell = { template = 'quickshell-colors.json', target = '~/.config/quickshell.bak/colors.json' }
+quickshell = { template = 'quickshell-colors.json', target = '~/.config/quickshell-active/colors.json' }
 kitty      = { template = 'kitty.conf',  target = '~/.config/kitty/colors/wallust.conf' }
 hyprland   = { template = 'hyprland.lua', target = '~/.config/hypr/colors/custom/wallust.lua' }
 foot       = { template = 'foot.ini',    target = '~/.config/foot/colors/custom/wallust' }

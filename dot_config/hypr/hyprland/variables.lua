@@ -1,3 +1,6 @@
+qsDir = HOME .. "/.config/quickshell.bak"
+hl.env("qsDir", qsDir)
+
 -- Default variables
 -- Copy these to ~/.config/hypr/custom/variables.lua to make changes in a dotfiles-update-friendly manner
 
@@ -13,7 +16,7 @@ codeEditor = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'windsur
 officeSoftware = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'wps' 'onlyoffice-desktopeditors' 'libreoffice'"
 textEditor = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'kate' 'gnome-text-editor' 'emacs'"
 volumeMixer = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'pavucontrol-qt' 'pavucontrol'"
-settingsApp = "XDG_CURRENT_DESKTOP=gnome ~/.config/hypr/hyprland/scripts/launch_first_available.sh 'qs -p ~/.config/quickshell.bak/settings.qml' 'systemsettings' 'gnome-control-center' 'better-control'"
+settingsApp = "XDG_CURRENT_DESKTOP=gnome ~/.config/hypr/hyprland/scripts/launch_first_available.sh 'qs -p " .. qsDir .. "/settings.qml' 'systemsettings' 'gnome-control-center' 'better-control'"
 taskManager = "~/.config/hypr/hyprland/scripts/launch_first_available.sh 'gnome-system-monitor' 'plasma-systemmonitor --page-name Processes' 'command -v btop && kitty -1 fish -c btop'"
 
 workspaceGroupSize = 10

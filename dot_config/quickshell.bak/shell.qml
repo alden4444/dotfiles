@@ -212,6 +212,12 @@ ShellRoot {
         function lock() { GlobalState.requestLock(); }
     }
 
+    // qs ipc call cliphistService update
+    IpcHandler {
+        target: "cliphistService"
+        function update() { Clipboard.refresh(); }
+    }
+
     // qs ipc call wallpaper toggle|open|close
     IpcHandler {
         target: "wallpaper"

@@ -91,7 +91,7 @@ Singleton {
     }
 
     FileView {
-        path: `${Quickshell.env("HOME")}/.config/quickshell.bak/config.json`
+        path: `${Quickshell.env("HOME")}/.config/quickshell-active/config.json`
         watchChanges: true
         onFileChanged: reload()
         onAdapterUpdated: writeAdapter() // persist changes back to disk (e.g. a wallpaper pick)

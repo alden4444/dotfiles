@@ -26,7 +26,7 @@ vim.opt.conceallevel = 2
 -- DYNAMIC WALLUST COLOR LOADER
 -- Reads directly from the same colors.json file your Quickshell uses
 local function apply_wallust_theme()
-  local json_path = vim.fn.expand("~/.config/quickshell.bak/colors.json")
+  local json_path = vim.fn.expand("~/.config/quickshell-active/colors.json")
   local file = io.open(json_path, "r")
   if not file then return end
 

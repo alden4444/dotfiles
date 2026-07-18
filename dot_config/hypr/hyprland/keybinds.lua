@@ -4,12 +4,22 @@ if is_file_exists(HOME .. "/.config/hypr/custom/variables.lua") then
     require("custom.variables")
 end
 
-local qsScripts = "$HOME/.config/quickshell.bak/scripts"
+local qsScripts = qsDir .. "/scripts"
 local hyprScripts = "$HOME/.config/hypr/hyprland/scripts"
-local qsIpcCall = "qs -p ~/.config/quickshell.bak ipc call"
+local qsIpcCall = "qs -p " .. qsDir .. " ipc call"
 local qsIsAlive = qsIpcCall .. " TEST_ALIVE"
 
-hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(qsIsAlive .. " || pkill wlogout || wlogout -p layer-shell"))
+local wlogoutCmd = "wlogout -p layer-shell"
+if is_file_exists(qsDir .. "/wlogout/layout") then
+    wlogoutCmd = "wlogout -p layer-shell -l " .. qsDir .. "/wlogout/layout"
+    if is_file_exists(qsDir .. "/wlogout/style.css") then
+        wlogoutCmd = wlogoutCmd .. " -C " .. qsDir .. "/wlogout/style.css"
+    end
+end
+local logoutCmd = "out=$(" .. qsIpcCall .. " logout toggle 2>&1); if [ $? -ne 0 ] || echo \"$out\" | grep -q \"Target not found\"; then pkill wlogout || " .. wlogoutCmd .. "; fi"
+
+hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(logoutCmd))
+hl.bind("SUPER + BackSpace", hl.dsp.exec_cmd(logoutCmd), { description = "Session: Power menu" })
 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(qsIpcCall .. " brightness increment || brightnessctl s 5%+"),
     { locked = true, repeating = true })
@@ -20,7 +30,7 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),
     { locked = true, repeating = true })
 
-hl.bind("CTRL + SUPER + R", hl.dsp.exec_cmd("killall ydotool qs quickshell; qs -p ~/.config/quickshell.bak &"),
+hl.bind("CTRL + SUPER + R", hl.dsp.exec_cmd("killall ydotool qs quickshell; qs -p " .. qsDir .. " &"),
     { description = "Shell: Restart widgets" })
 hl.bind("CTRL + SUPER + P", hl.dsp.global("quickshell:panelFamilyCycle"), { description = "Shell: Cycle panel family" })
 
@@ -145,7 +155,9 @@ hl.bind("SUPER + SHIFT + ALT + Q", hl.dsp.exec_cmd("hyprctl kill"), { descriptio
 --#/# binde = SUPER, ;/',, -- Adjust split ratio
 hl.bind("SUPER + Semicolon", hl.dsp.layout("splitratio -0.1"), { repeating = true })
 hl.bind("SUPER + Apostrophe", hl.dsp.layout("splitratio +0.1"), { repeating = true })
+hl.bind("SUPER + J", hl.dsp.layout("togglesplit"), { description = "Window: Toggle split (above/side)" })
 --# Positioning mode
+hl.bind("SUPER + SHIFT + Space", hl.dsp.window.float({ action = "toggle" }), { description = "Window: Float/Tile" })
 hl.bind("SUPER + ALT + Space", hl.dsp.window.float({ action = "toggle" }), { description = "Window: Float/Tile" })
 hl.bind("SUPER + D", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
     { description = "Window: Maximize" })

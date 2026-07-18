@@ -31,8 +31,24 @@ wallust cs "$scheme" -s || { echo "wallust cs failed" >&2; exit 1; }
 # --- sync the shell's Config (theme) + auto-apply this theme's last-used wallpaper ---
 # Keeps config.json in sync regardless of entry point (CLI or in-shell switcher),
 # and restores the wallpaper last chosen for this theme (else its first one).
-cfg="$HOME/.config/quickshell.bak/config.json"
-state="$HOME/.config/quickshell.bak/wallpaper-state"
+# Determine active quickshell directory from environment, variables.lua, or symlink
+if [ -z "${qsDir:-}" ]; then
+    if [ -f "$HOME/.config/hypr/hyprland/variables.lua" ] && command -v lua >/dev/null 2>&1; then
+        qsDir=$(lua -e 'HOME=os.getenv("HOME"); hl={env=function()end}; dofile(HOME.."/.config/hypr/hyprland/variables.lua"); print(qsDir)' 2>/dev/null)
+    fi
+fi
+if [ -z "${qsDir:-}" ] && [ -L "$HOME/.config/quickshell-active" ]; then
+    qsDir="$(readlink -f "$HOME/.config/quickshell-active")"
+fi
+if [ -z "${qsDir:-}" ]; then
+    if [ -f "$HOME/.config/quickshell/shell.qml" ]; then
+        qsDir="$HOME/.config/quickshell"
+    else
+        qsDir="$HOME/.config/quickshell.bak"
+    fi
+fi
+cfg="${qsDir}/config.json"
+state="${qsDir}/wallpaper-state"
 wpdir="$HOME/.config/colorschemes/$name/wallpapers"
 wp=""
 [ -f "$state" ] && wp="$(awk -F'\t' -v t="$name" '$1==t{print $2; exit}' "$state")"

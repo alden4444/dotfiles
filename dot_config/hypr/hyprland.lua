@@ -11,6 +11,7 @@ require("hyprland.services")
 require("hyprland.env")
 
 -- Configurations --
+require("hyprland.variables")
 require("hyprland.execs")
 require("hyprland.general")
 require("hyprland.rules")

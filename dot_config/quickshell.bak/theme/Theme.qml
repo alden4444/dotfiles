@@ -13,7 +13,7 @@ Singleton {
     id: root
 
     FileView {
-        path: `${Quickshell.env("HOME")}/.config/quickshell.bak/colors.json`
+        path: `${Quickshell.env("HOME")}/.config/quickshell-active/colors.json`
         watchChanges: true
         onFileChanged: reload()
 
