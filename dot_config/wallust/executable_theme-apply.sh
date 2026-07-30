@@ -65,6 +65,63 @@ if command -v jq >/dev/null 2>&1 && [ -f "$cfg" ]; then
     fi
 fi
 
+# --- Set device-wide color-scheme (light/dark) for GTK and web browsers ---
+csdir="$HOME/.config/colorschemes/$name"
+bg=""
+if [ -f "$scheme" ] && command -v jq >/dev/null 2>&1; then
+    bg=$(jq -r '.special.background' "$scheme" 2>/dev/null)
+fi
+
+is_light=false
+if [ -n "$bg" ]; then
+    bg_clean="${bg#\#}"
+    if [ ${#bg_clean} -eq 3 ]; then
+        bg_clean="$(echo "$bg_clean" | sed 's/./&&/g')"
+    fi
+    if [ ${#bg_clean} -eq 6 ]; then
+        r=$((16#${bg_clean:0:2}))
+        g=$((16#${bg_clean:2:2}))
+        b=$((16#${bg_clean:4:2}))
+        # Relative luminance formula Y = 0.299*R + 0.587*G + 0.114*B
+        y_1000=$(( 299 * r + 587 * g + 114 * b ))
+        if [ $y_1000 -gt 128000 ]; then
+            is_light=true
+        fi
+    fi
+fi
+
+if [ "$is_light" = true ]; then
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null || true
+    # Adjust GTK theme to light if we're not overriding it with a custom gtk-theme file
+    if [ ! -f "$csdir/gtk-theme" ]; then
+        current_gtk=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'\"")
+        if [ -n "$current_gtk" ]; then
+            new_gtk="$current_gtk"
+            if [[ "$current_gtk" == *-dark ]]; then
+                new_gtk="${current_gtk%-dark}"
+            elif [[ "$current_gtk" == *-Dark ]]; then
+                new_gtk="${current_gtk%-Dark}"
+            fi
+            if [ "$new_gtk" != "$current_gtk" ] && [ -d "/usr/share/themes/$new_gtk" -o -d "$HOME/.themes/$new_gtk" -o -d "$HOME/.local/share/themes/$new_gtk" ]; then
+                gsettings set org.gnome.desktop.interface gtk-theme "$new_gtk" 2>/dev/null || true
+            fi
+        fi
+    fi
+else
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null || true
+    # Adjust GTK theme to dark if we're not overriding it with a custom gtk-theme file
+    if [ ! -f "$csdir/gtk-theme" ]; then
+        current_gtk=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'\"")
+        if [ -n "$current_gtk" ] && [[ "$current_gtk" != *-dark && "$current_gtk" != *-Dark ]]; then
+            if [ -d "/usr/share/themes/${current_gtk}-dark" -o -d "$HOME/.themes/${current_gtk}-dark" -o -d "$HOME/.local/share/themes/${current_gtk}-dark" ]; then
+                gsettings set org.gnome.desktop.interface gtk-theme "${current_gtk}-dark" 2>/dev/null || true
+            elif [ -d "/usr/share/themes/${current_gtk}-Dark" -o -d "$HOME/.themes/${current_gtk}-Dark" -o -d "$HOME/.local/share/themes/${current_gtk}-Dark" ]; then
+                gsettings set org.gnome.desktop.interface gtk-theme "${current_gtk}-Dark" 2>/dev/null || true
+            fi
+        fi
+    fi
+fi
+
 # Check if any browser is running before reload
 active_proc=""
 for proc in "firefox-bin" "firefox" "firefox-nightly" "chrome" "google-chrome" "google-chrome-stable" "zen-browser" "zen" "brave" "chromium" "microsoft-edge-stable" "opera" "librewolf"; do
@@ -112,6 +169,7 @@ if [ -n "$active_proc" ]; then
 fi
 
 pkill -USR1 kitty 2>/dev/null      || true
+pkill -USR2 btop 2>/dev/null       || true
 # foot: new windows pick up colors. vesktop: hot-reloads CSS. quickshell: live FileView.
 
 # --- GTK (option B): switch the matching custom GTK 3/4 theme, if one exists ---

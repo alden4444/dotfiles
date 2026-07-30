@@ -505,6 +505,7 @@ PanelWindow {
                         font.pixelSize: Theme.fsClock             // base; expand via smooth scale
                         font.weight: Theme.wSemiBold
                         font.letterSpacing: -0.5
+                        font.features: { "tnum": 1 }
                         color: Theme.inkPrimary
                         // scale (not font.pixelSize) so growth's smooth and sub-pixel; QtRendering
                         // (distance field) scales crisp without re-rasterizing per integer size.

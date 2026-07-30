@@ -7,6 +7,7 @@ StyledText {
     id: root
 
     text: Qt.formatDateTime(clock.date, "ddd, MMM d HH:mm")
+    font.features: { "tnum": 1 }
 
     SystemClock {
         id: clock

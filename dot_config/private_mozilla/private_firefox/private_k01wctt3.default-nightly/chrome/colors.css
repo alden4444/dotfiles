@@ -1,19 +1,19 @@
 :root {
-  --wallust-bg: #040E0D;
-  --wallust-fg: #F5E2C5;
-  --wallust-accent: #5FC8D4;
+  --wallust-bg: #2E3440;
+  --wallust-fg: #D8DEE9;
+  --wallust-accent: #81A1C1;
 
-  --lwt-accent-color: #040E0D !important;
-  --lwt-accent-color-inactive: #040E0D !important;
-  --lwt-text-color: #F5E2C5 !important;
-  --lwt-selected-tab-background-color: #5FC8D4 !important;
-  --lwt-selected-tab-text-color: #040E0D !important;
-  --toolbar-bgcolor: #040E0D !important;
-  --toolbar-color: #F5E2C5 !important;
-  --toolbar-field-background-color: #040E0D !important;
-  --toolbar-field-color: #F5E2C5 !important;
-  --arrowpanel-background: #040E0D !important;
-  --arrowpanel-color: #F5E2C5 !important;
-  --sidebar-background-color: #040E0D !important;
-  --sidebar-text-color: #F5E2C5 !important;
+  --lwt-accent-color: #2E3440 !important;
+  --lwt-accent-color-inactive: #2E3440 !important;
+  --lwt-text-color: #D8DEE9 !important;
+  --lwt-selected-tab-background-color: #81A1C1 !important;
+  --lwt-selected-tab-text-color: #2E3440 !important;
+  --toolbar-bgcolor: #2E3440 !important;
+  --toolbar-color: #D8DEE9 !important;
+  --toolbar-field-background-color: #2E3440 !important;
+  --toolbar-field-color: #D8DEE9 !important;
+  --arrowpanel-background: #2E3440 !important;
+  --arrowpanel-color: #D8DEE9 !important;
+  --sidebar-background-color: #2E3440 !important;
+  --sidebar-text-color: #D8DEE9 !important;
 }

@@ -130,8 +130,8 @@ Singleton {
     readonly property int s6: 32
 
     // typography
-    readonly property string fontDisplay: "SF Mono"  // numerals / data labels
-    readonly property string fontBody: "SF Pro Text"            // everything else
+    readonly property string fontDisplay: "Google Sans Flex"  // numerals / data labels
+    readonly property string fontBody: "Google Sans Flex"            // everything else
     readonly property string fontGlyph: "JetBrainsMono Nerd Font Propo" // nerd-font icons
     readonly property int fontSize: Config.fontSize                 // user-tunable (settings)
     // type scale (relative to fontSize so the settings slider scales it all)

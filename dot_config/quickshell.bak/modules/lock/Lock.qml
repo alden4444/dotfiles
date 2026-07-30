@@ -35,6 +35,7 @@ WlSessionLock {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: Theme.fontDisplay          // big clock, in the mono data face
                     font.pixelSize: Theme.fontSize * 5
+                    font.features: { "tnum": 1 }
                     text: Qt.formatDateTime(clock.date, "HH:mm")
                     color: Theme.inkPrimary
                 }

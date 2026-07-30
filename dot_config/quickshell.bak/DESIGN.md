@@ -75,7 +75,7 @@ least `s4`, inner gaps `s2` to `s3`. Consistency matters more than ever now that
 carries the hierarchy.
 
 **Typography:** two shell UI families (separate from whatever the apps' wallust themes do).
-- `fontDisplay` = SF Mono (numerals and data labels: clock, OSD values). `fontBody` = SF Pro
+- `fontDisplay` = Google Sans Code (numerals and data labels: clock, OSD values). `fontBody` = Google Sans Flex
   (everything else). `fontGlyph` = JetBrainsMono Nerd Font (icon glyphs).
 - Scale (relative to `Theme.fontSize` so the settings slider scales all of it): `display`
   (clock), `title`, `body`, `label`, `caption`. Weights 400 / 500 only.
