@@ -11,6 +11,7 @@ hl.on("hyprland.start", function ()
     -- Atomically update ~/.config/quickshell-active to point to qsDir
     os.execute("ln -sfn " .. qsDir .. " " .. HOME .. "/.config/quickshell-active")
 
+
     -- Set up wlogout symlink if quickshell has a wlogout config
     if is_file_exists(qsDir .. "/wlogout/layout") then
         os.execute("rm -rf " .. HOME .. "/.config/wlogout && ln -sf " .. qsDir .. "/wlogout " .. HOME .. "/.config/wlogout")

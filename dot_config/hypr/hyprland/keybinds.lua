@@ -214,6 +214,8 @@ end
 hl.bind("SUPER + ALT + S",
     hl.dsp.window.move({ workspace = "special:special", follow = false }), { description = "Window: Send to scratchpad" })
 hl.bind("CTRL + SUPER + S", hl.dsp.workspace.toggle_special("special"))
+hl.bind("CTRL + SUPER + M",
+    hl.dsp.window.move({ workspace = "special:music", follow = false }), { description = "Window: Send to music scratchpad" })
 
 --##! Workspace
 --# Switching
@@ -268,6 +270,7 @@ for i = 1, 4 do
 end
 --## Special
 hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("special"), { description = "Workspace: Toggle scratchpad" })
+hl.bind("SUPER + M", hl.dsp.workspace.toggle_special("music"), { description = "Workspace: Toggle music scratchpad" })
 hl.bind("SUPER + mouse:275", hl.dsp.workspace.toggle_special("special"))
 for i = 1, 4 do
     local key = { "BracketLeft", "BracketRight", "Up", "Down" }
@@ -328,4 +331,8 @@ hl.bind("SUPER + Space",  hl.dsp.global("quickshell:launcher"),  { description =
 hl.bind("SUPER + T",      hl.dsp.global("quickshell:theme"),     { description = "Shell: Theme switcher" })
 hl.bind("SUPER + SHIFT + T", hl.dsp.global("quickshell:wallpaper"))
 hl.bind("SUPER + Comma",  hl.dsp.global("quickshell:settings"),  { description = "Shell: Settings" })
+
+if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then
+    require("custom.keybinds")
+end
 

@@ -39,7 +39,6 @@
     }
   ],
   "breadcrumbs.enabled": false,
-  "editor.minimap.enabled": false,
   "editor.padding.bottom": 15,
   "editor.padding.top": 15,
   "editor.fontFamily": "'Google Sans Code', monospace",
@@ -53,29 +52,29 @@
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
   "workbench.colorCustomizations": {
-    "editor.background": "#2E3440",
-    "editor.foreground": "#D8DEE9",
-    "editorGutter.background": "#2E3440",
-    "editor.lineHighlightBackground": "#81A1C115",
+    "editor.background": "#050505",
+    "editor.foreground": "#F0F0F0",
+    "editorGutter.background": "#050505",
+    "editor.lineHighlightBackground": "#F0F0F015",
     "editor.lineHighlightBorder": "#00000000",
-    "sideBar.background": "#3B4252",
-    "sideBar.foreground": "#D8DEE9",
-    "sideBarSectionHeader.background": "#4C566A",
-    "activityBar.background": "#2E3440",
-    "activityBar.foreground": "#81A1C1",
-    "activityBar.inactiveForeground": "#E5E9F0",
-    "statusBar.background": "#3B4252",
-    "statusBar.foreground": "#D8DEE9",
-    "titleBar.activeBackground": "#2E3440",
-    "titleBar.activeForeground": "#D8DEE9",
-    "editorGroupHeader.tabsBackground": "#3B4252",
-    "tab.activeBackground": "#2E3440",
-    "tab.activeForeground": "#D8DEE9",
-    "tab.inactiveBackground": "#3B4252",
-    "tab.inactiveForeground": "#E5E9F0",
-    "editorCursor.foreground": "#81A1C1",
-    "editorLineNumber.foreground": "#4C566A",
-    "editorLineNumber.activeForeground": "#81A1C1"
+    "sideBar.background": "#141414",
+    "sideBar.foreground": "#F0F0F0",
+    "sideBarSectionHeader.background": "#2A2A2A",
+    "activityBar.background": "#050505",
+    "activityBar.foreground": "#F0F0F0",
+    "activityBar.inactiveForeground": "#E0E0E0",
+    "statusBar.background": "#141414",
+    "statusBar.foreground": "#F0F0F0",
+    "titleBar.activeBackground": "#050505",
+    "titleBar.activeForeground": "#F0F0F0",
+    "editorGroupHeader.tabsBackground": "#141414",
+    "tab.activeBackground": "#050505",
+    "tab.activeForeground": "#F0F0F0",
+    "tab.inactiveBackground": "#141414",
+    "tab.inactiveForeground": "#E0E0E0",
+    "editorCursor.foreground": "#F0F0F0",
+    "editorLineNumber.foreground": "#2A2A2A",
+    "editorLineNumber.activeForeground": "#F0F0F0"
   },
   "workbench.editorAssociations": {
     "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
@@ -96,5 +95,6 @@
   "window.menuBarVisibility": "hidden",
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "editor.minimap.enabled": false
 }

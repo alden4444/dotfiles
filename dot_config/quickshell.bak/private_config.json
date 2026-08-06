@@ -1,11 +1,11 @@
 {
-  "barHeight": 37,
-  "ccColumns": 3,
-  "ccMedia": false,
-  "ccNotifications": true,
-  "ccSliders": true,
-  "ccTiles": "[{\"key\":\"wifi\",\"span\":1,\"enabled\":true},{\"key\":\"audio\",\"span\":1,\"enabled\":true},{\"key\":\"bluetooth\",\"span\":1,\"enabled\":true},{\"key\":\"display\",\"span\":1,\"enabled\":true},{\"key\":\"peace\",\"span\":1,\"enabled\":true},{\"key\":\"nightlight\",\"span\":1,\"enabled\":true}]",
-  "fontSize": 15,
-  "theme": "nord",
-  "wallpaper": "/home/alden/.config/colorschemes/nord/wallpapers/train at night.jpg"
+    "barHeight": 37,
+    "ccColumns": 3,
+    "ccMedia": false,
+    "ccNotifications": true,
+    "ccSliders": true,
+    "ccTiles": "[{\"key\":\"wifi\",\"span\":1,\"enabled\":true},{\"key\":\"audio\",\"span\":1,\"enabled\":true},{\"key\":\"bluetooth\",\"span\":1,\"enabled\":true},{\"key\":\"display\",\"span\":1,\"enabled\":true},{\"key\":\"peace\",\"span\":1,\"enabled\":true},{\"key\":\"nightlight\",\"span\":1,\"enabled\":true}]",
+    "fontSize": 15,
+    "theme": "industrial",
+    "wallpaper": "/home/alden/.config/colorschemes/industrial/wallpapers/DSCF0126.jpeg"
 }
