@@ -1,0 +1,13 @@
+[Unit]
+Description=Quickshell Git Auto-Commit Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/alden/.config/quickshell/git-autocommit.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
