@@ -1,5 +1,16 @@
 -- MONITOR CONFIG
--- External monitor on the far left
+-- Dynamic state loading (survives reloads)
+pcall(dofile, (os.getenv("HOME") or "") .. "/.config/hypr/modules/monitors-state.lua")
+
+-- Hotplug fallback for unconfigured displays
+hl.monitor({
+    output = "",
+    mode = "preferred",
+    position = "auto",
+    scale = 1
+})
+
+-- External monitor on the left
 hl.monitor({
     output = "DP-1",
     mode = "3440x1440@59/97",
@@ -15,6 +26,7 @@ hl.monitor({
     scale = 1
 })
 
+-- GESTURES
 hl.gesture({
     fingers = 3,
     direction = "swipe",
@@ -45,6 +57,7 @@ hl.gesture({
     end
 })
 
+-- GENERAL CONFIG
 hl.config({
     gestures = {
         workspace_swipe_distance = 700,
@@ -55,21 +68,17 @@ hl.config({
         workspace_swipe_create_new = true
     },
     general = {
-        -- Gaps and border
         gaps_in = 4,
         gaps_out = 5,
         gaps_workspaces = 50,
-
         border_size = 1,
-
         col = {
             active_border = "rgba(0DB7D455)",
             inactive_border = "rgba(31313600)"
         },
         resize_on_border = true,
-
         no_focus_fallback = true,
-        allow_tearing = true, -- This just allows the `immediate` window rule to work
+        allow_tearing = true,
         snap = {
             enabled = true,
             window_gap = 4,
@@ -78,11 +87,8 @@ hl.config({
         }
     },
     decoration = {
-        -- 2 = circle, higher = squircle, 4 = very obvious squircle
-        -- Fuck clearly visible squircles. 100% Apple brainrot.
         rounding_power = 2.5,
         rounding = 25,
-
         blur = {
             enabled = true,
             xray = true,
@@ -106,9 +112,7 @@ hl.config({
             offset = {0, 2},
             render_power = 10,
             color = "rgba(00000020)"
-
         },
-        -- Dim
         dim_inactive = true,
         dim_strength = 0.05,
         dim_special = 0.2
@@ -120,10 +124,10 @@ hl.config({
         preserve_split = true,
         smart_split = false,
         smart_resizing = false
-        -- precise_mouse_move = true,
-    },
+    }
 })
--- Curves
+
+-- CURVES
 hl.curve("expressiveFastSpatial", {
     type = "bezier",
     points = {{0.42, 1.67}, {0.21, 0.90}}
@@ -160,8 +164,8 @@ hl.curve("stall", {
     type = "bezier",
     points = {{1, -0.1}, {0.7, 0.85}}
 })
--- Configs
--- windows
+
+-- ANIMATIONS
 hl.animation({
     leaf = "windowsIn",
     enabled = true,
@@ -217,6 +221,7 @@ hl.animation({
     bezier = "menu_accel",
     style = "popin 94%"
 })
+
 -- fade
 hl.animation({
     leaf = "fadeLayersIn",
@@ -230,6 +235,7 @@ hl.animation({
     speed = 2.7,
     bezier = "stall"
 })
+
 -- workspaces
 hl.animation({
     leaf = "workspaces",
@@ -238,6 +244,7 @@ hl.animation({
     bezier = "menu_decel",
     style = "slide"
 })
+
 -- specialWorkspace
 hl.animation({
     leaf = "specialWorkspaceIn",
@@ -253,6 +260,7 @@ hl.animation({
     bezier = "emphasizedAccel",
     style = "slidevert"
 })
+
 -- zoom
 hl.animation({
     leaf = "zoomFactor",
@@ -261,16 +269,15 @@ hl.animation({
     bezier = "standardDecel"
 })
 
+-- INPUT & MISC
 hl.config({
     input = {
         kb_layout = "us",
         numlock_by_default = true,
         repeat_delay = 250,
         repeat_rate = 35,
-
         follow_mouse = 1,
         off_window_axis_events = 2,
-
         touchpad = {
             natural_scroll = true,
             disable_while_typing = true,
@@ -278,7 +285,6 @@ hl.config({
             scroll_factor = 0.7
         }
     },
-
     misc = {
         disable_hyprland_logo = true,
         disable_splash_rendering = true,
@@ -296,19 +302,16 @@ hl.config({
         initial_workspace_tracking = false,
         focus_on_activate = true
     },
-
     binds = {
         scroll_event_delay = 0,
         hide_special_on_workspace_change = true
     },
-
     cursor = {
         zoom_factor = 1,
         zoom_rigid = false,
         zoom_disable_aa = true,
         hotspot_padding = 1
     },
-
     xwayland = {
         force_zero_scaling = true
     }
