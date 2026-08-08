@@ -3,6 +3,29 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "MunifTanjim/nui.nvim", lazy = true },
 
+  -- VIBRANT COLOR SCHEMES (Fixes monochrome editor issue)
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
+      term_colors = true,
+      integrations = {
+        neotree = true,
+        bufferline = true,
+        telescope = true,
+        treesitter = true,
+        render_markdown = true,
+      },
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = { style = "night" },
+  },
+
   -- VS CODE STYLE FILE EXPLORER (LEFT PANEL)
   {
     "nvim-neo-tree/neo-tree.nvim",

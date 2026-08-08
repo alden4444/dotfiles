@@ -5,7 +5,7 @@ return {
     build = ":TSUpdate",
     main = "nvim-treesitter",
     opts = {
-      ensure_installed = { "markdown", "markdown_inline", "bash", "python" },
+      ensure_installed = { "markdown", "markdown_inline", "bash", "python", "qmljs", "javascript", "json", "lua" },
       highlight = { enable = true },
     },
   },

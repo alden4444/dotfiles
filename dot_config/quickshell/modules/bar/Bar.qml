@@ -12,6 +12,8 @@ PanelWindow {
     required property var modelData
     screen: modelData
 
+    property bool ccOpen: false
+
     anchors {
         top: true
         left: true
@@ -84,11 +86,11 @@ PanelWindow {
 
             Text {
                 text: Qt.formatDateTime(clock.date, "ddd MMM d").toLowerCase()
+
                 font {
                     family: Theme.fontSans
                     pixelSize: 13
                     weight: 400
-                    features: { "tnum": 1 }
                 }
 
                 color: Theme.secondary
