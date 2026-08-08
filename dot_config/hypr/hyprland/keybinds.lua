@@ -321,7 +321,7 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal), { description = "App: Termi
 hl.bind("CTRL + ALT + T",  hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager),   { description = "App: File manager" })
 hl.bind("SUPER + W", hl.dsp.exec_cmd(browser),        { description = "App: Browser" })
-hl.bind("SUPER + C", hl.dsp.exec_cmd(terminal .. " -e nvim"), { description = "App: Neovim" })
+hl.bind("SUPER + C", hl.dsp.exec_cmd("neovide"), { description = "App: Neovide" })
 hl.bind("CTRL + SUPER + SHIFT + ALT + W", hl.dsp.exec_cmd(officeSoftware), { description = "App: Office software" })
 hl.bind("SUPER + X", hl.dsp.exec_cmd(textEditor),    { description = "App: Text editor" })
 hl.bind("CTRL + SUPER + V", hl.dsp.exec_cmd(volumeMixer), { description = "App: Volume mixer" })

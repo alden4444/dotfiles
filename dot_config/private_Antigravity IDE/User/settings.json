@@ -1,4 +1,6 @@
 {
+  "antigravity.agent.openOnReload": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
   "vim.handleKeys": {
     "ctrl+shift+i": false
   },
@@ -96,5 +98,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "python.languageServer": "Default"
 }

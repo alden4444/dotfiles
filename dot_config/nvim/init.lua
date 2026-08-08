@@ -76,64 +76,33 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "WinEnter" }, {
   end,
 })
 
+-- MATERIAL 3 EXPRESSIVE UI & ROUNDED CORNERS
+vim.diagnostic.config({
+  float = { border = "rounded" },
+})
+
+-- GUI / NEOVIDE CONFIGURATION (VS Code Smooth Scroll, Font, Padding & Material 3)
+if vim.g.neovide then
+  -- Set font to Google Sans Code
+  vim.o.guifont = "Google Sans Code, FiraCode Nerd Font, Hack, monospace:h12"
+
+  -- Window Padding (spacing from window edges so content isn't right at the top/sides)
+  vim.g.neovide_padding_top = 16
+  vim.g.neovide_padding_bottom = 16
+  vim.g.neovide_padding_left = 16
+  vim.g.neovide_padding_right = 16
+
+  -- Enable VS Code style smooth scrolling & cursor animations
+  vim.g.neovide_scroll_animation_length = 0.3
+  vim.g.neovide_scroll_animation_far_lines = 1
+  vim.g.neovide_cursor_animation_length = 0.13
+  vim.g.neovide_cursor_trail_size = 0.8
+  vim.g.neovide_cursor_antialiasing = true
+end
+
 -- PLUGIN CONFIGURATION
 require("lazy").setup({
-
-  -- TREE-SITTER (Handles notes layout elements)
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    main = "nvim-treesitter",
-    opts = {
-      ensure_installed = { "markdown", "markdown_inline", "bash", "python" },
-      highlight = { enable = true },
-    },
-  },
-
-  -- MARKDOWN RENDERING
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {},
-  },
-
-  -- TELESCOPE
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find Files" })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Live Grep" })
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Buffers" })
-    end
-  },
-
-  -- LUASNIP
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    build = "make install_jsregexp",
-    config = function()
-      local ls = require("luasnip")
-      vim.keymap.set({"i", "s"}, "<C-k>", function() if ls.expand_or_jumpable() then ls.expand_or_jump() end end, {silent = true})
-      vim.keymap.set({"i", "s"}, "<C-j>", function() if ls.jumpable(-1) then ls.jump(-1) end end, {silent = true})
-    end,
-  },
-
-  -- VIMWIKI
-  {
-    'vimwiki/vimwiki',
-    init = function()
-      vim.g.vimwiki_list = {
-        {
-          path = '~/notes/',
-          syntax = 'markdown',
-          ext = '.md',
-        }
-      }
-      vim.g.vimwiki_global_ext = 0
-    end
-  },
+  { import = "plugins" },
 })
+
+
