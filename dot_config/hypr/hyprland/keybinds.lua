@@ -331,6 +331,7 @@ hl.bind("SUPER + Space",  hl.dsp.global("quickshell:launcher"),  { description =
 hl.bind("SUPER + T",      hl.dsp.global("quickshell:theme"),     { description = "Shell: Theme switcher" })
 hl.bind("SUPER + SHIFT + T", hl.dsp.global("quickshell:wallpaper"))
 hl.bind("SUPER + Comma",  hl.dsp.global("quickshell:settings"),  { description = "Shell: Settings" })
+hl.bind("SUPER + B",      hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
 
 if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then
     require("custom.keybinds")

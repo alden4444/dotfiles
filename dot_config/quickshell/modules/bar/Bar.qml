@@ -64,7 +64,7 @@ PanelWindow {
 
         radius: Theme.rSm
 
-        color: bar.ccOpen ? Theme.containerHight: (clockHover.containsMouse ? Theme.surfaceContainer : "transparent") 
+        color: bar.ccOpen ? Theme.containerHeight : (clockHover.containsMouse ? Theme.surfaceContainer : "transparent") 
         Behavior on color { ColorAnimation { duration: Theme. motionFast } }
 
         RowLayout {

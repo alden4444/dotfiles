@@ -1,11 +1,11 @@
 return {
-  -- TREE-SITTER (Handles notes layout elements)
+  -- TREE-SITTER (Handles notes layout elements & language syntax)
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     main = "nvim-treesitter",
     opts = {
-      ensure_installed = { "markdown", "markdown_inline", "bash", "python", "qmljs", "javascript", "json", "lua" },
+      ensure_installed = { "markdown", "markdown_inline", "bash", "python", "qmljs", "javascript", "typescript", "tsx", "html", "css", "json", "lua", "c", "cpp", "rust", "go" },
       highlight = { enable = true },
     },
   },
