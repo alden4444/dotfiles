@@ -62,9 +62,9 @@ PanelWindow {
         implicitWidth: clockRow.implicitWidth + Theme.s3 * 2
         implicitHeight: 24
 
-        radius: Theme.rSm
+            radius: Theme.rSm
 
-        color: bar.ccOpen ? Theme.containerHeight : (clockHover.containsMouse ? Theme.surfaceContainer : "transparent") 
+        color: bar.ccOpen ? Theme.containerHigh : (clockHover.containsMouse ? Theme.surfaceContainer : "transparent") 
         Behavior on color { ColorAnimation { duration: Theme. motionFast } }
 
         RowLayout {
@@ -112,6 +112,8 @@ PanelWindow {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
+            leftMargin: Theme.cornerRadius
+            rightMargin: Theme.cornerRadius
         }
 
         height: 1

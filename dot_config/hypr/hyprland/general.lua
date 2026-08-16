@@ -88,7 +88,7 @@ hl.config({
     },
     decoration = {
         rounding_power = 2.5,
-        rounding = 25,
+        rounding = 28,
         blur = {
             enabled = true,
             xray = true,

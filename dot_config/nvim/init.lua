@@ -23,6 +23,7 @@ vim.opt.wrap = true
 vim.opt.termguicolors = true
 vim.opt.conceallevel = 2
 vim.opt.showmatch = true -- Highlight complimentary matching brackets
+vim.opt.showtabline = 0 -- Disable tabs/tabline across the top
 
 -- FILETYPE DETECTION
 vim.filetype.add({

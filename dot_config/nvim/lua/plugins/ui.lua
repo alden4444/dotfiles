@@ -13,7 +13,6 @@ return {
       term_colors = true,
       integrations = {
         neotree = true,
-        bufferline = true,
         telescope = true,
         treesitter = true,
         render_markdown = true,
@@ -75,59 +74,6 @@ return {
     },
   },
 
-  -- VS CODE / BROWSER STYLE TABS (TOP BUFFERLINE)
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    event = "VeryLazy",
-    keys = {
-      { "<C-Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Tab/Buffer" },
-      { "<C-S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous Tab/Buffer" },
-      { "<C-w>", "<cmd>bdelete<cr>", desc = "Close Current Tab/Buffer" },
-      { "<leader>bp", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous Tab/Buffer" },
-      { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Next Tab/Buffer" },
-      { "<leader>bd", "<cmd>bdelete<cr>", desc = "Close Current Buffer" },
-    },
-    opts = {
-      options = {
-        mode = "buffers",
-        themable = true,
-        numbers = "none",
-        close_command = "bdelete! %d",
-        right_mouse_command = "bdelete! %d",
-        left_mouse_command = "buffer %d",
-        indicator = {
-          style = "underline",
-        },
-        buffer_close_icon = "󰅖",
-        modified_icon = "●",
-        close_icon = "",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
-        max_name_length = 18,
-        max_prefix_length = 15,
-        tab_size = 18,
-        diagnostics = "nvim_lsp",
-        show_buffer_icons = true,
-        show_buffer_close_icons = true,
-        show_close_icon = false,
-        show_tab_indicators = true,
-        persist_buffer_sort = true,
-        separator_style = "thin",
-        always_show_bufferline = true,
-        offsets = {
-          {
-            filetype = "neo-tree",
-            text = "EXPLORER",
-            highlight = "Directory",
-            text_align = "left",
-            separator = true,
-          },
-        },
-      },
-    },
-  },
 
   -- ANTIGRAVITY AI AGENT (RIGHT PANEL TERMINAL)
   {

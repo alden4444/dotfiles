@@ -21,10 +21,10 @@ local logoutCmd = "out=$(" .. qsIpcCall .. " logout toggle 2>&1); if [ $? -ne 0 
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(logoutCmd))
 hl.bind("SUPER + BackSpace", hl.dsp.exec_cmd(logoutCmd), { description = "Session: Power menu" })
 
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(qsIpcCall .. " brightness increment || brightnessctl s 5%+"),
-    { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(qsIpcCall .. " brightness decrement || brightnessctl s 5%-"),
-    { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.global("quickshell:brightnessUp"),
+    { locked = true, repeating = true, description = "Screen: Brightness up" })
+hl.bind("XF86MonBrightnessDown", hl.dsp.global("quickshell:brightnessDown"),
+    { locked = true, repeating = true, description = "Screen: Brightness down" })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.5"),
     { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),

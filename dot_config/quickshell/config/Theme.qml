@@ -5,6 +5,7 @@ pragma Singleton
 Singleton {
     id: root
 
+    readonly property bool useBar2: true
     // colors
     readonly property color background: "#0b0b0c"
     readonly property color surface: "#0c0c0d"
@@ -42,6 +43,9 @@ Singleton {
     // type
     readonly property string fontSans: "Google Sans Flex"
     readonly property string fontMono: "Google Sans Code"
+
+    // screencornerradius
+    readonly property int cornerRadius: 28
 
     // motion
     readonly property int motionFast: 120       // hover, toggles
