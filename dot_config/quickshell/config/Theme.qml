@@ -5,8 +5,6 @@ pragma Singleton
 Singleton {
     id: root
 
-    readonly property bool useBar2: true
-    // colors
     readonly property color background: "#0b0b0c"
     readonly property color surface: "#0c0c0d"
     readonly property color surfaceContainer: "#18181a"

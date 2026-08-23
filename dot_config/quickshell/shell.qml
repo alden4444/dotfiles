@@ -12,14 +12,13 @@ Variants {
         required property var modelData
         
         Bar {
-            visible: !Theme.useBar2
+            visible: true
             modelData: perScreen.modelData
         }
 
-        Bar2 {
-            visible: Theme.useBar2
+        ScreenCorners {
+            visible: !Theme.useMercury
             modelData: perScreen.modelData
         }
-        ScreenCorners { modelData: perScreen.modelData }
     }
 }
