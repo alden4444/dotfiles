@@ -1129,19 +1129,8 @@ version_format = "v${raw}"
 style = "yellow bold"
 symbol = "🐍 "
 disabled = false
-detect_extensions = [
-    "py",
-    "ipynb",
-]
-detect_files = [
-    "requirements.txt",
-    ".python-version",
-    "pyproject.toml",
-    "Pipfile",
-    "tox.ini",
-    "setup.py",
-    "__init__.py",
-]
+detect_extensions = []
+detect_files = []
 detect_folders = []
 detect_env_vars = ["VIRTUAL_ENV"]
 generic_venv_names = []

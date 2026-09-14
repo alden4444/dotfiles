@@ -80,12 +80,6 @@ hl.window_rule({match = {class = "^(steam_app).*" }, immediate = true})
 -- No shadow for tiled windows
 hl.window_rule({match = {float = 0 }, no_shadow = true})
 
--- ######## Monitor layout ########
-hl.monitor = {
-    "DP-1, 3440x1440@59.97, 0x0, 1",
-    "eDP-1, 1920x1080@60.00, 3440x0, 1"
-}
-
 -- ######## Workspace rules ########
 hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
 hl.workspace_rule({ workspace = "2", monitor = "DP-1" })

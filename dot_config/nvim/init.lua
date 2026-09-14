@@ -25,6 +25,22 @@ vim.opt.conceallevel = 2
 vim.opt.showmatch = true -- Highlight complimentary matching brackets
 vim.opt.showtabline = 0 -- Disable tabs/tabline across the top
 
+-- CENTRALIZE SWAP, BACKUP, AND UNDO FILES INTO HIDDEN DIRECTORIES
+local state_dir = vim.fn.stdpath("state")
+local swap_dir = state_dir .. "/swap//"
+local backup_dir = state_dir .. "/backup//"
+local undo_dir = state_dir .. "/undo//"
+
+for _, dir in ipairs({ state_dir .. "/swap", state_dir .. "/backup", state_dir .. "/undo" }) do
+  if vim.fn.isdirectory(dir) == 0 then
+    vim.fn.mkdir(dir, "p")
+  end
+end
+
+vim.opt.directory = swap_dir
+vim.opt.backupdir = backup_dir
+vim.opt.undodir = undo_dir
+
 -- FILETYPE DETECTION
 vim.filetype.add({
   extension = {

@@ -35,10 +35,12 @@ if status is-interactive
     abbr la 'ls -a'
     abbr lla 'ls -la'
 
+    abbr fish 'nvim .config/fish/config.fish'
+
+    abbr nvm 'env SHARED_DIR=$HOME nix run ~/nixos-terminal-vm#nixosConfigurations.myvm.config.system.build.vm -- -nographic'
+
     # For jumping between prompts in foot terminal
     function mark_prompt_start --on-event fish_prompt
         echo -en "\e]133;A\e\\"
     end
 end
-
-alias blackarch="qemu-system-x86_64 -enable-kvm -m 4G -smp 2 -drive file=~/VMs/blackarch.qcow2,media=disk,if=virtio -display gtk,gl=on -device virtio-vga-gl -net nic,model=virtio -net user,hostfwd=tcp::2222-:22"
