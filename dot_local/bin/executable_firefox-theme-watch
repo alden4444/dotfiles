@@ -1,0 +1,325 @@
+#!/usr/bin/env python3
+import os
+import sys
+import time
+import signal
+import datetime
+import subprocess
+import threading
+from pathlib import Path
+import configparser
+
+def log_message(msg):
+    log_dir = Path.home() / ".local" / "state"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / "firefox-theme-watch.log"
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_line = f"[{timestamp}] {msg}"
+    print(log_line, flush=True)
+    try:
+        with open(log_file, "a") as f:
+            f.write(log_line + "\n")
+    except Exception as e:
+        print(f"Failed to write to log file: {e}", file=sys.stderr)
+
+def get_default_profile_path(release_type="default-nightly"):
+    base = Path.home() / ".config/mozilla/firefox"
+    ini = base / "profiles.ini"
+    if not ini.exists():
+        raise FileNotFoundError(f"profiles.ini not found at {ini}")
+        
+    config = configparser.ConfigParser()
+    config.read(ini)
+    
+    # Prioritize Profile section containing release_type in Path or Name
+    for section in config.sections():
+        if section.startswith("Profile"):
+            path = config[section].get("Path", "")
+            name = config[section].get("Name", "")
+            if release_type in path or release_type in name:
+                is_relative = config[section].getint("IsRelative", 1)
+                if is_relative:
+                    return base / path
+                return Path(path)
+                
+    # Fallback to Install sections, looking for release_type in the Default path
+    for section in config.sections():
+        if section.startswith("Install"):
+            default = config[section].get("Default")
+            if default and release_type in default:
+                return base / default
+                
+    # Generic fallback to any Install section's Default
+    for section in config.sections():
+        if section.startswith("Install"):
+            default = config[section].get("Default")
+            if default:
+                return base / default
+                
+    raise RuntimeError(f"Profile for {release_type} not found in profiles.ini")
+
+class Debouncer:
+    def __init__(self, delay, callback):
+        self.delay = delay
+        self.callback = callback
+        self.timer = None
+        self.lock = threading.Lock()
+
+    def trigger(self):
+        with self.lock:
+            if self.timer is not None:
+                self.timer.cancel()
+            self.timer = threading.Timer(self.delay, self._run)
+            self.timer.start()
+
+    def _run(self):
+        with self.lock:
+            self.timer = None
+        self.callback()
+
+def is_zombie(pid):
+    try:
+        status_path = Path("/proc") / str(pid) / "status"
+        if status_path.exists():
+            for line in status_path.read_text().splitlines():
+                if line.startswith("State:"):
+                    state_val = line.split(":", 1)[1].strip()
+                    return state_val.startswith("Z")
+    except Exception:
+        pass
+    return False
+
+def find_running_firefox():
+    """
+    Finds the parent Firefox process(es).
+    Returns a list of tuples: (pid, binary_name)
+    """
+    processes = []
+    for proc_dir in Path("/proc").glob("[0-9]*"):
+        try:
+            pid = int(proc_dir.name)
+            if is_zombie(pid):
+                continue
+                
+            comm_path = proc_dir / "comm"
+            cmdline_path = proc_dir / "cmdline"
+            
+            if not comm_path.exists() or not cmdline_path.exists():
+                continue
+                
+            comm = comm_path.read_text().strip()
+            cmdline_bytes = cmdline_path.read_bytes()
+            cmdline = cmdline_bytes.decode('utf-8', errors='ignore').replace('\x00', ' ').strip()
+            
+            if comm in ("firefox-bin", "firefox-nightly", "firefox"):
+                # Exclude child processes (-contentproc is the content process)
+                if "-contentproc" not in cmdline:
+                    if "firefox-nightly" in cmdline or "firefox-nightly" in comm:
+                        processes.append((pid, "firefox-nightly"))
+                    elif "firefox" in cmdline or "firefox" in comm:
+                        processes.append((pid, "firefox"))
+        except (ValueError, OSError, PermissionError):
+            continue
+    return processes
+
+def restart_firefox(profile_dir):
+    running = find_running_firefox()
+    if not running:
+        log_message("Firefox is not running. No restart needed.")
+        return
+
+    # Use the first matched running instance (usually only one parent process)
+    pid, binary_name = running[0]
+    log_message(f"Detected change in colors.css. Restarting {binary_name} (PID {pid}) gracefully...")
+    
+    # 1. Setup session restore via user.js
+    user_js_path = profile_dir / "user.js"
+    original_user_js_content = None
+    if user_js_path.exists():
+        try:
+            with open(user_js_path, "r") as f:
+                original_user_js_content = f.read()
+        except Exception as e:
+            log_message(f"Warning: Failed to read existing user.js: {e}")
+
+    session_restore_pref = (
+        'user_pref("browser.sessionstore.resume_session_once", true);\n'
+        'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);\n'
+    )
+    
+    try:
+        # Append or create user.js with session restore setting
+        with open(user_js_path, "a") as f:
+            f.write("\n" + session_restore_pref)
+    except Exception as e:
+        log_message(f"Error: Failed to write to user.js: {e}")
+        return
+
+    # 2. Terminate Firefox gracefully (SIGTERM)
+    log_message(f"Sending SIGTERM to PID {pid}...")
+    try:
+        os.kill(pid, signal.SIGTERM)
+    except ProcessLookupError:
+        log_message(f"PID {pid} was already terminated.")
+    except Exception as e:
+        log_message(f"Error terminating PID {pid}: {e}")
+        cleanup_user_js(user_js_path, original_user_js_content)
+        return
+
+    # 3. Wait for it to exit
+    exited = False
+    proc_path = Path("/proc") / str(pid)
+    for i in range(100):  # Wait up to 10 seconds (100 * 0.1s)
+        # Try to reap the child process if it was spawned by us
+        try:
+            os.waitpid(pid, os.WNOHANG)
+        except OSError:
+            pass
+            
+        if not proc_path.exists() or is_zombie(pid):
+            exited = True
+            break
+        time.sleep(0.1)
+
+    if not exited:
+        log_message(f"Warning: {binary_name} (PID {pid}) did not exit gracefully within 10 seconds. Aborting relaunch to prevent multi-instance conflict.")
+        cleanup_user_js(user_js_path, original_user_js_content)
+        return
+
+    log_message(f"{binary_name} exited cleanly. Relaunching...")
+
+    # 4. Relaunch Firefox with the profile path
+    try:
+        cmd = ["systemd-run", "--user", "--scope", "--collect", binary_name, "-profile", str(profile_dir)]
+        subprocess.Popen(
+            cmd,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True
+        )
+    except Exception as e:
+        log_message(f"Error: Failed to launch {binary_name}: {e}")
+        cleanup_user_js(user_js_path, original_user_js_content)
+        return
+
+    # 5. Let Firefox read user.js on startup, then clean it up in a separate thread
+    def delayed_cleanup():
+        time.sleep(3.0)  # Wait 3 seconds for Firefox to start and consume user.js
+        cleanup_user_js(user_js_path, original_content=original_user_js_content)
+        log_message("Firefox restart complete and session restored.")
+
+    threading.Thread(target=delayed_cleanup, daemon=True).start()
+
+def cleanup_user_js(user_js_path, original_content):
+    if not user_js_path.exists():
+        return
+    try:
+        if original_content is None:
+            user_js_path.unlink()
+        else:
+            with open(user_js_path, "w") as f:
+                f.write(original_content)
+    except Exception as e:
+        log_message(f"Error cleaning up user.js: {e}")
+
+def main():
+    def handle_sigterm(signum, frame):
+        log_message("Service stopping (received SIGTERM).")
+        sys.exit(0)
+
+    signal.signal(signal.SIGTERM, handle_sigterm)
+
+    try:
+        profile_dir = get_default_profile_path("default-nightly")
+    except Exception as e:
+        log_message(f"Critical Error: {e}")
+        sys.exit(1)
+
+    colors_css = profile_dir / "chrome" / "colors.css"
+    log_message(f"Resolved profile path: {profile_dir}")
+    log_message(f"Watching file: {colors_css}")
+
+    debouncer = Debouncer(2.0, lambda: restart_firefox(profile_dir))
+
+    # Try watching via watchdog
+    try:
+        from watchdog.observers import Observer
+        from watchdog.events import FileSystemEventHandler
+
+        class ColorFileHandler(FileSystemEventHandler):
+            def on_modified(self, event):
+                if not event.is_directory and Path(event.src_path).name == "colors.css":
+                    debouncer.trigger()
+            def on_created(self, event):
+                if not event.is_directory and Path(event.src_path).name == "colors.css":
+                    debouncer.trigger()
+
+        dir_to_watch = colors_css.parent
+        dir_to_watch.mkdir(parents=True, exist_ok=True)
+        
+        event_handler = ColorFileHandler()
+        observer = Observer()
+        observer.schedule(event_handler, path=str(dir_to_watch), recursive=False)
+        observer.start()
+        log_message("Started watcher using python-watchdog.")
+        try:
+            while observer.is_alive():
+                observer.join(1)
+        except (KeyboardInterrupt, SystemExit):
+            observer.stop()
+        observer.join()
+        sys.exit(0)
+
+    except ImportError:
+        log_message("python-watchdog not installed. Falling back to inotifywait...")
+
+    # Fallback 1: inotifywait
+    dir_to_watch = colors_css.parent
+    dir_to_watch.mkdir(parents=True, exist_ok=True)
+    
+    cmd = ["inotifywait", "-m", "-e", "close_write", "-e", "modify", "-e", "moved_to", str(dir_to_watch)]
+    try:
+        process = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        log_message("Started watcher using inotifywait.")
+        
+        # Monitor inotifywait stdout
+        while True:
+            line = process.stdout.readline()
+            if not line:
+                break
+            if "colors.css" in line:
+                debouncer.trigger()
+                
+        stderr = process.stderr.read()
+        log_message(f"inotifywait stopped. Stderr: {stderr.strip()}")
+    except FileNotFoundError:
+        log_message("inotifywait not found. Falling back to polling...")
+
+    # Fallback 2: Polling
+    log_message("Starting watcher using polling (1s interval)...")
+    last_mtime = None
+    if colors_css.exists():
+        last_mtime = colors_css.stat().st_mtime
+    
+    while True:
+        try:
+            time.sleep(1)
+            if colors_css.exists():
+                mtime = colors_css.stat().st_mtime
+                if last_mtime is None:
+                    last_mtime = mtime
+                elif mtime != last_mtime:
+                    last_mtime = mtime
+                    debouncer.trigger()
+            else:
+                last_mtime = None
+        except (KeyboardInterrupt, SystemExit):
+            break
+
+if __name__ == "__main__":
+    main()

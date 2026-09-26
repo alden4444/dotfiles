@@ -1,0 +1,10 @@
+set nocompatible
+
+" Ensure hidden directories exist for swap, backup, and undo files
+silent !mkdir -p ~/.local/state/vim/swap ~/.local/state/vim/backup ~/.local/state/vim/undo ~/.vim/swap ~/.vim/backup ~/.vim/undo >/dev/null 2>&1
+
+" Centralize swap, backup, and undo files into hidden directories
+" Trailing // preserves full path in filename to avoid collisions across directories
+set directory=~/.local/state/vim/swap//,~/.vim/swap//,/var/tmp//,/tmp//
+set backupdir=~/.local/state/vim/backup//,~/.vim/backup//,/var/tmp//,/tmp//
+set undodir=~/.local/state/vim/undo//,~/.vim/undo//,/var/tmp//,/tmp//

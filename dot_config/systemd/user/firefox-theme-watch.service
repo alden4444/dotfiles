@@ -1,0 +1,13 @@
+[Unit]
+Description=Firefox Nightly Theme Watcher (Wallust)
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/home/alden/.local/bin/firefox-theme-watch
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

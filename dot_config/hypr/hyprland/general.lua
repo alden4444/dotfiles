@@ -1,7 +1,4 @@
 -- MONITOR CONFIG
--- Dynamic state loading (survives reloads)
-pcall(dofile, (os.getenv("HOME") or "") .. "/.config/hypr/modules/monitors-state.lua")
-
 -- Hotplug fallback for unconfigured displays
 hl.monitor({
     output = "",
@@ -10,21 +7,24 @@ hl.monitor({
     scale = 1
 })
 
--- External monitor on the left
+-- External monitor on the left (persistent 1.25x scale)
 hl.monitor({
     output = "DP-1",
     mode = "3840x2160@60",
     position = "0x0",
-    scale = 1
+    scale = 1.25
 })
 
--- Laptop screen on the right, slightly below monitor
+-- Laptop screen on the right, slightly below monitor (offset matches 3840 / 1.25 = 3072)
 hl.monitor({
     output = "eDP-1",
     mode = "1920x1080@60",
-    position = "3840x540",
+    position = "3072x540",
     scale = 1
 })
+
+-- Dynamic state loading (survives reloads)
+pcall(dofile, (os.getenv("HOME") or "") .. "/.config/hypr/modules/monitors-state.lua")
 
 -- GESTURES
 hl.gesture({

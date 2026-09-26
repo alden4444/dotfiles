@@ -1,0 +1,18 @@
+# ~/.bash_profile
+
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Hyprland
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Auto-start Hyprland with start-hyprland watchdog wrapper on TTY1
+if [ -z "$DISPLAY" ] && [ "${XDG_VTNR:-0}" -eq 1 ]; then
+  mkdir -p ~/.cache
+  exec start-hyprland > ~/.cache/hyprland.log 2>&1
+fi
+
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/alden/.local/bin:$PATH"

@@ -8,8 +8,10 @@ hl.on("hyprland.start", function ()
     -- Clear Vulkan driver variables to prevent Chromium/Chrome launch timeouts
     hl.exec_cmd("systemctl --user set-environment VK_DRIVER_FILES=")
 
-    -- Atomically update ~/.config/quickshell-active to point to qsDir
-    os.execute("ln -sfn " .. qsDir .. " " .. HOME .. "/.config/quickshell-active")
+    -- Atomically update ~/.config/quickshell-active to point to qsDir if qsDir is a separate folder
+    if qsDir ~= HOME .. "/.config/quickshell-active" then
+        os.execute("ln -sfn " .. qsDir .. " " .. HOME .. "/.config/quickshell-active")
+    end
 
 
     -- Set up wlogout symlink if quickshell has a wlogout config

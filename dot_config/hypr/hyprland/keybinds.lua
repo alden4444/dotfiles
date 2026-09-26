@@ -308,7 +308,7 @@ hl.bind("SUPER + ALT + Equal",
     hl.dsp.exec_cmd("notify-send 'Urgent notification' 'Ah hell no' -u critical -a 'Hyprland keybind'")) -- # [hidden]
 
 --##! Session
-hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session"), { description = "Session: Lock" })
+hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session; qs -p " .. qsDir .. " ipc call lock lock >/dev/null 2>&1 || qs -p $(readlink -f " .. qsDir .. ") ipc call lock lock >/dev/null 2>&1"), { description = "Session: Lock" })
 hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"),
     { locked = true, description = "Session: Sleep" })
 -- hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"), {locked = true} ) -- # [hidden] Suspend when laptop lid is closed
@@ -331,7 +331,8 @@ hl.bind("SUPER + Space",  hl.dsp.global("quickshell:launcher"),  { description =
 hl.bind("SUPER + T",      hl.dsp.global("quickshell:theme"),     { description = "Shell: Theme switcher" })
 hl.bind("SUPER + SHIFT + T", hl.dsp.global("quickshell:wallpaper"))
 hl.bind("SUPER + Comma",  hl.dsp.global("quickshell:settings"),  { description = "Shell: Settings" })
-hl.bind("SUPER + B",      hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
+hl.bind("SUPER + B",      hl.dsp.exec_cmd(hyprScripts .. "/swap_quickshell.sh"), { description = "Shell: Swap between Quickshell configs" })
+hl.bind("SUPER + ALT + B",hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
 hl.bind("SUPER + U",      hl.dsp.exec_cmd(qsIpcCall .. " controlcenter toggle"), { description = "Shell: Control center (Quick Settings)" })
 
 if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then

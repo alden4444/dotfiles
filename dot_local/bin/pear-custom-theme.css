@@ -1,0 +1,15 @@
+/* Target the specific paper-toast and generic popups */
+ytmusic-message-renderer,
+.ytmusic-message-renderer,
+tp-yt-paper-toast,
+#toast,
+.paper-toast,
+div[role="alert"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+

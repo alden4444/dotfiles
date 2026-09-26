@@ -1,0 +1,56 @@
+.config/quickshell/.git
+.config/quickshell/.git/**
+**/.qmlls.ini
+
+# Ephemeral runtime symlinks
+.config/quickshell-active
+.config/quickshell.dynamite
+.config/wlogout
+
+# Backup directories
+.config/quickshell.bak.*
+.config/wallust.backup_*
+.config/wallust.bak.*
+
+# Binaries
+.local/bin/agy
+.local/bin/uv
+.local/bin/uvx
+
+# Prism Launcher exclusions (caches, assets, logs, huge saves, sensitive tokens)
+.local/share/PrismLauncher/accounts.json
+.local/share/PrismLauncher/metacache
+.local/share/PrismLauncher/assets/**
+.local/share/PrismLauncher/cache/**
+.local/share/PrismLauncher/libraries/**
+.local/share/PrismLauncher/java/**
+.local/share/PrismLauncher/logs/**
+.local/share/PrismLauncher/instances/*/minecraft/saves/**
+.local/share/PrismLauncher/instances/*/minecraft/logs/**
+.local/share/PrismLauncher/instances/*/minecraft/crash-reports/**
+.local/share/PrismLauncher/instances/*/minecraft/screenshots/**
+.local/share/PrismLauncher/instances/*/minecraft/debug/**
+.local/share/PrismLauncher/instances/*/minecraft/downloads/**
+.local/share/PrismLauncher/instances/*/minecraft/Distant_Horizons_server_data/**
+.local/share/PrismLauncher/instances/*/minecraft/xaero/**
+.local/share/PrismLauncher/instances/*/minecraft/flashback/**
+.local/share/PrismLauncher/instances/*/minecraft/.fabric/**
+.local/share/PrismLauncher/instances/*/minecraft/.mixin.out/**
+.local/share/PrismLauncher/instances/*/minecraft/mods/Flashback*.jar
+
+# Application cache / desktop caches
+.local/share/applications/mimeinfo.cache
+
+# Secrets, OAuth tokens, and host-specific compliance
+.git-credentials
+.config/rclone/**
+.config/cyber-compliance/**
+.config/trwy_canvas-lms-tui/**
+.config/ytm-player/auth.json
+.config/ytm-player/*.db*
+.config/ytm-player/*.pid
+.config/ytm-player/logs/**
+.config/ytm-player/crashes/**
+.config/kdeconnect/privateKey.pem
+.config/kdeconnect/certificate.pem
+

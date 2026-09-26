@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Antigravity 2.0
+Comment=Experience liftoff
+GenericName=Agentic Platform
+Exec=/home/alden/.local/bin/antigravity-launcher %U
+Icon=antigravity
+Type=Application
+Terminal=false
+StartupNotify=true
+StartupWMClass=Antigravity
+Categories=Development;

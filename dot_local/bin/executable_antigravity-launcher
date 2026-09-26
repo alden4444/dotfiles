@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Ensure any background or single-instance process is terminated before launching
+# so that the application window always opens when triggered from the launcher.
+
+if pgrep -f "/opt/Antigravity/antigravity" > /dev/null 2>&1; then
+    pkill -9 -f "/opt/Antigravity/antigravity" 2>/dev/null
+    sleep 0.3
+fi
+
+exec /usr/bin/antigravity "$@"

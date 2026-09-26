@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=School
+Comment=Canvas LMS TUI
+GenericName=Canvas TUI
+Exec=kitty --title "Canvas TUI" /home/alden/.local/bin/canvas-tui
+Icon=applications-education
+Terminal=false
+Type=Application
+Categories=Education;
+Keywords=canvas;school;tui;lms;assignments;courses;
+StartupWMClass=kitty
