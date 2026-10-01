@@ -1,122 +1,40 @@
 import QtQuick
-import QtQuick.Layouts
 import Quickshell
-import Quickshell.Wayland
-import Quickshell.Hyprland
 
-import qs.config
+import qs.components
+import qs.theme
 
 PanelWindow {
     id: bar
 
-    required property var modelData
-    screen: modelData
+    anchors { top: true; left: true; right: true }
+    margins { top: Theme.margin; left: Theme.margin; right: Theme.margin }
 
-    property bool ccOpen: false
+    implicitHeight: Theme.moduleHeight + Theme.shadowRoom
+    exclusiveZone: Theme.moduleHeight
 
-    anchors {
-        top: true
-        left: true
-        right: true
+    color: "transparent"
+
+    Row {
+        anchors.left: parent.left
+        anchors.leftMargin: Theme.spacing
+        spacing: Theme.spacing
     }
 
-    implicitHeight: Theme.barHeight
-    color: Theme.barTint
+    Row {
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: Theme.spacing
 
-    WlrLayershell.namespace: "ink-bar"
-    WlrLayershell.layer: WlrLayer.Top
-    exclusiveZone: implicitHeight
-
-    RowLayout {
-        anchors {
-            left: parent.left
-            leftMargin: Theme.s4
-            verticalCenter: parent.verticalCenter
-        }
-        spacing: Theme.s3
-
-        Workspaces {
-            monitorName: bar.modelData.name
-            Layout.alignment: Qt.AlignVCenter
-        }
-
-        WindowTitle {
-            Layout.alignment: Qt.AlignVCenter
+        Pill {
+            icon: "schedule"
+            accent: Theme.orange
+            text: "10:21"
         }
     }
 
-    SystemClock {
-        id: clock
-        precision: SystemClock.Minutes
-    }
-
-    Rectangle {
-        id: clockChip
-
-        anchors {
-            right: parent.right
-            rightMargin: Theme.s3
-            verticalCenter: parent.verticalCenter
-        }
-
-        implicitWidth: clockRow.implicitWidth + Theme.s3 * 2
-        implicitHeight: 24
-
-            radius: Theme.rSm
-
-        color: bar.ccOpen ? Theme.containerHigh : (clockHover.containsMouse ? Theme.surfaceContainer : "transparent") 
-        Behavior on color { ColorAnimation { duration: Theme. motionFast } }
-
-        RowLayout {
-            id: clockRow
-            anchors.centerIn: parent
-            spacing: Theme.s2
-
-            Text {
-                text: Qt.formatDateTime(clock.date, "HH:mm")
-
-                font {
-                    family: Theme.fontSans
-                    pixelSize: 14
-                    weight: 600
-                }
-
-                color: Theme.fg
-            }
-
-            Text {
-                text: Qt.formatDateTime(clock.date, "ddd MMM d").toLowerCase()
-
-                font {
-                    family: Theme.fontSans
-                    pixelSize: 13
-                    weight: 400
-                }
-
-                color: Theme.secondary
-            }
-        }
-
-        MouseArea {
-            id: clockHover
-            anchors.fill: parent
-            hoverEnabled: true
-            cursorShape: Qt.PointingHandCursor
-            onClicked: bar.ccOpen = !bar.ccOpen
-        }
-    }
-
-    // outline
-    Rectangle {
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            leftMargin: Theme.cornerRadius
-            rightMargin: Theme.cornerRadius
-        }
-
-        height: 1
-        color: Theme.outline
+    Row {
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.spacing
+        spacing: Theme.spacing
     }
 }

@@ -1,24 +1,21 @@
+import QtQuick
 import Quickshell
 
 import qs.modules.bar
-import qs.modules.decorations
-import qs.config
 
-Variants {
-    model: Quickshell.screens
+ShellRoot {
+    id: root
 
-    delegate: Scope {
-        id: perScreen
-        required property var modelData
-        
-        Bar {
-            visible: true
-            modelData: perScreen.modelData
-        }
+    Variants {
+        model: Quickshell.screens
 
-        ScreenCorners {
-            visible: !Theme.useMercury
-            modelData: perScreen.modelData
+        Scope {
+            id: perScreen
+            required property var modelData
+
+            Bar {
+                screen: perScreen.modelData
+            }
         }
     }
 }
