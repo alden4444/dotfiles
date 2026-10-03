@@ -1,7 +1,7 @@
 [Default Applications]
-text/html=userapp-Nightly-NZ8VR3.desktop
-x-scheme-handler/http=userapp-Nightly-NZ8VR3.desktop
-x-scheme-handler/https=userapp-Nightly-NZ8VR3.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/chrome=userapp-Nightly-NZ8VR3.desktop

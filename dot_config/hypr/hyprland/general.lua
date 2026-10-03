@@ -316,3 +316,8 @@ hl.config({
         force_zero_scaling = true
     }
 })
+
+if is_file_exists(HOME .. "/.config/hypr/custom/general.lua") then
+    require("custom.general")
+end
+

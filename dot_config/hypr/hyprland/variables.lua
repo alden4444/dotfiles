@@ -1,4 +1,4 @@
-qsDir = HOME .. "/.config/quickshell-active"
+qsDir = HOME .. "/.config/quickshell"
 hl.env("qsDir", qsDir)
 
 -- Default variables
