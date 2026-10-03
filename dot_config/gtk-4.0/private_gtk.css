@@ -1,8 +1,73 @@
+/* Quickshell "industrial" / Obsidian Theme for GTK4 & Libadwaita (Nautilus) */
+
+/* Core accents */
+@define-color accent_color #999999;
+@define-color accent_bg_color #2e2e2e;
+@define-color accent_fg_color #FFFFFF;
+
+/* Base surfaces */
 @define-color window_bg_color #050505;
 @define-color window_fg_color #F0F0F0;
-@define-color view_bg_color #0F0F0F;
-@define-color view_fg_color #F0F0F0;
-@define-color accent_color #999999;
-@define-color accent_bg_color #999999;
-@define-color accent_fg_color #050505;
 
+@define-color view_bg_color #0b0b0b;
+@define-color view_fg_color #F0F0F0;
+
+/* Headerbar */
+@define-color headerbar_bg_color #121212;
+@define-color headerbar_fg_color #F0F0F0;
+@define-color headerbar_border_color rgba(255, 255, 255, 0.08);
+@define-color headerbar_backdrop_color #050505;
+
+/* Sidebars */
+@define-color sidebar_bg_color #0e0e0e;
+@define-color sidebar_fg_color #E0E0E0;
+@define-color sidebar_backdrop_color #050505;
+@define-color sidebar_border_color rgba(255, 255, 255, 0.06);
+@define-color secondary_sidebar_bg_color #0a0a0a;
+@define-color secondary_sidebar_fg_color #E0E0E0;
+
+/* Cards, Dialogs, Popovers */
+@define-color card_bg_color #141414;
+@define-color card_fg_color #F0F0F0;
+@define-color dialog_bg_color #141414;
+@define-color dialog_fg_color #F0F0F0;
+@define-color popover_bg_color #161616;
+@define-color popover_fg_color #F0F0F0;
+
+/* Semantics */
+@define-color destructive_bg_color #B0B0B0;
+@define-color destructive_fg_color #050505;
+@define-color destructive_color #B0B0B0;
+@define-color shade_color rgba(0, 0, 0, 0.4);
+@define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);
+
+/* Nautilus and Libadwaita window components */
+window.background {
+    background-color: @window_bg_color;
+    color: @window_fg_color;
+}
+
+.navigation-sidebar {
+    background-color: @sidebar_bg_color;
+    color: @sidebar_fg_color;
+    border-right: 1px solid @sidebar_border_color;
+}
+
+headerbar {
+    background-color: @headerbar_bg_color;
+    color: @headerbar_fg_color;
+    border-bottom: 1px solid @headerbar_border_color;
+    box-shadow: none;
+}
+
+.view, .view.content-view {
+    background-color: @view_bg_color;
+    color: @view_fg_color;
+}
+
+popover contents {
+    background-color: @popover_bg_color;
+    color: @popover_fg_color;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}

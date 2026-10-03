@@ -2,8 +2,8 @@ hl.on("hyprland.start", function ()
 
     -- Sync environment smoothly now that a valid DBus session exists
     -- Hardcoding =Hyprland on both ensures systemd and DBus are completely aligned
-    hl.exec_cmd("export qsDir=" .. qsDir .. " XDG_CURRENT_DESKTOP=Hyprland; dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP qsDir")
-    hl.exec_cmd("export qsDir=" .. qsDir .. " XDG_CURRENT_DESKTOP=Hyprland; systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP qsDir")
+    hl.exec_cmd("export qsDir=" .. qsDir .. " XDG_CURRENT_DESKTOP=Hyprland XCURSOR_THEME=Bibata-Modern-Ice XCURSOR_SIZE=20 HYPRCURSOR_THEME=Bibata-Modern-Ice HYPRCURSOR_SIZE=20; dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP qsDir XCURSOR_THEME XCURSOR_SIZE HYPRCURSOR_THEME HYPRCURSOR_SIZE")
+    hl.exec_cmd("export qsDir=" .. qsDir .. " XDG_CURRENT_DESKTOP=Hyprland XCURSOR_THEME=Bibata-Modern-Ice XCURSOR_SIZE=20 HYPRCURSOR_THEME=Bibata-Modern-Ice HYPRCURSOR_SIZE=20; systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP qsDir XCURSOR_THEME XCURSOR_SIZE HYPRCURSOR_THEME HYPRCURSOR_SIZE")
     
     -- Clear Vulkan driver variables to prevent Chromium/Chrome launch timeouts
     hl.exec_cmd("systemctl --user set-environment VK_DRIVER_FILES=")

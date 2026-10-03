@@ -1,8 +1,73 @@
+/* GTK4 / Libadwaita theme template for Nautilus and GNOME apps */
+
+/* Core accents */
+@define-color accent_color #{{ color6 | strip }};
+@define-color accent_bg_color #{{ color0 | lighten(0.12) | strip }};
+@define-color accent_fg_color #{{ foreground | strip }};
+
+/* Base surfaces */
 @define-color window_bg_color #{{ background | strip }};
 @define-color window_fg_color #{{ foreground | strip }};
-@define-color view_bg_color #{{ background | lighten(0.04) | strip }};
-@define-color view_fg_color #{{ foreground | strip }};
-@define-color accent_color #{{ color6 | strip }};
-@define-color accent_bg_color #{{ color6 | strip }};
-@define-color accent_fg_color #{{ background | strip }};
 
+@define-color view_bg_color #{{ background | lighten(0.02) | strip }};
+@define-color view_fg_color #{{ foreground | strip }};
+
+/* Headerbar */
+@define-color headerbar_bg_color #{{ background | lighten(0.04) | strip }};
+@define-color headerbar_fg_color #{{ foreground | strip }};
+@define-color headerbar_border_color rgba(255, 255, 255, 0.08);
+@define-color headerbar_backdrop_color #{{ background | strip }};
+
+/* Sidebars */
+@define-color sidebar_bg_color #{{ background | lighten(0.03) | strip }};
+@define-color sidebar_fg_color #{{ foreground | darken(0.1) | strip }};
+@define-color sidebar_backdrop_color #{{ background | strip }};
+@define-color sidebar_border_color rgba(255, 255, 255, 0.06);
+@define-color secondary_sidebar_bg_color #{{ background | lighten(0.02) | strip }};
+@define-color secondary_sidebar_fg_color #{{ foreground | darken(0.1) | strip }};
+
+/* Cards, Dialogs, Popovers */
+@define-color card_bg_color #{{ background | lighten(0.05) | strip }};
+@define-color card_fg_color #{{ foreground | strip }};
+@define-color dialog_bg_color #{{ background | lighten(0.04) | strip }};
+@define-color dialog_fg_color #{{ foreground | strip }};
+@define-color popover_bg_color #{{ background | lighten(0.06) | strip }};
+@define-color popover_fg_color #{{ foreground | strip }};
+
+/* Semantics */
+@define-color destructive_bg_color #{{ color1 | strip }};
+@define-color destructive_fg_color #{{ background | strip }};
+@define-color destructive_color #{{ color1 | strip }};
+@define-color shade_color rgba(0, 0, 0, 0.4);
+@define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);
+
+/* Nautilus and Libadwaita window components */
+window.background {
+    background-color: @window_bg_color;
+    color: @window_fg_color;
+}
+
+.navigation-sidebar {
+    background-color: @sidebar_bg_color;
+    color: @sidebar_fg_color;
+    border-right: 1px solid @sidebar_border_color;
+}
+
+headerbar {
+    background-color: @headerbar_bg_color;
+    color: @headerbar_fg_color;
+    border-bottom: 1px solid @headerbar_border_color;
+    box-shadow: none;
+}
+
+.view, .view.content-view {
+    background-color: @view_bg_color;
+    color: @view_fg_color;
+}
+
+popover contents {
+    background-color: @popover_bg_color;
+    color: @popover_fg_color;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
