@@ -2,7 +2,7 @@
 Name=School
 Comment=Canvas LMS TUI
 GenericName=Canvas TUI
-Exec=kitty --title "Canvas TUI" /home/alden/.local/bin/canvas-tui
+Exec=kitty --title "Canvas TUI" $HOME/.local/bin/canvas-tui
 Icon=applications-education
 Terminal=false
 Type=Application

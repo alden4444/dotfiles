@@ -19,6 +19,7 @@ inode/directory=org.gnome.Nautilus.desktop
 application/json=neovide.desktop
 text/x-shellscript=neovide.desktop
 text/plain=neovide.desktop
+aimingpro=AimingPro-handler.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Nightly-NZ8VR3.desktop;firefox.desktop;

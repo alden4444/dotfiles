@@ -321,3 +321,18 @@ if is_file_exists(HOME .. "/.config/hypr/custom/general.lua") then
     require("custom.general")
 end
 
+-- DEVICE-SPECIFIC SENSITIVITY OVERRIDES
+-- Target your primary 2.4G mouse hardware
+hl.device({
+    name = "rdmctmzt-qk100-mk2-2.4g-mouse",
+    accel_profile = "flat",
+    sensitivity = 1.0  -- Max speed multiplier (0.0 is stock baseline, 1.0 is maxed)
+})
+
+-- Target the secondary/alternative Mosart wireless mouse profile
+hl.device({
+    name = "mosart-semi.-2.4g-wireless-mouse",
+    accel_profile = "flat",
+    sensitivity = 1.0
+})
+

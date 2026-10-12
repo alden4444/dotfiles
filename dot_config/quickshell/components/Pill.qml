@@ -1,42 +1,19 @@
 import QtQuick
+import "../theme"
 
-import qs.theme
+// The notch / OSD shell: a solid flat pill, fully rounded, that springs (no overshoot)
+// whenever its size changes. Content goes in as children.
+Surface {
+    id: root
 
-Rectangle {
-    id: pill
+    fill: Theme.surfacePanel
+    radius: Theme.rPill
+    hairline: true
 
-    property string icon: ""
-    property color accent: Theme.fg
-    property string text: ""
-
-    implicitWidth: row.width
-    implicitHeight: Theme.moduleHeight
-    radius: Theme.radius
-    color: Theme.bg1
-
-    Shadow {}
-
-    Row {
-        id: row
-        height: parent.height
-        leftPadding: 4
-        rightPadding: 12
-        spacing: 10
-
-        IconDisc {
-            anchors.verticalCenter: parent.verticalCenter
-            icon: pill.icon
-            accent: pill.accent
-            size: 22
-        }
-
-        Text {
-            anchors.verticalCenter: parent.verticalCenter
-            text: pill.text
-            color: Theme.fg
-            font.family: Theme.font
-            font.pixelSize: Theme.textSize
-            font.weight: 600
-        }
+    Behavior on implicitWidth {
+        NumberAnimation { duration: Theme.dur(Theme.dSpring); easing.type: Easing.Bezier; easing.bezierCurve: Theme.springBezier }
+    }
+    Behavior on implicitHeight {
+        NumberAnimation { duration: Theme.dur(Theme.dSpring); easing.type: Easing.Bezier; easing.bezierCurve: Theme.springBezier }
     }
 }

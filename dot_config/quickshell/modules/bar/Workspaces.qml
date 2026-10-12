@@ -1,91 +1,56 @@
 import QtQuick
+import Quickshell
 import Quickshell.Hyprland
+import "../../theme"
+import "../../components"
 
-import qs.config
-
+// Hyprland workspace pills for one screen. Shows the workspaces on this notch's
+// monitor, highlights the active one in accent, switches on click.
 Row {
     id: root
 
-    // connector name (e.g. DP-1)
-    required property string monitorName
-
+    required property var screen
+    property int pillHeight: 22
     spacing: Theme.s1
 
-
-    add: Transition {
-        NumberAnimation {
-            properties: "opacity"
-            duration: Theme.motionSlow
-
-            from: 0
-            to: 1
-
-            easing.type: Easing.BezierSpline
-            easing.bezierCurve: Theme.ease
-        } 
-
-        NumberAnimation {
-            properties: "y"
-            duration: Theme.motionSlow
-
-            from: 4
-            to: 0
-
-            easing.type: Easing.BezierSpline
-            easing.bezierCurve: Theme.ease
-        }
-    }
-
-    move: Transition {
-        NumberAnimation {
-            properties: "x"
-            duration: Theme.motionStandard
-
-            easing.type: Easing.BezierSpline
-            easing.bezierCurve: Theme.ease
-        }
-    }
+    readonly property HyprlandMonitor monitor: Hyprland.monitorFor(screen)
 
     Repeater {
-        model: Hyprland.workspaces
+        // Regular workspaces on this monitor, ordered by id. Special/scratchpad ones
+        // (negative id) get toggled, not clicked, so leave 'em out.
+        model: {
+            const mon = root.monitor;
+            return Hyprland.workspaces.values
+                .filter(w => w.id > 0 && mon && w.monitor && w.monitor.id === mon.id)
+                .sort((a, b) => a.id - b.id);
+        }
 
-        delegate: Item {
-            id: chip
-
+        delegate: Rectangle {
+            id: pill
             required property var modelData
 
-            readonly property bool mine: !!modelData.monitor && modelData.monitor.name === root.monitorName && modelData.id > 0
-            readonly property bool current: modelData.active
-            readonly property bool occupied: (modelData.toplevels?.values?.length ?? 0) > 0
+            readonly property bool isActive: root.monitor
+                && root.monitor.activeWorkspace
+                && root.monitor.activeWorkspace.id === modelData.id
 
-            visible: mine
-            implicitWidth: 24
-            implicitHeight: 22
+            height: root.pillHeight
+            width: Math.max(height, label.implicitWidth + Theme.s3)
+            radius: Theme.rPill
+            color: isActive ? Theme.accent : Theme.glassHigh
+            Behavior on color { ColorAnimation { duration: Theme.dur(Theme.dFast) } }
 
-            Rectangle {
-                anchors.fill: parent
-                radius: Theme.rSm
-                color: Theme.primary
-                opacity: chip.current ? 1 : 0
-                Behavior on opacity { NumberAnimation { duration: Theme.motionFast } }
-            }
-
-            Text {
+            StyledText {
+                id: label
                 anchors.centerIn: parent
-                text: chip.modelData.id
-                font {
-                    family: Theme.fontSans
-                    pixelSize: 13
-                    weight: 600
-                }
-                color: chip.current ? Theme.ink : (chip.occupied ? Theme.fg : Theme.subtextDim)
-                Behavior on color { ColorAnimation { duration: Theme.motionFast } }
+                text: pill.modelData.name
+                font.pixelSize: Theme.fsLabel
+                color: pill.isActive ? Theme.onAccent : Theme.inkDim
             }
-            
+
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
-                onClicked: chip.modelData.activate()
+                onClicked: Hyprland.dispatch(`workspace ${pill.modelData.id}`)
             }
         }
     }

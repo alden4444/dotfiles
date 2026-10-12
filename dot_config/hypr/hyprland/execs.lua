@@ -13,6 +13,8 @@ hl.on("hyprland.start", function ()
         os.execute("ln -sfn " .. qsDir .. " " .. HOME .. "/.config/quickshell-active")
     end
 
+    -- Trigger OpenRGB with your ambient profile on startup
+    hl.exec_cmd("openrgb --profile ambient.orp")
 
     -- Set up wlogout symlink if quickshell has a wlogout config
     if is_file_exists(qsDir .. "/wlogout/layout") then
@@ -37,3 +39,4 @@ hl.on("hyprland.start", function ()
     -- Cursor
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 20")
 end)
+
