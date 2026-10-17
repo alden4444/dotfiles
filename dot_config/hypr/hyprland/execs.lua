@@ -8,13 +8,13 @@ hl.on("hyprland.start", function ()
     -- Clear Vulkan driver variables to prevent Chromium/Chrome launch timeouts
     hl.exec_cmd("systemctl --user set-environment VK_DRIVER_FILES=")
 
-    -- Atomically update ~/.config/quickshell-active to point to qsDir if qsDir is a separate folder
-    if qsDir ~= HOME .. "/.config/quickshell-active" then
-        os.execute("ln -sfn " .. qsDir .. " " .. HOME .. "/.config/quickshell-active")
+    -- Ensure ~/.config/quickshell-active exists
+    if not is_file_exists(HOME .. "/.config/quickshell-active") then
+        os.execute("ln -sfn " .. HOME .. "/.config/quickshell.original " .. HOME .. "/.config/quickshell-active")
     end
 
-    -- Trigger OpenRGB with your ambient profile on startup
-    hl.exec_cmd("openrgb --profile ambient.orp")
+    -- Trigger OpenRGB with your city profile and SDK server on startup
+    --hl.exec_cmd("pgrep -x openrgb >/dev/null || openrgb --startminimized --server --profile city")
 
     -- Set up wlogout symlink if quickshell has a wlogout config
     if is_file_exists(qsDir .. "/wlogout/layout") then
@@ -27,7 +27,7 @@ hl.on("hyprland.start", function ()
 
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
-    hl.exec_cmd("export qsDir=" .. qsDir .. "; pgrep -x hypridle || hypridle")
+    hl.exec_cmd("systemctl --user is-active --quiet hypridle || systemctl --user start hypridle")
 
     -- Audio
     hl.exec_cmd("easyeffects --hide-window --service-mode")

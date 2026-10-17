@@ -167,8 +167,8 @@ vim.diagnostic.config({
 
 -- GUI / NEOVIDE CONFIGURATION (VS Code Smooth Scroll, Font, Padding & Material 3)
 if vim.g.neovide then
-  -- Set font to Google Sans Code
-  vim.o.guifont = "Google Sans Code, FiraCode Nerd Font, Hack, monospace:h12"
+  -- Set font (prioritizes JetBrainsMono Nerd Font installed on system, fallback to Google Sans Code)
+  vim.o.guifont = "JetBrainsMono Nerd Font, Google Sans Code, FiraCode Nerd Font, Hack, monospace:h12"
 
   -- Window Padding (spacing from window edges so content isn't right at the top/sides)
   vim.g.neovide_padding_top = 16

@@ -1,0 +1,356 @@
+#!/usr/bin/env python3
+"""
+rgb-fade: Smooth RGB lighting fader for OpenRGB.
+Controls all PC lights (RAM 1, RAM 2, and Motherboard / case ARGB)
+with graceful fade-to-black and fade-in effects.
+"""
+
+import sys
+import os
+import json
+import time
+import socket
+import struct
+import subprocess
+
+OPENRGB_HOST = "127.0.0.1"
+OPENRGB_PORT = 6742
+CONFIG_DIR = os.path.expanduser("~/.config/OpenRGB")
+PROFILE_NAME = "city"
+PROFILE_PATH = os.path.join(CONFIG_DIR, "profiles", f"{PROFILE_NAME}.json")
+STATE_DIR = os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}")
+TARGET_FILE = os.path.join(STATE_DIR, "rgb-fade-target")
+BRIGHTNESS_FILE = os.path.join(STATE_DIR, "rgb-fade-brightness")
+
+TOTAL_STEPS = 20
+STEP_DELAY = 0.025  # 20 steps * 25ms = 500ms smooth fade
+
+
+def int_to_rgb(val):
+    return val & 0xFF, (val >> 8) & 0xFF, (val >> 16) & 0xFF
+
+
+def get_current_brightness():
+    try:
+        if os.path.exists(BRIGHTNESS_FILE):
+            with open(BRIGHTNESS_FILE, "r") as f:
+                val = float(f.read().strip())
+                return max(0.0, min(1.0, val))
+    except Exception:
+        pass
+    return 1.0
+
+
+def set_current_brightness(val):
+    try:
+        with open(BRIGHTNESS_FILE, "w") as f:
+            f.write(f"{val:.4f}\n")
+    except Exception:
+        pass
+
+
+def is_server_listening():
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(0.3)
+    try:
+        s.connect((OPENRGB_HOST, OPENRGB_PORT))
+        s.close()
+        return True
+    except (socket.error, OSError):
+        return False
+
+
+def ensure_openrgb_server():
+    """Ensure OpenRGB server daemon is running."""
+    if is_server_listening():
+        return True
+
+    # Try starting the user service if available
+    subprocess.run(
+        ["systemctl", "--user", "start", "openrgb"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
+
+    for _ in range(20):
+        time.sleep(0.1)
+        if is_server_listening():
+            return True
+
+    # Fallback to direct process launch
+    try:
+        subprocess.Popen(
+            ["/usr/bin/openrgb", "--server", "--profile", PROFILE_NAME],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True
+        )
+    except Exception as e:
+        sys.stderr.write(f"Failed to launch openrgb: {e}\n")
+        return False
+
+    for _ in range(30):
+        time.sleep(0.1)
+        if is_server_listening():
+            return True
+
+    return False
+
+
+def load_profile_data():
+    """
+    Load controller profiles from city.json.
+    Categorizes RAM 1 (0x71), RAM 2 (0x73), and Motherboard (rest of lights).
+    """
+    if not os.path.exists(PROFILE_PATH):
+        return None
+
+    try:
+        with open(PROFILE_PATH, "r") as f:
+            data = json.load(f)
+
+        profile_map = {
+            "ram1": [],
+            "ram2": [],
+            "mobo": [],
+            "fallback_ram": [],
+        }
+
+        for ctrl in data.get("controllers", []):
+            desc = ctrl.get("description", "").lower()
+            loc = ctrl.get("location", "").lower()
+            colors = [int_to_rgb(c) for c in ctrl.get("colors", [])]
+
+            if "0x71" in loc:
+                profile_map["ram1"] = colors
+                profile_map["fallback_ram"] = colors
+            elif "0x73" in loc:
+                profile_map["ram2"] = colors
+                if not profile_map["fallback_ram"]:
+                    profile_map["fallback_ram"] = colors
+            elif "it5701" in desc or "hidraw" in loc or "b650" in desc or len(colors) > 20:
+                profile_map["mobo"] = colors
+
+        if not profile_map["ram1"] and profile_map["fallback_ram"]:
+            profile_map["ram1"] = profile_map["fallback_ram"]
+        if not profile_map["ram2"] and profile_map["fallback_ram"]:
+            profile_map["ram2"] = profile_map["fallback_ram"]
+
+        return profile_map
+    except Exception as e:
+        sys.stderr.write(f"Error loading profile data: {e}\n")
+        return None
+
+
+def recv_exact(sock, n):
+    buf = bytearray()
+    while len(buf) < n:
+        chunk = sock.recv(n - len(buf))
+        if not chunk:
+            raise ConnectionError("Socket closed prematurely")
+        buf.extend(chunk)
+    return bytes(buf)
+
+
+def connect_and_identify():
+    """
+    Connect to OpenRGB SDK server and query all devices, identifying
+    which devices correspond to RAM 1, RAM 2, and the Motherboard.
+    """
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(2.0)
+    s.connect((OPENRGB_HOST, OPENRGB_PORT))
+
+    # Handshake: protocol version 4
+    s.sendall(struct.pack("<4sIII", b"ORGB", 0, 40, 4) + struct.pack("<I", 4))
+    recv_exact(s, 16)
+    recv_exact(s, 4)
+
+    # Set client name
+    client_name = b"RGBFader\x00"
+    s.sendall(struct.pack("<4sIII", b"ORGB", 0, 50, len(client_name)) + client_name)
+
+    # Request controller count
+    s.sendall(struct.pack("<4sIII", b"ORGB", 0, 0, 0))
+    resp = recv_exact(s, 16)
+    pkt_len = struct.unpack("<4sIII", resp)[3]
+    count = struct.unpack("<I", recv_exact(s, pkt_len))[0]
+
+    devices = []
+    for dev_id in range(count):
+        # Request controller data
+        s.sendall(struct.pack("<4sIII", b"ORGB", dev_id, 1, 4) + struct.pack("<I", 4))
+        resp = recv_exact(s, 16)
+        size = struct.unpack("<4sIII", resp)[3]
+        raw = recv_exact(s, size)
+
+        offset = 4  # skip total size
+        dev_type = struct.unpack_from("<I", raw, offset)[0]
+        offset += 4
+
+        def read_str(buf, off):
+            l = struct.unpack_from("<H", buf, off)[0]
+            off += 2
+            st = buf[off : off + l - 1].decode("latin1", errors="ignore")
+            off += l
+            return st, off
+
+        dev_name, offset = read_str(raw, offset)
+        dev_vendor, offset = read_str(raw, offset)
+        dev_desc, offset = read_str(raw, offset)
+        dev_ver, offset = read_str(raw, offset)
+        dev_serial, offset = read_str(raw, offset)
+        dev_loc, offset = read_str(raw, offset)
+
+        devices.append({
+            "id": dev_id,
+            "type": dev_type,
+            "name": dev_name,
+            "desc": dev_desc,
+            "loc": dev_loc,
+        })
+
+    return s, devices
+
+
+def send_update_leds(sock, dev_id, colors_rgb):
+    """Send RGBCONTROLLER_UPDATELEDS (1050) packet to a specific device."""
+    color_bytes = b"".join(struct.pack("BBBx", r, g, b) for r, g, b in colors_rgb)
+    inner = struct.pack("<H", len(colors_rgb)) + color_bytes
+    buff = struct.pack("<I", len(inner) + 4) + inner
+    hdr = struct.pack("<4sIII", b"ORGB", dev_id, 1050, len(buff))
+    sock.sendall(hdr + buff)
+
+
+def apply_profile_native(profile_name):
+    """Apply profile using OpenRGB's native profile manager via client CLI."""
+    subprocess.run(
+        [
+            "/usr/bin/openrgb",
+            "--client",
+            f"{OPENRGB_HOST}:{OPENRGB_PORT}",
+            "--profile",
+            profile_name,
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
+
+def fade(target_state):
+    """
+    Fade lighting towards target_state ('on' or 'off').
+    Gracefully controls all devices: RAM 1, RAM 2, and the Motherboard.
+    """
+    token = f"{target_state}_{time.time()}"
+    with open(TARGET_FILE, "w") as f:
+        f.write(token)
+
+    start_val = get_current_brightness()
+    target_val = 0.0 if target_state == "off" else 1.0
+
+    if abs(start_val - target_val) < 0.001:
+        return
+
+    if not ensure_openrgb_server():
+        # Fallback if server daemon cannot run
+        apply_profile_native("off" if target_state == "off" else PROFILE_NAME)
+        set_current_brightness(target_val)
+        return
+
+    profile_map = load_profile_data()
+    if not profile_map:
+        apply_profile_native("off" if target_state == "off" else PROFILE_NAME)
+        set_current_brightness(target_val)
+        return
+
+    try:
+        sock, devices = connect_and_identify()
+    except Exception as e:
+        sys.stderr.write(f"Socket connection error: {e}\n")
+        apply_profile_native("off" if target_state == "off" else PROFILE_NAME)
+        set_current_brightness(target_val)
+        return
+
+    # Map each physical device to its base color array
+    device_colors = {}
+    for d in devices:
+        dev_id = d["id"]
+        loc = d["loc"].lower()
+        desc = d["desc"].lower()
+        name = d["name"].lower()
+
+        if "0x71" in loc:
+            device_colors[dev_id] = profile_map["ram1"]
+        elif "0x73" in loc:
+            device_colors[dev_id] = profile_map["ram2"]
+        elif "hidraw" in loc or "it5701" in desc or "b650" in name or "gigabyte" in desc:
+            device_colors[dev_id] = profile_map["mobo"]
+        elif "dram" in name or "ene" in desc:
+            device_colors[dev_id] = profile_map["fallback_ram"]
+        else:
+            # Fallback for any other device: motherboard / case ARGB
+            device_colors[dev_id] = profile_map["mobo"]
+
+    try:
+        steps = TOTAL_STEPS
+        for i in range(1, steps + 1):
+            # Check for cancellation if a newer command arrived
+            try:
+                with open(TARGET_FILE, "r") as f:
+                    if f.read().strip() != token:
+                        break
+            except Exception:
+                pass
+
+            factor = start_val + (target_val - start_val) * (i / float(steps))
+            factor = max(0.0, min(1.0, factor))
+
+            for dev_id, base_colors in device_colors.items():
+                faded = [
+                    (int(r * factor), int(g * factor), int(b * factor))
+                    for r, g, b in base_colors
+                ]
+                send_update_leds(sock, dev_id, faded)
+
+            set_current_brightness(factor)
+            time.sleep(STEP_DELAY)
+
+    finally:
+        try:
+            sock.close()
+        except Exception:
+            pass
+
+    # Ensure all three devices are cleanly finalized to the exact profile state
+    if factor == 0.0:
+        apply_profile_native("off")
+        set_current_brightness(0.0)
+    elif factor == 1.0:
+        apply_profile_native(PROFILE_NAME)
+        set_current_brightness(1.0)
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: rgb-fade [on|off|toggle|status]")
+        sys.exit(1)
+
+    action = sys.argv[1].lower()
+    if action == "off":
+        fade("off")
+    elif action == "on":
+        fade("on")
+    elif action == "toggle":
+        curr = get_current_brightness()
+        fade("off" if curr > 0.5 else "on")
+    elif action == "status":
+        curr = get_current_brightness()
+        print(f"Brightness: {curr:.2f} ({'on' if curr > 0.05 else 'off'})")
+    else:
+        print(f"Unknown action: {action}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
