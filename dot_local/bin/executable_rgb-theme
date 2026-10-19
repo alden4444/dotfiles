@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-rgb-theme: Minimal, neat PC RGB theme manager.
+rgb-theme: Simple, neat PC RGB theme manager.
 """
 
 import sys
@@ -12,7 +12,6 @@ import shutil
 import termios
 import tty
 import time
-import datetime
 
 OPENRGB_HOST = "127.0.0.1"
 OPENRGB_PORT = 6742
@@ -38,7 +37,7 @@ def get_brightness():
                 return max(1, min(100, int(float(f.read().strip()))))
         except Exception:
             pass
-    return 100
+    return 30
 
 
 def set_brightness(percent):
@@ -56,7 +55,7 @@ def set_brightness(percent):
 
 
 # ==============================================================
-# Fast OpenRGB Socket Client (0.03ms instant updates)
+# Fast OpenRGB Socket Client
 # ==============================================================
 
 class FastRGBClient:
@@ -194,7 +193,9 @@ def get_current_theme():
     if os.path.exists(CURRENT_THEME_FILE):
         try:
             with open(CURRENT_THEME_FILE, "r") as f:
-                return f.read().strip()
+                val = f.read().strip()
+                if val:
+                    return val
         except Exception:
             pass
     return "amethyst-frost"
@@ -204,7 +205,9 @@ def get_default_theme():
     if os.path.exists(DEFAULT_THEME_FILE):
         try:
             with open(DEFAULT_THEME_FILE, "r") as f:
-                return f.read().strip()
+                val = f.read().strip()
+                if val:
+                    return val
         except Exception:
             pass
     return "amethyst-frost"
@@ -256,7 +259,7 @@ def read_raw_key(fd):
 
 
 # ==============================================================
-# Neat, Minimalist, Simple Menu
+# Simple, Neat Menu
 # ==============================================================
 
 def interactive_menu():
@@ -266,22 +269,23 @@ def interactive_menu():
         return
 
     client = get_client()
-    default_theme = get_default_theme()
     current_theme = get_current_theme()
+    default_theme = get_default_theme()
 
+    # Find selection index based on currently active theme
     selected_idx = 0
     for idx, t in enumerate(catalog):
         if t["id"] == current_theme:
             selected_idx = idx
             break
 
-    client.apply_theme(catalog[selected_idx]["id"])
+    # Do not re-trigger hardware theme on startup; leave current theme in place.
 
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
-    tty.setraw(fd)
+    tty.setcbreak(fd)
 
-    # Alternate screen buffer, hide cursor
+    # Use alternate screen buffer and hide cursor
     sys.stdout.write("\033[?1049h\033[?25l")
     sys.stdout.flush()
 
@@ -301,9 +305,8 @@ def interactive_menu():
             default_theme = get_default_theme()
             b_val = get_brightness()
 
-            # Clean redraw without screen flicker
-            buf = ["\033[H\033[J\n"]
-            buf.append(f"  {BOLD}RGB Themes{RESET}\n\n")
+            buf = ["\033[H\r\n"]
+            buf.append(f"  {BOLD}RGB Themes{RESET}\033[K\r\n\r\n")
 
             for i in range(top_idx, min(top_idx + page_size, len(catalog))):
                 item = catalog[i]
@@ -314,7 +317,7 @@ def interactive_menu():
                 s = hex_to_rgb_tuple(item["secondary"])
                 a = hex_to_rgb_tuple(item["accent"])
 
-                # Clean color blocks
+                # Solid color blocks
                 p_blk = f"\033[90m■■{RESET}" if sum(p) < 15 else f"{fg_color(*p)}██{RESET}"
                 s_blk = f"\033[90m■■{RESET}" if sum(s) < 15 else f"{fg_color(*s)}██{RESET}"
                 a_blk = f"\033[90m■■{RESET}" if sum(a) < 15 else f"{fg_color(*a)}██{RESET}"
@@ -323,20 +326,19 @@ def interactive_menu():
                 def_tag = f"  {DIM}(default){RESET}" if is_def else ""
 
                 if is_sel:
-                    buf.append(f"  {BOLD}> {item['name']:<24s}  {swatch}{def_tag}{RESET}\033[K\n")
+                    buf.append(f"  {BOLD}> {item['name']:<24s}  {swatch}{def_tag}{RESET}\033[K\r\n")
                 else:
-                    buf.append(f"    {item['name']:<24s}  {swatch}{def_tag}\033[K\n")
+                    buf.append(f"    {item['name']:<24s}  {swatch}{def_tag}\033[K\r\n")
 
-            # Fill remaining rows
             displayed = min(top_idx + page_size, len(catalog)) - top_idx
             for _ in range(page_size - displayed):
-                buf.append("\033[K\n")
+                buf.append("\033[K\r\n")
 
-            buf.append("\n")
+            buf.append("\r\n")
             if status_notice and time.time() - status_time < 2.0:
-                buf.append(f"  {BOLD}{status_notice}{RESET}\033[K\n")
+                buf.append(f"  {BOLD}{status_notice}{RESET}\033[K\r\n")
             else:
-                buf.append(f"  {DIM}j/k or ↑/↓: move   enter: select   d: set default   +/-: brightness ({b_val}%)   q: quit{RESET}\033[K\n")
+                buf.append(f"  {DIM}j/k or ↑/↓: move   enter: select   d: set default   +/-: brightness ({b_val}%)   q: quit{RESET}\033[K\r\n")
 
             sys.stdout.write("".join(buf))
             sys.stdout.flush()

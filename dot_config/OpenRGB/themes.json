@@ -1,5 +1,14 @@
 [
     {
+        "id": "amethyst-frost",
+        "name": "Amethyst Frost",
+        "category": "Purple & White",
+        "desc": "Royal purple opposing radiant white with soft lavender blend.",
+        "primary": "#8200ff",
+        "secondary": "#ffffff",
+        "accent": "#b978ff"
+    },
+    {
         "id": "candlelight-amber",
         "name": "Candlelight Amber",
         "category": "Night & Sleep",
@@ -52,15 +61,6 @@
         "primary": "#912d0f",
         "secondary": "#550a19",
         "accent": "#731914"
-    },
-    {
-        "id": "amethyst-frost",
-        "name": "Amethyst Frost",
-        "category": "Purple & White",
-        "desc": "Royal purple opposing radiant white with soft lavender blend.",
-        "primary": "#8200ff",
-        "secondary": "#ffffff",
-        "accent": "#b978ff"
     },
     {
         "id": "lavender-mist",
