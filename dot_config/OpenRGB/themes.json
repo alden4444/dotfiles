@@ -1,0 +1,236 @@
+[
+    {
+        "id": "amethyst-frost",
+        "name": "Amethyst Frost",
+        "category": "Purple & White",
+        "desc": "Deep royal purple opposing radiant ice white with soft lavender transition.",
+        "primary": "#8200ff",
+        "secondary": "#ffffff",
+        "accent": "#b978ff"
+    },
+    {
+        "id": "lavender-mist",
+        "name": "Lavender Mist",
+        "category": "Purple & White",
+        "desc": "Calm pastel lavender paired with pure moonlight white.",
+        "primary": "#d2a5ff",
+        "secondary": "#ffffff",
+        "accent": "#b978ff"
+    },
+    {
+        "id": "cyber-violet",
+        "name": "Cyber Violet",
+        "category": "Purple & White",
+        "desc": "High-contrast ultraviolet with striking pure diamond white.",
+        "primary": "#a000ff",
+        "secondary": "#ffffff",
+        "accent": "#5000be"
+    },
+    {
+        "id": "royal-platinum",
+        "name": "Royal Platinum",
+        "category": "Purple & White",
+        "desc": "Imperial deep velvet purple with warm platinum white accents.",
+        "primary": "#5000be",
+        "secondary": "#fffaf0",
+        "accent": "#c88cff"
+    },
+    {
+        "id": "nebula-drift",
+        "name": "Nebula Drift",
+        "category": "Purple & White",
+        "desc": "Cosmic violet and magenta dust around brilliant starlight cores.",
+        "primary": "#8200ff",
+        "secondary": "#ebf5ff",
+        "accent": "#e628c8"
+    },
+    {
+        "id": "monochrome-eclipse",
+        "name": "Monochrome Eclipse",
+        "category": "White & Black",
+        "desc": "The 'impossible' stealth look: crisp white light bars with dark void unlit arcs.",
+        "primary": "#ffffff",
+        "secondary": "#000000",
+        "accent": "#000000"
+    },
+    {
+        "id": "tuxedo-panda",
+        "name": "Tuxedo Panda",
+        "category": "White & Black",
+        "desc": "Balanced dual-tone black and white for sleek clean desk setups.",
+        "primary": "#f5f5ff",
+        "secondary": "#000000",
+        "accent": "#000000"
+    },
+    {
+        "id": "carbon-stealth",
+        "name": "Carbon Stealth",
+        "category": "White & Black",
+        "desc": "Subtle deep charcoal glow accents with selective pure white highlights.",
+        "primary": "#788291",
+        "secondary": "#ffffff",
+        "accent": "#000000"
+    },
+    {
+        "id": "piano-keys",
+        "name": "Piano Keys",
+        "category": "White & Black",
+        "desc": "High-contrast architectural black & white segments around every fan.",
+        "primary": "#ffffff",
+        "secondary": "#000000",
+        "accent": "#000000"
+    },
+    {
+        "id": "eva-01",
+        "name": "Eva-01",
+        "category": "Cyberpunk & Neon",
+        "desc": "Evangelion Unit-01: Deep royal purple opposing vibrant neon mint green.",
+        "primary": "#8200ff",
+        "secondary": "#00ff87",
+        "accent": "#00d25f"
+    },
+    {
+        "id": "tokyo-neon",
+        "name": "Tokyo Neon",
+        "category": "Cyberpunk & Neon",
+        "desc": "Royal purple and ice white punctuated with electric mint green sparks.",
+        "primary": "#8200ff",
+        "secondary": "#ffffff",
+        "accent": "#00ff87"
+    },
+    {
+        "id": "synthwave-84",
+        "name": "Synthwave '84",
+        "category": "Cyberpunk & Neon",
+        "desc": "Iconic retro sunset: vibrant neon magenta and electric cyan.",
+        "primary": "#ff0096",
+        "secondary": "#00ebff",
+        "accent": "#8200ff"
+    },
+    {
+        "id": "matrix-runner",
+        "name": "Matrix Runner",
+        "category": "Cyberpunk & Neon",
+        "desc": "Dark terminal void accented with cascading phosphor green.",
+        "primary": "#00ff87",
+        "secondary": "#000000",
+        "accent": "#00a03c"
+    },
+    {
+        "id": "blade-runner",
+        "name": "Blade Runner",
+        "category": "Cyberpunk & Neon",
+        "desc": "Dystopian smog: warm amber neon opposing deep moody rain cyan.",
+        "primary": "#ffa014",
+        "secondary": "#0096ff",
+        "accent": "#142846"
+    },
+    {
+        "id": "cyber-city",
+        "name": "Cyber City",
+        "category": "Cyberpunk & Neon",
+        "desc": "Night city skyline: electric indigo blue and hot magenta pink.",
+        "primary": "#0032e6",
+        "secondary": "#ff0096",
+        "accent": "#ffffff"
+    },
+    {
+        "id": "arctic-aurora",
+        "name": "Arctic Aurora",
+        "category": "Nature & Atmospheric",
+        "desc": "Shimmering northern lights: emerald mint and polar glacial cyan.",
+        "primary": "#00ff87",
+        "secondary": "#00ebff",
+        "accent": "#ebf5ff"
+    },
+    {
+        "id": "cherry-blossom",
+        "name": "Cherry Blossom",
+        "category": "Nature & Atmospheric",
+        "desc": "Spring in Kyoto: soft sakura petal pink paired with fresh snow white.",
+        "primary": "#ff8cbe",
+        "secondary": "#ffffff",
+        "accent": "#ffb4d2"
+    },
+    {
+        "id": "blood-moon",
+        "name": "Blood Moon",
+        "category": "Nature & Atmospheric",
+        "desc": "Deep crimson eclipse with high-contrast sharp ice white highlights.",
+        "primary": "#ff1414",
+        "secondary": "#ebf5ff",
+        "accent": "#8c000a"
+    },
+    {
+        "id": "glacier-blue",
+        "name": "Glacier Blue",
+        "category": "Nature & Atmospheric",
+        "desc": "Deep oceanic trench blue opposing radiant frost white.",
+        "primary": "#0096ff",
+        "secondary": "#ffffff",
+        "accent": "#0032e6"
+    },
+    {
+        "id": "sunset-horizon",
+        "name": "Sunset Horizon",
+        "category": "Nature & Atmospheric",
+        "desc": "Golden hour glow: rich amber gold fading into dusk coral and twilight purple.",
+        "primary": "#ffc832",
+        "secondary": "#8200ff",
+        "accent": "#ff5a50"
+    },
+    {
+        "id": "emerald-forest",
+        "name": "Emerald Forest",
+        "category": "Nature & Atmospheric",
+        "desc": "Deep evergreen canopy with glowing sunlit mint highlights.",
+        "primary": "#00b446",
+        "secondary": "#00ff87",
+        "accent": "#005a28"
+    },
+    {
+        "id": "abyssal-depths",
+        "name": "Abyssal Depths",
+        "category": "Nature & Atmospheric",
+        "desc": "Midnight Mariana trench: deep navy with bioluminescent electric teal.",
+        "primary": "#001ea0",
+        "secondary": "#00f0d2",
+        "accent": "#00ebff"
+    },
+    {
+        "id": "nord-frost",
+        "name": "Nord Frost",
+        "category": "Minimalist",
+        "desc": "Nord theme palette: arctic ice cyan and cool glacial white.",
+        "primary": "#88c0d0",
+        "secondary": "#eceff4",
+        "accent": "#5e81ac"
+    },
+    {
+        "id": "solar-flare",
+        "name": "Solar Flare",
+        "category": "Minimalist",
+        "desc": "Warm amber fire and pure solar radiance.",
+        "primary": "#ffa014",
+        "secondary": "#ffffff",
+        "accent": "#ffc832"
+    },
+    {
+        "id": "matcha-latte",
+        "name": "Matcha Latte",
+        "category": "Minimalist",
+        "desc": "Cozy caf\u00e9 aesthetic: rich matcha green and creamy warm white.",
+        "primary": "#6ec364",
+        "secondary": "#fffaeb",
+        "accent": "#468c3c"
+    },
+    {
+        "id": "vaporwave",
+        "name": "Vaporwave",
+        "category": "Minimalist",
+        "desc": "Aesthetic pastel turquoise and soft dream pink.",
+        "primary": "#46ebdc",
+        "secondary": "#ff96d2",
+        "accent": "#b978ff"
+    }
+]

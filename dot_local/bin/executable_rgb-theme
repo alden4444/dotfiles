@@ -1,0 +1,546 @@
+#!/usr/bin/env python3
+"""
+rgb-theme: Interactive Preview, Selection, and Management Tool for PC RGB Lighting.
+Supports 26+ custom hardware themes, real-time live preview, boot default configuration,
+and lighting hold management.
+"""
+
+import sys
+import os
+import json
+import shutil
+import subprocess
+import time
+import datetime
+import termios
+import tty
+import select
+
+OPENRGB_HOST = "127.0.0.1"
+OPENRGB_PORT = 6742
+CONFIG_DIR = os.path.expanduser("~/.config/OpenRGB")
+PROFILES_DIR = os.path.join(CONFIG_DIR, "profiles")
+CATALOG_FILE = os.path.join(CONFIG_DIR, "themes.json")
+STATE_DIR = os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}")
+CURRENT_THEME_FILE = os.path.join(STATE_DIR, "rgb-current-theme")
+DEFAULT_THEME_FILE = os.path.join(CONFIG_DIR, "default-theme-id")
+INHIBIT_FILE = os.path.join(STATE_DIR, "rgb-inhibit-until")
+
+OPENRGB_BIN = shutil.which("openrgb") or os.path.expanduser("~/.local/bin/openrgb")
+
+
+def load_catalog():
+    if os.path.exists(CATALOG_FILE):
+        try:
+            with open(CATALOG_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return []
+
+
+def hex_to_rgb_tuple(h):
+    h = h.lstrip('#')
+    return int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+
+
+def int_to_rgb(val):
+    return val & 0xFF, (val >> 8) & 0xFF, (val >> 16) & 0xFF
+
+
+def fg_color(r, g, b):
+    return f"\033[38;2;{r};{g};{b}m"
+
+
+def bg_color(r, g, b):
+    return f"\033[48;2;{r};{g};{b}m"
+
+
+RESET = "\033[0m"
+BOLD = "\033[1m"
+DIM = "\033[2m"
+
+
+def apply_profile(profile_name):
+    """Apply profile to OpenRGB server immediately."""
+    cmd = [
+        OPENRGB_BIN,
+        "--client",
+        f"{OPENRGB_HOST}:{OPENRGB_PORT}",
+        "--profile",
+        profile_name,
+    ]
+    res = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if res.returncode == 0:
+        try:
+            with open(CURRENT_THEME_FILE, "w") as f:
+                f.write(profile_name)
+        except Exception:
+            pass
+        return True
+    return False
+
+
+def get_current_theme():
+    if os.path.exists(CURRENT_THEME_FILE):
+        try:
+            with open(CURRENT_THEME_FILE, "r") as f:
+                return f.read().strip()
+        except Exception:
+            pass
+    return "amethyst-frost"
+
+
+def get_default_theme():
+    if os.path.exists(DEFAULT_THEME_FILE):
+        try:
+            with open(DEFAULT_THEME_FILE, "r") as f:
+                return f.read().strip()
+        except Exception:
+            pass
+    return "amethyst-frost"
+
+
+def set_default(theme_id):
+    src = os.path.join(PROFILES_DIR, f"{theme_id}.json")
+    dst = os.path.join(PROFILES_DIR, "city.json")
+    if not os.path.exists(src):
+        print(f"Error: Profile for '{theme_id}' does not exist.")
+        return False
+    shutil.copy2(src, dst)
+    try:
+        with open(DEFAULT_THEME_FILE, "w") as f:
+            f.write(theme_id)
+    except Exception:
+        pass
+    apply_profile(theme_id)
+    return True
+
+
+def hold_lighting(minutes=80):
+    until = time.time() + (minutes * 60)
+    target_dt = datetime.datetime.fromtimestamp(until)
+    with open(INHIBIT_FILE, "w") as f:
+        f.write(f"{until:.2f}\n")
+    return target_dt
+
+
+def is_hold_active():
+    if os.path.exists(INHIBIT_FILE):
+        try:
+            with open(INHIBIT_FILE, "r") as f:
+                until = float(f.read().strip())
+            if time.time() < until:
+                return True, datetime.datetime.fromtimestamp(until)
+            else:
+                os.remove(INHIBIT_FILE)
+        except Exception:
+            pass
+    return False, None
+
+
+def unhold_lighting():
+    if os.path.exists(INHIBIT_FILE):
+        try:
+            os.remove(INHIBIT_FILE)
+            return True
+        except Exception:
+            pass
+    return False
+
+
+# ==============================================================
+# Terminal UI / Interactive Picker
+# ==============================================================
+
+def get_key():
+    """Read a keypress or escape sequence from stdin."""
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        ch = sys.stdin.read(1)
+        if ch == '\033':
+            # Check if more characters follow (escape sequence)
+            r, _, _ = select.select([sys.stdin], [], [], 0.05)
+            if r:
+                ch2 = sys.stdin.read(1)
+                if ch2 == '[':
+                    ch3 = sys.stdin.read(1)
+                    if ch3 == 'A':
+                        return 'UP'
+                    elif ch3 == 'B':
+                        return 'DOWN'
+                    elif ch3 == 'C':
+                        return 'RIGHT'
+                    elif ch3 == 'D':
+                        return 'LEFT'
+                    elif ch3 == '5' and sys.stdin.read(1) == '~':
+                        return 'PAGE_UP'
+                    elif ch3 == '6' and sys.stdin.read(1) == '~':
+                        return 'PAGE_DOWN'
+                return 'ESC'
+            return 'ESC'
+        return ch
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+
+def render_preview_box(theme, is_def, hold_active, hold_time, width=44):
+    """Render simulated visual ASCII preview for the given theme."""
+    lines = []
+    
+    tid = theme["id"]
+    tname = theme["name"]
+    tcat = theme["category"]
+    tdesc = theme["desc"]
+
+    p_rgb = hex_to_rgb_tuple(theme["primary"])
+    s_rgb = hex_to_rgb_tuple(theme["secondary"])
+    a_rgb = hex_to_rgb_tuple(theme["accent"])
+
+    # Load actual profile colors from JSON if present
+    profile_path = os.path.join(PROFILES_DIR, f"{tid}.json")
+    fan18_colors = []
+    fan12_colors = []
+    ram_colors = []
+    if os.path.exists(profile_path):
+        try:
+            with open(profile_path, "r") as f:
+                pdata = json.load(f)
+            ram_colors = [int_to_rgb(c) for c in pdata["controllers"][0]["colors"]]
+            mobo_colors = [int_to_rgb(c) for c in pdata["controllers"][2]["colors"]]
+            fan18_colors = mobo_colors[0:18]
+            fan12_colors = mobo_colors[36:48]
+        except Exception:
+            pass
+
+    if not fan18_colors:
+        fan18_colors = [p_rgb] * 18
+    if not fan12_colors:
+        fan12_colors = [p_rgb] * 12
+    if not ram_colors:
+        ram_colors = [p_rgb] * 8
+
+    # Title & Category
+    def_badge = f"{BOLD}\033[32m[BOOT DEFAULT]{RESET}" if is_def else ""
+    lines.append(f"{BOLD}{tname}{RESET}  {DIM}({tcat}){RESET} {def_badge}")
+    lines.append(f"{DIM}{tdesc[:width]}{RESET}")
+    lines.append("─" * width)
+
+    # Palette Swatches
+    p_box = f"{bg_color(*p_rgb)}  {RESET} {theme['primary']}"
+    s_box = f"{bg_color(*s_rgb)}  {RESET} {theme['secondary']}"
+    a_box = f"{bg_color(*a_rgb)}  {RESET} {theme['accent']}"
+    lines.append(f"Palette: {p_box}  {s_box}  {a_box}")
+    lines.append("")
+
+    # Visualizer: 140mm Fan (18 LEDs Ring) and Dual RAM Sticks
+    # Map 18 fan LEDs in a neat clock circle:
+    # Top: 0, 1, 2
+    # Right: 3, 4, 5, 6
+    # Bottom: 7, 8, 9, 10
+    # Left: 11, 12, 13, 14, 15, 16, 17
+    def dot(rgb_tup):
+        # If color is off / black, show dim hollow circle, else bright filled dot
+        if sum(rgb_tup) < 15:
+            return f"\033[90m○{RESET}"
+        return f"{fg_color(*rgb_tup)}●{RESET}"
+
+    f = fan18_colors
+    r = ram_colors
+
+    # Side-by-side visual: 18-LED Fan on left, Dual RAM in center, 12-LED Fan on right
+    lines.append(f"{BOLD}  140mm Fan (18-LED)       RAM 1  RAM 2      120mm Fan (12-LED){RESET}")
+    lines.append(f"       {dot(f[0])}  {dot(f[1])}  {dot(f[2])}            [{dot(r[7])}]    [{dot(r[7])}]           {dot(fan12_colors[0])}  {dot(fan12_colors[1])}")
+    lines.append(f"    {dot(f[17])}           {dot(f[3])}         [{dot(r[6])}]    [{dot(r[6])}]        {dot(fan12_colors[11])}        {dot(fan12_colors[2])}")
+    lines.append(f"  {dot(f[16])}     140mm     {dot(f[4])}       [{dot(r[5])}]    [{dot(r[5])}]       {dot(fan12_colors[10])}   120mm   {dot(fan12_colors[3])}")
+    lines.append(f"  {dot(f[15])}     RING      {dot(f[5])}       [{dot(r[4])}]    [{dot(r[4])}]       {dot(fan12_colors[9])}   RING    {dot(fan12_colors[4])}")
+    lines.append(f"  {dot(f[14])}   DUAL-TONE   {dot(f[6])}       [{dot(r[3])}]    [{dot(r[3])}]        {dot(fan12_colors[8])}        {dot(fan12_colors[5])}")
+    lines.append(f"    {dot(f[13])}           {dot(f[7])}         [{dot(r[2])}]    [{dot(r[2])}]           {dot(fan12_colors[7])}  {dot(fan12_colors[6])}")
+    lines.append(f"       {dot(f[12])}  {dot(f[11])}  {dot(f[8])}          [{dot(r[1])}]    [{dot(r[1])}]")
+    lines.append(f"          {dot(f[10])}  {dot(f[9])}             [{dot(r[0])}]    [{dot(r[0])}]")
+    lines.append("")
+
+    # Hold status indicator
+    if hold_active:
+        lines.append(f"\033[33m⚡ Lighting Hold Active (stays on until {hold_time.strftime('%H:%M:%S')}){RESET}")
+    else:
+        lines.append(f"{DIM}Normal sleep/idle dimming enabled (press 'h' to hold for 80m){RESET}")
+
+    return lines
+
+
+def interactive_menu():
+    catalog = load_catalog()
+    if not catalog:
+        print("Error: No themes found in catalog.")
+        return
+
+    default_theme = get_default_theme()
+    current_theme = get_current_theme()
+
+    # Find initial selection index
+    selected_idx = 0
+    for idx, t in enumerate(catalog):
+        if t["id"] == current_theme:
+            selected_idx = idx
+            break
+
+    # Save initial theme to restore if user cancels with ESC
+    orig_theme = current_theme
+
+    # Switch to alternate screen buffer and hide cursor
+    sys.stdout.write("\033[?1049h\033[?25l")
+    sys.stdout.flush()
+
+    try:
+        page_size = 14
+        top_idx = 0
+
+        while True:
+            # Check terminal size
+            try:
+                term_cols, term_lines = os.get_terminal_size()
+            except Exception:
+                term_cols, term_lines = 100, 30
+
+            # Adjust scrolling window
+            if selected_idx < top_idx:
+                top_idx = selected_idx
+            elif selected_idx >= top_idx + page_size:
+                top_idx = selected_idx - page_size + 1
+
+            hold_active, hold_time = is_hold_active()
+            default_theme = get_default_theme()
+            curr_theme = catalog[selected_idx]
+
+            # Clear screen in alternate buffer
+            buf = ["\033[H\033[2J"]
+
+            # Header
+            buf.append(f"{BOLD}\033[38;2;130;0;255m◆ ANTIGRAVITY RGB THEME STUDIO ◆{RESET}  {DIM}[26 Hardware Profiles | Live Hardware Sync]{RESET}\n")
+
+            # Left list and Right preview side-by-side
+            preview_lines = render_preview_box(
+                curr_theme,
+                curr_theme["id"] == default_theme,
+                hold_active,
+                hold_time,
+                width=50
+            )
+
+            list_lines = []
+            for i in range(top_idx, min(top_idx + page_size, len(catalog))):
+                item = catalog[i]
+                is_sel = (i == selected_idx)
+                is_def = (item["id"] == default_theme)
+                
+                cursor = "▶ " if is_sel else "  "
+                p_dot = f"{fg_color(*hex_to_rgb_tuple(item['primary']))}●{RESET}"
+                s_dot = f"{fg_color(*hex_to_rgb_tuple(item['secondary']))}●{RESET}"
+                def_tag = f" {BOLD}\033[32m[DEF]{RESET}" if is_def else ""
+
+                if is_sel:
+                    line = f"\033[7m{cursor}{item['name']:<20s} {p_dot}{s_dot}\033[27m{def_tag}"
+                else:
+                    line = f"{cursor}{item['name']:<20s} {p_dot}{s_dot}{def_tag}"
+                list_lines.append(line)
+
+            # Pad list lines
+            while len(list_lines) < page_size:
+                list_lines.append("")
+
+            # Combine columns
+            max_rows = max(len(list_lines), len(preview_lines))
+            for row in range(max_rows):
+                l_str = list_lines[row] if row < len(list_lines) else ""
+                r_str = preview_lines[row] if row < len(preview_lines) else ""
+                # Approximate width for left column
+                buf.append(f"{l_str:<38s} │  {r_str}\n")
+
+            # Footer / Keybindings
+            buf.append("\n" + "─" * 90 + "\n")
+            buf.append(
+                f"{BOLD}[↑/↓/j/k]{RESET} Browse (Live Preview)   "
+                f"{BOLD}[d]{RESET} Set as Boot Default   "
+                f"{BOLD}[h]{RESET} Toggle 80m Hold   "
+                f"{BOLD}[Enter]{RESET} Apply & Exit   "
+                f"{BOLD}[q/Esc]{RESET} Exit\n"
+            )
+
+            sys.stdout.write("".join(buf))
+            sys.stdout.flush()
+
+            # Wait for user input
+            key = get_key()
+
+            if key in ('UP', 'k', 'K'):
+                selected_idx = (selected_idx - 1) % len(catalog)
+                apply_profile(catalog[selected_idx]["id"])
+            elif key in ('DOWN', 'j', 'J'):
+                selected_idx = (selected_idx + 1) % len(catalog)
+                apply_profile(catalog[selected_idx]["id"])
+            elif key == 'PAGE_UP':
+                selected_idx = max(0, selected_idx - page_size)
+                apply_profile(catalog[selected_idx]["id"])
+            elif key == 'PAGE_DOWN':
+                selected_idx = min(len(catalog) - 1, selected_idx + page_size)
+                apply_profile(catalog[selected_idx]["id"])
+            elif key in ('d', 'D'):
+                set_default(catalog[selected_idx]["id"])
+            elif key in ('h', 'H'):
+                if is_hold_active()[0]:
+                    unhold_lighting()
+                else:
+                    hold_lighting(80)
+            elif key in ('\r', '\n', ' '):
+                # Apply current and exit
+                apply_profile(catalog[selected_idx]["id"])
+                break
+            elif key in ('q', 'Q', 'ESC'):
+                # Exit without changing default
+                break
+
+    finally:
+        # Restore screen buffer and show cursor
+        sys.stdout.write("\033[?1049l\033[?25h")
+        sys.stdout.flush()
+
+    curr = catalog[selected_idx]
+    is_def = (curr["id"] == get_default_theme())
+    print(f"\n==> Active Theme: {BOLD}{curr['name']}{RESET} ({curr['id']})")
+    if is_def:
+        print(f"    Status: {BOLD}\033[32mConfigured as Boot & Wake Default in city.json{RESET}")
+    else:
+        print(f"    Tip: Run 'rgb-theme set-default {curr['id']}' to make it your permanent boot default.")
+
+
+# ==============================================================
+# CLI Commands
+# ==============================================================
+
+def print_theme_list():
+    catalog = load_catalog()
+    default_theme = get_default_theme()
+    current_theme = get_current_theme()
+
+    print(f"\n{BOLD}Available PC RGB Themes ({len(catalog)} Total):{RESET}\n")
+
+    current_cat = None
+    for t in catalog:
+        cat = t["category"]
+        if cat != current_cat:
+            print(f"\n{BOLD}\033[38;2;130;0;255m── {cat} ──{RESET}")
+            current_cat = cat
+
+        p_tup = hex_to_rgb_tuple(t["primary"])
+        s_tup = hex_to_rgb_tuple(t["secondary"])
+        a_tup = hex_to_rgb_tuple(t["accent"])
+
+        swatches = f"{bg_color(*p_tup)}  {RESET} {bg_color(*s_tup)}  {RESET} {bg_color(*a_tup)}  {RESET}"
+
+        badges = []
+        if t["id"] == current_theme:
+            badges.append(f"{BOLD}\033[34m[ACTIVE]{RESET}")
+        if t["id"] == default_theme:
+            badges.append(f"{BOLD}\033[32m[BOOT DEFAULT]{RESET}")
+        badge_str = " ".join(badges)
+
+        print(f"  {t['id']:<20s} {swatches}  {t['name']:<18s} {badge_str}")
+        print(f"    {DIM}{t['desc']}{RESET}")
+    print()
+
+
+def show_cli_help():
+    print(f"{BOLD}rgb-theme - Antigravity PC RGB Lighting Studio{RESET}\n")
+    print("Usage:")
+    print("  rgb-theme                       Launch interactive visual theme studio (TUI)")
+    print("  rgb-theme list                  Display all 26 themes with color swatches")
+    print("  rgb-theme apply <theme-id>      Immediately activate <theme-id> on PC hardware")
+    print("  rgb-theme set-default <theme-id> Activate and set as permanent boot/wake default")
+    print("  rgb-theme current               Show currently active and default themes")
+    print("  rgb-theme hold [minutes]        Keep lighting on continuously (default: 80m)")
+    print("  rgb-theme unhold                Remove lighting hold and restore sleep/idle")
+    print("  rgb-theme help                  Show this guide\n")
+
+
+def main():
+    if len(sys.argv) < 2:
+        if sys.stdin.isatty():
+            interactive_menu()
+        else:
+            print_theme_list()
+        return
+
+    cmd = sys.argv[1].lower()
+
+    if cmd in ("-h", "--help", "help"):
+        show_cli_help()
+    elif cmd in ("list", "ls"):
+        print_theme_list()
+    elif cmd in ("gui", "tui", "interactive"):
+        interactive_menu()
+    elif cmd == "current":
+        curr = get_current_theme()
+        deflt = get_default_theme()
+        hold_active, hold_time = is_hold_active()
+        print(f"Active Theme : {BOLD}{curr}{RESET}")
+        print(f"Boot Default : {BOLD}{deflt}{RESET}")
+        if hold_active:
+            print(f"Lighting Hold: Active until {hold_time.strftime('%H:%M:%S')}")
+        else:
+            print("Lighting Hold: Inactive (normal sleep/idle dimming)")
+    elif cmd in ("set-default", "default"):
+        if len(sys.argv) < 3:
+            print("Usage: rgb-theme set-default <theme-id>")
+            sys.exit(1)
+        target = sys.argv[2].lower()
+        if set_default(target):
+            print(f"==> Successfully set '{target}' as permanent boot and wake default (saved to city.json).")
+        else:
+            print(f"Failed to set default for '{target}'. Run 'rgb-theme list' for valid IDs.")
+            sys.exit(1)
+    elif cmd in ("apply", "set"):
+        if len(sys.argv) < 3:
+            print("Usage: rgb-theme apply <theme-id>")
+            sys.exit(1)
+        target = sys.argv[2].lower()
+        if apply_profile(target):
+            print(f"==> Activated theme '{target}' on physical PC hardware.")
+        else:
+            print(f"Failed to activate '{target}'. Ensure OpenRGB daemon is running.")
+            sys.exit(1)
+    elif cmd == "hold":
+        mins = 80
+        if len(sys.argv) >= 3:
+            try:
+                mins = int(sys.argv[2])
+            except ValueError:
+                pass
+        dt = hold_lighting(mins)
+        print(f"==> Lighting hold engaged for {mins} minutes (until {dt.strftime('%H:%M:%S')}).")
+        print("    PC lights will remain on without dimming during sleep or screen idle.")
+    elif cmd == "unhold":
+        if unhold_lighting():
+            print("==> Lighting hold removed. Normal sleep/idle behavior restored.")
+        else:
+            print("==> Lighting hold was not active.")
+    else:
+        # Check if direct theme name was passed, e.g. `rgb-theme eva-01`
+        catalog = load_catalog()
+        valid_ids = [t["id"] for t in catalog]
+        if cmd in valid_ids or os.path.exists(os.path.join(PROFILES_DIR, f"{cmd}.json")):
+            if apply_profile(cmd):
+                print(f"==> Activated theme '{cmd}' on physical PC hardware.")
+            else:
+                print(f"Failed to apply theme '{cmd}'.")
+                sys.exit(1)
+        else:
+            print(f"Unknown command or theme ID: '{cmd}'")
+            show_cli_help()
+            sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

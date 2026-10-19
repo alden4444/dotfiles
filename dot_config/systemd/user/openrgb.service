@@ -3,7 +3,7 @@ Description=OpenRGB Server Daemon
 After=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/openrgb --server --profile city
+ExecStart=/home/alden/.local/bin/openrgb --server --profile city
 Restart=always
 RestartSec=3
 

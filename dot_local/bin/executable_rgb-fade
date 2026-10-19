@@ -12,6 +12,9 @@ import time
 import socket
 import struct
 import subprocess
+import shutil
+
+OPENRGB_BIN = shutil.which("openrgb") or os.path.expanduser("~/.local/bin/openrgb")
 
 OPENRGB_HOST = "127.0.0.1"
 OPENRGB_PORT = 6742
@@ -21,6 +24,7 @@ PROFILE_PATH = os.path.join(CONFIG_DIR, "profiles", f"{PROFILE_NAME}.json")
 STATE_DIR = os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}")
 TARGET_FILE = os.path.join(STATE_DIR, "rgb-fade-target")
 BRIGHTNESS_FILE = os.path.join(STATE_DIR, "rgb-fade-brightness")
+INHIBIT_FILE = os.path.join(STATE_DIR, "rgb-inhibit-until")
 
 TOTAL_STEPS = 20
 STEP_DELAY = 0.025  # 20 steps * 25ms = 500ms smooth fade
@@ -80,7 +84,7 @@ def ensure_openrgb_server():
     # Fallback to direct process launch
     try:
         subprocess.Popen(
-            ["/usr/bin/openrgb", "--server", "--profile", PROFILE_NAME],
+            [OPENRGB_BIN, "--server", "--profile", PROFILE_NAME],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             start_new_session=True
@@ -226,7 +230,7 @@ def apply_profile_native(profile_name):
     """Apply profile using OpenRGB's native profile manager via client CLI."""
     subprocess.run(
         [
-            "/usr/bin/openrgb",
+            OPENRGB_BIN,
             "--client",
             f"{OPENRGB_HOST}:{OPENRGB_PORT}",
             "--profile",
@@ -242,6 +246,18 @@ def fade(target_state):
     Fade lighting towards target_state ('on' or 'off').
     Gracefully controls all devices: RAM 1, RAM 2, and the Motherboard.
     """
+    if target_state == "off":
+        if os.path.exists(INHIBIT_FILE):
+            try:
+                with open(INHIBIT_FILE, "r") as f:
+                    until = float(f.read().strip())
+                if time.time() < until:
+                    return
+                else:
+                    os.remove(INHIBIT_FILE)
+            except Exception:
+                pass
+
     token = f"{target_state}_{time.time()}"
     with open(TARGET_FILE, "w") as f:
         f.write(token)

@@ -334,8 +334,7 @@ hl.bind("SUPER + Space",  hl.dsp.global("quickshell:launcher"),  { description =
 hl.bind("SUPER + T",      hl.dsp.global("quickshell:theme"),     { description = "Shell: Theme switcher" })
 hl.bind("SUPER + SHIFT + T", hl.dsp.global("quickshell:wallpaper"))
 hl.bind("SUPER + Comma",  hl.dsp.global("quickshell:settings"),  { description = "Shell: Settings" })
-hl.bind("SUPER + B",      hl.dsp.exec_cmd(hyprScripts .. "/swap_quickshell.sh"), { description = "Shell: Swap between Quickshell configs" })
-hl.bind("SUPER + ALT + B",hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
+hl.bind("SUPER + B",      hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
 hl.bind("SUPER + U",      hl.dsp.global("quickshell:controlcenter"), { description = "Shell: Control center (Quick Settings)" })
 
 if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then
