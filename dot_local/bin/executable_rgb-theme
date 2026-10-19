@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-rgb-theme: Fast, minimalist PC RGB theme manager and live previewer.
+rgb-theme: Fast, minimalist PC RGB theme manager, live previewer, and brightness controller.
 """
 
 import sys
@@ -23,8 +23,39 @@ STATE_DIR = os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}")
 CURRENT_THEME_FILE = os.path.join(STATE_DIR, "rgb-current-theme")
 DEFAULT_THEME_FILE = os.path.join(CONFIG_DIR, "default-theme-id")
 INHIBIT_FILE = os.path.join(STATE_DIR, "rgb-inhibit-until")
+BRIGHTNESS_FILE = os.path.join(STATE_DIR, "rgb-brightness")
+FADE_BRIGHTNESS_FILE = os.path.join(STATE_DIR, "rgb-fade-brightness")
 
 OPENRGB_BIN = shutil.which("openrgb") or os.path.expanduser("~/.local/bin/openrgb")
+
+
+# ==============================================================
+# Brightness State Management
+# ==============================================================
+
+def get_brightness():
+    if os.path.exists(BRIGHTNESS_FILE):
+        try:
+            with open(BRIGHTNESS_FILE, "r") as f:
+                val = float(f.read().strip())
+                return max(1, min(100, int(val)))
+        except Exception:
+            pass
+    return 100
+
+
+def set_brightness(percent):
+    percent = max(1, min(100, int(percent)))
+    try:
+        with open(BRIGHTNESS_FILE, "w") as f:
+            f.write(f"{percent}\n")
+        with open(FADE_BRIGHTNESS_FILE, "w") as f:
+            f.write(f"{percent / 100.0:.4f}\n")
+    except Exception:
+        pass
+    curr = get_current_theme()
+    get_client().apply_theme(curr, percent)
+    return percent
 
 
 # ==============================================================
@@ -80,18 +111,26 @@ class FastRGBClient:
         hdr = struct.pack('<4sIII', b'ORGB', dev_id, 1050, len(buff))
         self.sock.sendall(hdr + buff)
 
-    def apply_theme(self, theme_id):
+    def apply_theme(self, theme_id, brightness=None):
         colors = self.load_profile_colors(theme_id)
         if not colors:
             return False
         ram, mobo = colors
+
+        if brightness is None:
+            brightness = get_brightness()
+        factor = max(0.01, min(1.0, brightness / 100.0))
+
+        scaled_ram = [(int(r * factor), int(g * factor), int(b * factor)) for r, g, b in ram]
+        scaled_mobo = [(int(r * factor), int(g * factor), int(b * factor)) for r, g, b in mobo]
+
         if not self.sock:
             if not self.connect():
                 return False
         try:
-            self.send_update_leds(0, ram)
-            self.send_update_leds(1, ram)
-            self.send_update_leds(2, mobo)
+            self.send_update_leds(0, scaled_ram)
+            self.send_update_leds(1, scaled_ram)
+            self.send_update_leds(2, scaled_mobo)
             try:
                 with open(CURRENT_THEME_FILE, "w") as f:
                     f.write(theme_id)
@@ -101,9 +140,9 @@ class FastRGBClient:
         except Exception:
             if self.connect():
                 try:
-                    self.send_update_leds(0, ram)
-                    self.send_update_leds(1, ram)
-                    self.send_update_leds(2, mobo)
+                    self.send_update_leds(0, scaled_ram)
+                    self.send_update_leds(1, scaled_ram)
+                    self.send_update_leds(2, scaled_mobo)
                     try:
                         with open(CURRENT_THEME_FILE, "w") as f:
                             f.write(theme_id)
@@ -123,7 +162,6 @@ class FastRGBClient:
             self.sock = None
 
 
-# Global fast client
 _client = None
 
 def get_client():
@@ -159,7 +197,6 @@ def bg_color(r, g, b):
 RESET = "\033[0m"
 BOLD = "\033[1m"
 DIM = "\033[2m"
-INVERT = "\033[7m"
 
 
 def get_current_theme():
@@ -229,20 +266,11 @@ def unhold_lighting():
     return False
 
 
-# ==============================================================
-# Robust Raw Key Reader (Supports j/k, arrows, PgUp/Dn, Esc)
-# ==============================================================
-
 def read_raw_key(fd):
-    """
-    Read raw bytes from stdin fd without Python buffer desync.
-    Accurately maps arrow keys (\x1b[A, \x1bOA, etc.) and vim keys.
-    """
     b = os.read(fd, 32)
     if not b:
         return None
 
-    # Arrow keys (standard and application mode)
     if b in (b'\x1b[A', b'\x1bOA'):
         return 'UP'
     elif b in (b'\x1b[B', b'\x1bOB'):
@@ -265,17 +293,15 @@ def read_raw_key(fd):
         return 'ENTER'
     elif b == b' ':
         return 'SPACE'
-    
-    # Text characters
+
     try:
-        ch = b.decode('utf-8', errors='ignore')
-        return ch
+        return b.decode('utf-8', errors='ignore')
     except Exception:
         return None
 
 
 # ==============================================================
-# Clean, Simple Minimalist TUI
+# Clean Minimalist TUI
 # ==============================================================
 
 def interactive_menu():
@@ -294,15 +320,12 @@ def interactive_menu():
             selected_idx = idx
             break
 
-    # Immediately activate on start
     client.apply_theme(catalog[selected_idx]["id"])
 
-    # Prepare raw terminal mode
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     tty.setraw(fd)
 
-    # Alternate screen buffer, hide cursor
     sys.stdout.write("\033[?1049h\033[?25l")
     sys.stdout.flush()
 
@@ -325,16 +348,13 @@ def interactive_menu():
             s_rgb = hex_to_rgb_tuple(curr["secondary"])
             a_rgb = hex_to_rgb_tuple(curr["accent"])
 
-            # Left column width
-            left_w = min(46, term_cols // 2)
-
             buf = ["\033[H\033[2J"]
-            
-            # Simple Header
+
+            # Header
             buf.append(f"{BOLD}RGB Theme Picker{RESET}  {DIM}({len(catalog)} themes){RESET}\n")
             buf.append("─" * min(term_cols - 1, 80) + "\n")
 
-            # Prepare list items
+            # Left list
             list_lines = []
             for i in range(top_idx, min(top_idx + page_size, len(catalog))):
                 item = catalog[i]
@@ -356,7 +376,7 @@ def interactive_menu():
             while len(list_lines) < page_size:
                 list_lines.append("")
 
-            # Prepare detail panel
+            # Right detail panel
             p_sw = f"{bg_color(*p_rgb)}    {RESET}"
             s_sw = f"{bg_color(*s_rgb)}    {RESET}"
             a_sw = f"{bg_color(*a_rgb)}    {RESET}"
@@ -364,10 +384,12 @@ def interactive_menu():
             def_badge = "Yes" if curr["id"] == default_theme else "No"
             hold_act, hold_dt = is_hold_active()
             hold_str = f"Active until {hold_dt.strftime('%H:%M')}" if hold_act else "Off"
+            b_val = get_brightness()
 
             detail_lines = [
                 f"{BOLD}Theme:{RESET}       {curr['name']}",
                 f"{BOLD}Category:{RESET}    {curr['category']}",
+                f"{BOLD}Brightness:{RESET}  {b_val}%",
                 f"{BOLD}Default:{RESET}     {def_badge}",
                 f"{BOLD}Hold:{RESET}        {hold_str}",
                 "",
@@ -380,18 +402,16 @@ def interactive_menu():
                 f"  {curr['desc'][:36]}",
             ]
 
-            # Render rows side by side
             for row in range(page_size):
                 l_str = list_lines[row] if row < len(list_lines) else ""
                 r_str = detail_lines[row] if row < len(detail_lines) else ""
                 buf.append(f"{l_str:<48s}  │  {r_str}\n")
 
-            # Footer
             buf.append("─" * min(term_cols - 1, 80) + "\n")
             if status_msg and time.time() - status_time < 2.5:
                 buf.append(f"{BOLD}{status_msg}{RESET}\n")
             else:
-                buf.append(f"{DIM}j/k or ↑/↓: move  •  d: make default  •  enter: select & exit  •  q: exit{RESET}\n")
+                buf.append(f"{DIM}j/k or ↑/↓: move  •  +/-: brightness  •  d: default  •  enter: exit  •  q: exit{RESET}\n")
 
             sys.stdout.write("".join(buf))
             sys.stdout.flush()
@@ -418,6 +438,16 @@ def interactive_menu():
             elif key in ('END', 'G'):
                 selected_idx = len(catalog) - 1
                 client.apply_theme(catalog[selected_idx]["id"])
+            elif key in ('-', '_', '[', '<'):
+                new_b = max(5, get_brightness() - 10)
+                set_brightness(new_b)
+                status_msg = f"✓ Brightness set to {new_b}%"
+                status_time = time.time()
+            elif key in ('+', '=', ']', '>'):
+                new_b = min(100, get_brightness() + 10)
+                set_brightness(new_b)
+                status_msg = f"✓ Brightness set to {new_b}%"
+                status_time = time.time()
             elif key in ('d', 'D'):
                 set_default(catalog[selected_idx]["id"])
                 status_msg = f"✓ Saved '{catalog[selected_idx]['id']}' as boot default"
@@ -437,7 +467,6 @@ def interactive_menu():
                 break
 
     finally:
-        # Restore terminal settings
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         sys.stdout.write("\033[?1049l\033[?25h")
         sys.stdout.flush()
@@ -446,6 +475,7 @@ def interactive_menu():
     curr = catalog[selected_idx]
     is_def = (curr["id"] == get_default_theme())
     print(f"Active Theme: {BOLD}{curr['id']}{RESET} ({curr['name']})")
+    print(f"Brightness  : {get_brightness()}%")
     if is_def:
         print(f"Boot Default: {BOLD}\033[32mSet as default in city.json{RESET}")
 
@@ -499,8 +529,10 @@ def main():
         print("  rgb-theme                       Launch fast interactive theme picker")
         print("  rgb-theme list                  List all themes with color swatches")
         print("  rgb-theme apply <theme-id>      Instantly activate theme on hardware")
+        print("  rgb-theme dim [percentage]      Dim brightness (e.g. 'rgb-theme dim 30')")
+        print("  rgb-theme brightness <1-100>    Set brightness percentage")
         print("  rgb-theme set-default <theme-id> Set theme as permanent boot & wake default")
-        print("  rgb-theme current               Show active theme and hold status")
+        print("  rgb-theme current               Show active theme, brightness, and hold status")
         print("  rgb-theme hold [mins]           Keep lighting on continuously (default 80)")
         print("  rgb-theme unhold                Clear lighting hold")
         return
@@ -508,11 +540,22 @@ def main():
         print_clean_list()
     elif cmd in ("gui", "tui", "picker", "interactive"):
         interactive_menu()
+    elif cmd in ("dim", "brightness"):
+        val = 30
+        if len(sys.argv) >= 3:
+            try:
+                val = int(sys.argv[2])
+            except ValueError:
+                pass
+        b = set_brightness(val)
+        print(f"==> Brightness set to {b}%.")
     elif cmd == "current":
         curr = get_current_theme()
         deflt = get_default_theme()
+        b_val = get_brightness()
         hold_act, hold_dt = is_hold_active()
         print(f"Active Theme : {curr}")
+        print(f"Brightness   : {b_val}%")
         print(f"Boot Default : {deflt}")
         print(f"Lighting Hold: {'Active until ' + hold_dt.strftime('%H:%M') if hold_act else 'Off'}")
     elif cmd in ("set-default", "default"):
@@ -550,7 +593,6 @@ def main():
         else:
             print("Lighting hold was not active.")
     else:
-        # Direct theme name passed e.g. `rgb-theme eva-01`
         catalog = load_catalog()
         valid = [t["id"] for t in catalog]
         if cmd in valid or os.path.exists(os.path.join(PROFILES_DIR, f"{cmd}.json")):
