@@ -3,7 +3,7 @@
         "id": "amethyst-frost",
         "name": "Amethyst Frost",
         "category": "Purple & White",
-        "desc": "Deep royal purple opposing radiant ice white with soft lavender transition.",
+        "desc": "Royal purple opposing radiant white with soft lavender blend.",
         "primary": "#8200ff",
         "secondary": "#ffffff",
         "accent": "#b978ff"
@@ -12,225 +12,378 @@
         "id": "lavender-mist",
         "name": "Lavender Mist",
         "category": "Purple & White",
-        "desc": "Calm pastel lavender paired with pure moonlight white.",
-        "primary": "#d2a5ff",
+        "desc": "Pastel lavender and soft moonlight white.",
+        "primary": "#cd9bff",
         "secondary": "#ffffff",
-        "accent": "#b978ff"
+        "accent": "#af6ef5"
     },
     {
         "id": "cyber-violet",
         "name": "Cyber Violet",
         "category": "Purple & White",
-        "desc": "High-contrast ultraviolet with striking pure diamond white.",
-        "primary": "#a000ff",
+        "desc": "High-contrast ultraviolet with stark pure white.",
+        "primary": "#a500ff",
         "secondary": "#ffffff",
-        "accent": "#5000be"
+        "accent": "#5000b4"
     },
     {
         "id": "royal-platinum",
         "name": "Royal Platinum",
         "category": "Purple & White",
-        "desc": "Imperial deep velvet purple with warm platinum white accents.",
-        "primary": "#5000be",
-        "secondary": "#fffaf0",
-        "accent": "#c88cff"
+        "desc": "Deep imperial velvet violet and platinum white.",
+        "primary": "#4b00be",
+        "secondary": "#faf5eb",
+        "accent": "#be82ff"
     },
     {
-        "id": "nebula-drift",
-        "name": "Nebula Drift",
+        "id": "violet-aurora",
+        "name": "Violet Aurora",
         "category": "Purple & White",
-        "desc": "Cosmic violet and magenta dust around brilliant starlight cores.",
-        "primary": "#8200ff",
-        "secondary": "#ebf5ff",
-        "accent": "#e628c8"
+        "desc": "Electric violet fading into glacial white.",
+        "primary": "#9114ff",
+        "secondary": "#e1f0ff",
+        "accent": "#b45aff"
     },
     {
-        "id": "monochrome-eclipse",
-        "name": "Monochrome Eclipse",
-        "category": "White & Black",
-        "desc": "The 'impossible' stealth look: crisp white light bars with dark void unlit arcs.",
-        "primary": "#ffffff",
-        "secondary": "#000000",
-        "accent": "#000000"
-    },
-    {
-        "id": "tuxedo-panda",
-        "name": "Tuxedo Panda",
-        "category": "White & Black",
-        "desc": "Balanced dual-tone black and white for sleek clean desk setups.",
-        "primary": "#f5f5ff",
-        "secondary": "#000000",
-        "accent": "#000000"
-    },
-    {
-        "id": "carbon-stealth",
-        "name": "Carbon Stealth",
-        "category": "White & Black",
-        "desc": "Subtle deep charcoal glow accents with selective pure white highlights.",
-        "primary": "#788291",
+        "id": "plum-blossom",
+        "name": "Plum Blossom",
+        "category": "Purple & White",
+        "desc": "Rich dark plum paired with silk white.",
+        "primary": "#8c14a0",
         "secondary": "#ffffff",
-        "accent": "#000000"
+        "accent": "#d282dc"
     },
     {
-        "id": "piano-keys",
-        "name": "Piano Keys",
-        "category": "White & Black",
-        "desc": "High-contrast architectural black & white segments around every fan.",
-        "primary": "#ffffff",
-        "secondary": "#000000",
-        "accent": "#000000"
+        "id": "grape-frosting",
+        "name": "Grape Frosting",
+        "category": "Purple & White",
+        "desc": "Bright candy grape purple and clean powdered white.",
+        "primary": "#9b1eff",
+        "secondary": "#ffffff",
+        "accent": "#dcaaff"
     },
     {
         "id": "eva-01",
         "name": "Eva-01",
-        "category": "Cyberpunk & Neon",
-        "desc": "Evangelion Unit-01: Deep royal purple opposing vibrant neon mint green.",
-        "primary": "#8200ff",
-        "secondary": "#00ff87",
-        "accent": "#00d25f"
+        "category": "Purple & Accents",
+        "desc": "Evangelion Unit-01: Royal purple & neon mint green.",
+        "primary": "#7d00ff",
+        "secondary": "#00ff82",
+        "accent": "#00c855"
     },
     {
         "id": "tokyo-neon",
         "name": "Tokyo Neon",
-        "category": "Cyberpunk & Neon",
-        "desc": "Royal purple and ice white punctuated with electric mint green sparks.",
-        "primary": "#8200ff",
+        "category": "Purple & Accents",
+        "desc": "Royal purple & white with electric mint green sparks.",
+        "primary": "#7d00ff",
         "secondary": "#ffffff",
-        "accent": "#00ff87"
+        "accent": "#00ff8c"
+    },
+    {
+        "id": "amethyst-gold",
+        "name": "Amethyst Gold",
+        "category": "Purple & Accents",
+        "desc": "Imperial deep violet and radiant warm gold.",
+        "primary": "#7800f0",
+        "secondary": "#ffc319",
+        "accent": "#ffe164"
+    },
+    {
+        "id": "cyber-grape",
+        "name": "Cyber Grape",
+        "category": "Purple & Accents",
+        "desc": "Neon purple paired with electric turquoise.",
+        "primary": "#9600ff",
+        "secondary": "#00f0d7",
+        "accent": "#64ffeb"
+    },
+    {
+        "id": "acid-rain",
+        "name": "Acid Rain",
+        "category": "Purple & Accents",
+        "desc": "Ultraviolet paired with high-voltage neon lime.",
+        "primary": "#8200ff",
+        "secondary": "#8cff00",
+        "accent": "#beff32"
+    },
+    {
+        "id": "deep-space",
+        "name": "Deep Space",
+        "category": "Purple & Accents",
+        "desc": "Midnight galaxy purple and glowing electric blue.",
+        "primary": "#5a00c8",
+        "secondary": "#008cff",
+        "accent": "#b432ff"
+    },
+    {
+        "id": "glacier-blue",
+        "name": "Glacier Blue",
+        "category": "Blues & Cyans",
+        "desc": "Deep arctic blue opposing radiant frost white.",
+        "primary": "#008cff",
+        "secondary": "#ffffff",
+        "accent": "#003cd2"
+    },
+    {
+        "id": "abyssal-depths",
+        "name": "Abyssal Depths",
+        "category": "Blues & Cyans",
+        "desc": "Midnight oceanic navy and glowing bioluminescent cyan.",
+        "primary": "#0019a0",
+        "secondary": "#00f0d2",
+        "accent": "#00aaff"
+    },
+    {
+        "id": "arctic-ice",
+        "name": "Arctic Ice",
+        "category": "Blues & Cyans",
+        "desc": "Glacial cyan and pure polar snow white.",
+        "primary": "#00dcff",
+        "secondary": "#ffffff",
+        "accent": "#8cf0ff"
+    },
+    {
+        "id": "cobalt-storm",
+        "name": "Cobalt Storm",
+        "category": "Blues & Cyans",
+        "desc": "Deep cobalt blue and intense lightning cyan.",
+        "primary": "#0a32dc",
+        "secondary": "#00dcff",
+        "accent": "#50a0ff"
+    },
+    {
+        "id": "deep-dive",
+        "name": "Deep Dive",
+        "category": "Blues & Cyans",
+        "desc": "Deep sapphire blue and sparkling aquamarine.",
+        "primary": "#002db4",
+        "secondary": "#00e1b4",
+        "accent": "#0078f0"
+    },
+    {
+        "id": "blueprint",
+        "name": "Blueprint",
+        "category": "Blues & Cyans",
+        "desc": "Drafting navy and clean crisp architectural white.",
+        "primary": "#0f3cbe",
+        "secondary": "#ffffff",
+        "accent": "#5096f0"
+    },
+    {
+        "id": "arctic-aurora",
+        "name": "Arctic Aurora",
+        "category": "Teal & Greens",
+        "desc": "Northern lights: emerald mint and polar glacial cyan.",
+        "primary": "#00ff87",
+        "secondary": "#00dcff",
+        "accent": "#a0ffe6"
+    },
+    {
+        "id": "matrix-runner",
+        "name": "Matrix Runner",
+        "category": "Teal & Greens",
+        "desc": "Deep digital void accented with terminal phosphor green.",
+        "primary": "#00ff6e",
+        "secondary": "#000000",
+        "accent": "#00963c"
+    },
+    {
+        "id": "emerald-isle",
+        "name": "Emerald Isle",
+        "category": "Teal & Greens",
+        "desc": "Rich deep jade and glowing mint highlights.",
+        "primary": "#00a046",
+        "secondary": "#00ff96",
+        "accent": "#005a28"
+    },
+    {
+        "id": "matcha-cream",
+        "name": "Matcha Cream",
+        "category": "Teal & Greens",
+        "desc": "Cozy caf\u00e9 aesthetic: rich matcha green and warm cream white.",
+        "primary": "#5fbe55",
+        "secondary": "#fffae6",
+        "accent": "#3c8732"
+    },
+    {
+        "id": "cyber-moss",
+        "name": "Cyber Moss",
+        "category": "Teal & Greens",
+        "desc": "Deep moss green paired with electric neon lime.",
+        "primary": "#1e7828",
+        "secondary": "#78ff14",
+        "accent": "#46be1e"
+    },
+    {
+        "id": "malachite",
+        "name": "Malachite",
+        "category": "Teal & Greens",
+        "desc": "Mineral green bands and pale seafoam white.",
+        "primary": "#00af73",
+        "secondary": "#c8faeb",
+        "accent": "#006941"
+    },
+    {
+        "id": "sunset-horizon",
+        "name": "Sunset Horizon",
+        "category": "Warm & Sunsets",
+        "desc": "Twilight purple, sunset gold and radiant coral.",
+        "primary": "#ffb91e",
+        "secondary": "#8200f0",
+        "accent": "#ff5046"
+    },
+    {
+        "id": "solar-flare",
+        "name": "Solar Flare",
+        "category": "Warm & Sunsets",
+        "desc": "Warm solar amber fire and radiant white light.",
+        "primary": "#ff960a",
+        "secondary": "#ffffff",
+        "accent": "#ffcd28"
+    },
+    {
+        "id": "blood-moon",
+        "name": "Blood Moon",
+        "category": "Warm & Sunsets",
+        "desc": "Deep crimson eclipse with high-contrast ice white.",
+        "primary": "#ff0f0f",
+        "secondary": "#e6f5ff",
+        "accent": "#820005"
+    },
+    {
+        "id": "magma-core",
+        "name": "Magma Core",
+        "category": "Warm & Sunsets",
+        "desc": "Dark volcanic charcoal and molten lava orange.",
+        "primary": "#ff5500",
+        "secondary": "#1e1919",
+        "accent": "#ffaa00"
+    },
+    {
+        "id": "desert-dusk",
+        "name": "Desert Dusk",
+        "category": "Warm & Sunsets",
+        "desc": "Terracotta warm orange and twilight indigo blue.",
+        "primary": "#f56e2d",
+        "secondary": "#281978",
+        "accent": "#ffaf5f"
+    },
+    {
+        "id": "phoenix",
+        "name": "Phoenix",
+        "category": "Warm & Sunsets",
+        "desc": "Blazing ruby red and brilliant golden yellow.",
+        "primary": "#ff1414",
+        "secondary": "#ffd214",
+        "accent": "#ff6e00"
+    },
+    {
+        "id": "crimson-tide",
+        "name": "Crimson Tide",
+        "category": "Warm & Sunsets",
+        "desc": "Deep rich burgundy wine and vibrant ruby red.",
+        "primary": "#8c0019",
+        "secondary": "#ff283c",
+        "accent": "#d20a28"
+    },
+    {
+        "id": "cherry-blossom",
+        "name": "Cherry Blossom",
+        "category": "Pinks & Pastels",
+        "desc": "Spring in Kyoto: soft sakura pink and fresh snow white.",
+        "primary": "#ff87b9",
+        "secondary": "#ffffff",
+        "accent": "#ffb9d7"
     },
     {
         "id": "synthwave-84",
         "name": "Synthwave '84",
-        "category": "Cyberpunk & Neon",
-        "desc": "Iconic retro sunset: vibrant neon magenta and electric cyan.",
+        "category": "Pinks & Pastels",
+        "desc": "Retro sunset: vibrant hot magenta and electric cyan.",
         "primary": "#ff0096",
         "secondary": "#00ebff",
         "accent": "#8200ff"
     },
     {
-        "id": "matrix-runner",
-        "name": "Matrix Runner",
-        "category": "Cyberpunk & Neon",
-        "desc": "Dark terminal void accented with cascading phosphor green.",
-        "primary": "#00ff87",
-        "secondary": "#000000",
-        "accent": "#00a03c"
-    },
-    {
-        "id": "blade-runner",
-        "name": "Blade Runner",
-        "category": "Cyberpunk & Neon",
-        "desc": "Dystopian smog: warm amber neon opposing deep moody rain cyan.",
-        "primary": "#ffa014",
-        "secondary": "#0096ff",
-        "accent": "#142846"
-    },
-    {
-        "id": "cyber-city",
-        "name": "Cyber City",
-        "category": "Cyberpunk & Neon",
-        "desc": "Night city skyline: electric indigo blue and hot magenta pink.",
-        "primary": "#0032e6",
-        "secondary": "#ff0096",
-        "accent": "#ffffff"
-    },
-    {
-        "id": "arctic-aurora",
-        "name": "Arctic Aurora",
-        "category": "Nature & Atmospheric",
-        "desc": "Shimmering northern lights: emerald mint and polar glacial cyan.",
-        "primary": "#00ff87",
-        "secondary": "#00ebff",
-        "accent": "#ebf5ff"
-    },
-    {
-        "id": "cherry-blossom",
-        "name": "Cherry Blossom",
-        "category": "Nature & Atmospheric",
-        "desc": "Spring in Kyoto: soft sakura petal pink paired with fresh snow white.",
-        "primary": "#ff8cbe",
-        "secondary": "#ffffff",
-        "accent": "#ffb4d2"
-    },
-    {
-        "id": "blood-moon",
-        "name": "Blood Moon",
-        "category": "Nature & Atmospheric",
-        "desc": "Deep crimson eclipse with high-contrast sharp ice white highlights.",
-        "primary": "#ff1414",
-        "secondary": "#ebf5ff",
-        "accent": "#8c000a"
-    },
-    {
-        "id": "glacier-blue",
-        "name": "Glacier Blue",
-        "category": "Nature & Atmospheric",
-        "desc": "Deep oceanic trench blue opposing radiant frost white.",
-        "primary": "#0096ff",
-        "secondary": "#ffffff",
-        "accent": "#0032e6"
-    },
-    {
-        "id": "sunset-horizon",
-        "name": "Sunset Horizon",
-        "category": "Nature & Atmospheric",
-        "desc": "Golden hour glow: rich amber gold fading into dusk coral and twilight purple.",
-        "primary": "#ffc832",
-        "secondary": "#8200ff",
-        "accent": "#ff5a50"
-    },
-    {
-        "id": "emerald-forest",
-        "name": "Emerald Forest",
-        "category": "Nature & Atmospheric",
-        "desc": "Deep evergreen canopy with glowing sunlit mint highlights.",
-        "primary": "#00b446",
-        "secondary": "#00ff87",
-        "accent": "#005a28"
-    },
-    {
-        "id": "abyssal-depths",
-        "name": "Abyssal Depths",
-        "category": "Nature & Atmospheric",
-        "desc": "Midnight Mariana trench: deep navy with bioluminescent electric teal.",
-        "primary": "#001ea0",
-        "secondary": "#00f0d2",
-        "accent": "#00ebff"
-    },
-    {
-        "id": "nord-frost",
-        "name": "Nord Frost",
-        "category": "Minimalist",
-        "desc": "Nord theme palette: arctic ice cyan and cool glacial white.",
-        "primary": "#88c0d0",
-        "secondary": "#eceff4",
-        "accent": "#5e81ac"
-    },
-    {
-        "id": "solar-flare",
-        "name": "Solar Flare",
-        "category": "Minimalist",
-        "desc": "Warm amber fire and pure solar radiance.",
-        "primary": "#ffa014",
-        "secondary": "#ffffff",
-        "accent": "#ffc832"
-    },
-    {
-        "id": "matcha-latte",
-        "name": "Matcha Latte",
-        "category": "Minimalist",
-        "desc": "Cozy caf\u00e9 aesthetic: rich matcha green and creamy warm white.",
-        "primary": "#6ec364",
-        "secondary": "#fffaeb",
-        "accent": "#468c3c"
-    },
-    {
         "id": "vaporwave",
         "name": "Vaporwave",
-        "category": "Minimalist",
-        "desc": "Aesthetic pastel turquoise and soft dream pink.",
-        "primary": "#46ebdc",
-        "secondary": "#ff96d2",
-        "accent": "#b978ff"
+        "category": "Pinks & Pastels",
+        "desc": "Pastel turquoise cyan and soft cotton candy pink.",
+        "primary": "#3cebd7",
+        "secondary": "#ff91cd",
+        "accent": "#c382ff"
+    },
+    {
+        "id": "rose-gold",
+        "name": "Rose Gold",
+        "category": "Pinks & Pastels",
+        "desc": "Subtle metallic blush rose and warm champagne gold.",
+        "primary": "#f591a5",
+        "secondary": "#ffd7a0",
+        "accent": "#ffb9c3"
+    },
+    {
+        "id": "strawberry-cream",
+        "name": "Strawberry Cream",
+        "category": "Pinks & Pastels",
+        "desc": "Sweet berry red and rich vanilla cream white.",
+        "primary": "#ff325a",
+        "secondary": "#fff5e1",
+        "accent": "#ff829b"
+    },
+    {
+        "id": "peaches-cream",
+        "name": "Peaches & Cream",
+        "category": "Pinks & Pastels",
+        "desc": "Soft peach coral and pearl white glow.",
+        "primary": "#ff8c69",
+        "secondary": "#fff8f0",
+        "accent": "#ffbea5"
+    },
+    {
+        "id": "hollywood-teal-orange",
+        "name": "Teal & Orange",
+        "category": "Contrasts",
+        "desc": "Cinematic high-contrast teal and warm incandescent orange.",
+        "primary": "#00b9cd",
+        "secondary": "#ff7814",
+        "accent": "#005f78"
+    },
+    {
+        "id": "oxidized-bronze",
+        "name": "Oxidized Bronze",
+        "category": "Contrasts",
+        "desc": "Aged verdigris turquoise paired with rich warm bronze.",
+        "primary": "#1ecdaf",
+        "secondary": "#be691e",
+        "accent": "#e6963c"
+    },
+    {
+        "id": "celestial-gold",
+        "name": "Celestial Gold",
+        "category": "Contrasts",
+        "desc": "Midnight sapphire blue paired with warm starlight gold.",
+        "primary": "#0a1e96",
+        "secondary": "#ffcd32",
+        "accent": "#8cb4ff"
+    },
+    {
+        "id": "monochrome-eclipse",
+        "name": "Monochrome Eclipse",
+        "category": "Contrasts",
+        "desc": "Pure crisp white light bars with dark void unlit arcs.",
+        "primary": "#ffffff",
+        "secondary": "#000000",
+        "accent": "#000000"
+    },
+    {
+        "id": "carbon-minimal",
+        "name": "Carbon Minimal",
+        "category": "Contrasts",
+        "desc": "Deep charcoal slate grey opposing pure brilliant white.",
+        "primary": "#464b55",
+        "secondary": "#ffffff",
+        "accent": "#23262d"
     }
 ]
