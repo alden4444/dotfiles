@@ -1,5 +1,59 @@
 [
     {
+        "id": "candlelight-amber",
+        "name": "Candlelight Amber",
+        "category": "Night & Sleep",
+        "desc": "Ultra-warm 1800K amber & embers. Zero blue light to protect sleep.",
+        "primary": "#e66e0a",
+        "secondary": "#962d00",
+        "accent": "#c34b05"
+    },
+    {
+        "id": "sleep-crimson",
+        "name": "Sleep Crimson",
+        "category": "Night & Sleep",
+        "desc": "Deep night ruby & dark velvet crimson. Zero melatonin disruption.",
+        "primary": "#af0000",
+        "secondary": "#4b0000",
+        "accent": "#780000"
+    },
+    {
+        "id": "midnight-amethyst",
+        "name": "Midnight Amethyst",
+        "category": "Night & Sleep",
+        "desc": "Dim moody violet & dusky plum. Low lux, gentle on tired eyes.",
+        "primary": "#4b0087",
+        "secondary": "#69145f",
+        "accent": "#280046"
+    },
+    {
+        "id": "campfire-ember",
+        "name": "Campfire Ember",
+        "category": "Night & Sleep",
+        "desc": "Smoldering red-orange embers opposing dark smoke charcoal.",
+        "primary": "#be3708",
+        "secondary": "#190c08",
+        "accent": "#821e00"
+    },
+    {
+        "id": "sepia-dream",
+        "name": "Sepia Dream",
+        "category": "Night & Sleep",
+        "desc": "Warm sepia & muted honey. Like an analog reading lamp at night.",
+        "primary": "#a05f19",
+        "secondary": "#5f370f",
+        "accent": "#7d4b14"
+    },
+    {
+        "id": "twilight-dusk",
+        "name": "Twilight Dusk",
+        "category": "Night & Sleep",
+        "desc": "Calming dusky terracotta & deep wine burgundy.",
+        "primary": "#912d0f",
+        "secondary": "#550a19",
+        "accent": "#731914"
+    },
+    {
         "id": "amethyst-frost",
         "name": "Amethyst Frost",
         "category": "Purple & White",
