@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "fnf",
+    "ntn",
+    "fnf"
+  ],
+  "key": {
+    "n": [
+      "minecraft:netherite_ingot"
+    ],
+    "f": [
+      "lifesteal:heart_fragment"
+    ],
+    "t": [
+      "minecraft:totem_of_undying"
+    ]
+  },
+  "result": {
+    "id": "lifesteal:crafted_heart",
+    "count": 1
+  }
+}

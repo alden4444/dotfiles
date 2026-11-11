@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "threshold": 10,
+  "alertType": "SOUND_AND_MESSAGE",
+  "sound": "minecraft:block.anvil.land",
+  "pitch": 2.0,
+  "volume": 1.0,
+  "checkArmorPieces": true,
+  "checkElytraOnly": false,
+  "minAlertIntervalSeconds": 60,
+  "listType": "BLACKLIST",
+  "itemList": []
+}

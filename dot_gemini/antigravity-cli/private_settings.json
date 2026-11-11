@@ -1,0 +1,9 @@
+{
+  "model": "Gemini 4 Argon (Medium)",
+  "toolPermission": "always-proceed",
+  "trustedWorkspaces": [
+    "/home/alden",
+    "/home/alden/roam",
+    "/home/alden/odoo-dev/custom_addons/simcas_odoo_custom"
+  ]
+}

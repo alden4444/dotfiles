@@ -1,0 +1,3 @@
+- Examples are Alacritty, Ghostty, Wave Terminal
+- Will use Kitty
+- Wave is interesting

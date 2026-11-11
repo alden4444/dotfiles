@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=War Thunder
+Exec=StartupWMClass=War Thunder (Vulkan, 64bit)
+
+Terminal=false
+Type=Application
+Icon=/home/alden/Downloads/WarThunder/launcher
+Categories=GNOME;GTK;Network
+StartupNotify=true

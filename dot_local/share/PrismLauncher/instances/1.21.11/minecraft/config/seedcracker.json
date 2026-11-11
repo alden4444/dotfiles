@@ -1,0 +1,60 @@
+{
+  "buriedTreasure": {
+    "enabled": true
+  },
+  "desertTemple": {
+    "enabled": true
+  },
+  "endCity": {
+    "enabled": true
+  },
+  "jungleTemple": {
+    "enabled": true
+  },
+  "monument": {
+    "enabled": true
+  },
+  "swampHut": {
+    "enabled": true
+  },
+  "shipwreck": {
+    "enabled": true
+  },
+  "outpost": {
+    "enabled": true
+  },
+  "igloo": {
+    "enabled": true
+  },
+  "trialChambers": {
+    "enabled": true
+  },
+  "endPillars": {
+    "enabled": true
+  },
+  "endGateway": {
+    "enabled": false
+  },
+  "dungeon": {
+    "enabled": true
+  },
+  "emeraldOre": {
+    "enabled": false
+  },
+  "desertWell": {
+    "enabled": false
+  },
+  "warpedFungus": {
+    "enabled": false
+  },
+  "biome": {
+    "enabled": false
+  },
+  "render": "ON",
+  "active": true,
+  "debug": false,
+  "antiXrayBypass": true,
+  "version": "v1_21_3",
+  "databaseSubmits": false,
+  "anonymusSubmits": false
+}

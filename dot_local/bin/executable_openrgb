@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export LD_LIBRARY_PATH="/home/alden/.local/lib/openrgb/lib:/home/alden/.local/lib/openrgb/lib/mbedtls3:${LD_LIBRARY_PATH:-}"
+exec /home/alden/.local/lib/openrgb/openrgb "$@"

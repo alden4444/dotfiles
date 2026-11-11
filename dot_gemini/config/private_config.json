@@ -1,0 +1,28 @@
+{
+  "plugins": {
+    "gdrive": {
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/gdrive",
+        "marketplace": "antigravity-plugins-official",
+        "version": "0.0.11"
+      }
+    }
+  },
+  "userSettings": {
+    "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_EAGER",
+    "customThemeSeedsDark": {
+      "background": "#101010",
+      "foregroundOverride": "#cccccc",
+      "primary": "#007acc"
+    },
+    "enableNotificationsForSpecialEvents": false,
+    "enableTerminalSandbox": false,
+    "gcpRegion": "us",
+    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
+    "permissionGrantsV2Migrated": true,
+    "permissionPreset": "AGENT_PERMISSION_PRESET_TURBO",
+    "remoteControlEnabled": true,
+    "remoteControlHostname": "tempest",
+    "sandboxEnabledAtV2Migration": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "cameraConfig":"{\"data\":[{\"enabled\":true,\"name\":\"orbit\"},{\"enabled\":true,\"name\":\"driver\"},{\"enabled\":true,\"name\":\"occupant.FL\"},{\"enabled\":true,\"name\":\"occupant.FR\"},{\"enabled\":true,\"name\":\"occupant.RL\"},{\"enabled\":true,\"name\":\"occupant.RR\"},{\"enabled\":true,\"name\":\"occupant.M2\"},{\"enabled\":true,\"name\":\"occupant.S1\"},{\"enabled\":true,\"name\":\"occupant.1RA\"},{\"enabled\":true,\"name\":\"occupant.8C\"},{\"enabled\":true,\"name\":\"occupant.4RW\"},{\"enabled\":true,\"name\":\"occupant.5LB\"},{\"enabled\":true,\"name\":\"occupant.RRR\"},{\"enabled\":true,\"name\":\"occupant.RRL\"},{\"enabled\":true,\"name\":\"onboard.hood\"},{\"enabled\":false,\"name\":\"external\"},{\"enabled\":false,\"name\":\"relative\"},{\"enabled\":false,\"name\":\"chase\"},{\"enabled\":false,\"name\":\"droneChase\"},{\"enabled\":true,\"name\":\"crash\"},{\"enabled\":true,\"name\":\"noise\"},{\"enabled\":true,\"name\":\"unicycle\"},{\"enabled\":false,\"name\":\"topDown\"},{\"enabled\":true,\"name\":\"passenger\"},{\"enabled\":true,\"name\":\"onboard.driver\"},{\"enabled\":true,\"name\":\"onboard.rider\"}],\"version\":2}",
+  "cameraDriverFov":59.425473266206,
+  "cameraDriverVehicleConfigs":"{}",
+  "onboardingPopupShown":true,
+  "onlineFeatures":"enable",
+  "rallyCodriverVoicepackMRU":"global:rh_2026-06-05,mission:italy/rallyStage/ngrc25-riviera-fastello:pro,mission:pro",
+  "telemetry":"disable",
+  "userPaintPresets":"[{\"baseColor\":[0.95,0.95,0.94,1.2],\"metallic\":0.8,\"roughness\":0.65,\"clearcoat\":1,\"clearcoatRoughness\":0.05},{\"baseColor\":[0.95,0.95,0.94,1.2],\"metallic\":0.8,\"roughness\":0.65,\"clearcoat\":1,\"clearcoatRoughness\":0.05}]"
+}

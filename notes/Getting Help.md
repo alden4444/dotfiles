@@ -1,0 +1,2 @@
+- man command prints manual for different tools, e.g. man ls
+- Another tool called apropos

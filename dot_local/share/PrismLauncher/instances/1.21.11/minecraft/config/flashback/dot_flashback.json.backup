@@ -1,0 +1,114 @@
+{
+  "configVersion": 2,
+  "recordingControls": {
+    "controlsLocation": "RIGHT",
+    "automaticallyStart": true,
+    "automaticallyFinish": true,
+    "showRecordingToasts": true,
+    "quicksave": true
+  },
+  "recording": {
+    "markDimensionChanges": true,
+    "recordHotbar": false,
+    "localPlayerUpdatesPerSecond": 20,
+    "recordVoiceChat": false,
+    "recordBobbyIntoReplay": false
+  },
+  "exporting": {
+    "defaultExportFilename": "%date%T%time%",
+    "exportRenderDummyFrames": 0
+  },
+  "keyframes": {
+    "defaultInterpolationType": "SMOOTH",
+    "useRealtimeInterpolation": true
+  },
+  "editorMovement": {
+    "flightDirection": "HORIZONTAL",
+    "flightMomentum": 1.0,
+    "flightLockX": false,
+    "flightLockY": false,
+    "flightLockZ": false,
+    "flightLockYaw": false,
+    "flightLockPitch": false
+  },
+  "marker": {
+    "markerOptions1": {
+      "color": "RED",
+      "customRGB": "#FF0000",
+      "savePosition": true,
+      "description": ""
+    },
+    "markerOptions2": {
+      "color": "RED",
+      "customRGB": "#FF0000",
+      "savePosition": true,
+      "description": ""
+    },
+    "markerOptions3": {
+      "color": "RED",
+      "customRGB": "#FF0000",
+      "savePosition": true,
+      "description": ""
+    },
+    "markerOptions4": {
+      "color": "RED",
+      "customRGB": "#FF0000",
+      "savePosition": true,
+      "description": ""
+    }
+  },
+  "advanced": {
+    "disableIncreasedFirstPersonUpdates": false,
+    "disableThirdPersonCancel": false,
+    "synchronizeTicking": false,
+    "ignoredCustomPayloads": ""
+  },
+  "internal": {
+    "recentReplays": [
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-11-02T10_21_06.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-11-01T21_48_27.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-29T21_22_35.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-29T21_18_10.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-17T15_12_27.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-16T09_35_29.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-16T09_27_05.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-16T09_21_21.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/1.21.11/minecraft/flashback/replays/2026-10-16T09_16_45.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/26.2/minecraft/flashback/replays/2026-10-12T08_58_20.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/26.2/minecraft/flashback/replays/2026-10-05T14_46_58.zip",
+      "/home/alden/.local/share/PrismLauncher/instances/26.2/minecraft/flashback/replays/2026-10-05T13_17_42.zip"
+    ],
+    "openedWindows": [],
+    "nextUnsupportedModLoaderWarning": 0,
+    "filterUnnecessaryPackets": true,
+    "signedRenderFilter": false,
+    "viewedTipsOfTheDay": 1,
+    "showTipOfTheDay": false,
+    "nextTipOfTheDay": 1791314298472,
+    "replaySorting": "CREATED_DATE",
+    "sortDescending": true,
+    "defaultOverrideFov": 70.0,
+    "enableOverrideFovByDefault": false,
+    "nfdUsePortal": true
+  },
+  "internalExport": {
+    "resolution": [
+      1920,
+      1080
+    ],
+    "framerate": [
+      60.0
+    ],
+    "resetRng": false,
+    "ssaa": false,
+    "noGui": false,
+    "container": "MP4",
+    "videoCodec": "H264",
+    "useMaximumBitrate": false,
+    "recordAudio": false,
+    "transparentBackground": false,
+    "audioCodec": "AAC",
+    "stereoAudio": false
+  },
+  "forceDefaultExportSettings": {}
+}

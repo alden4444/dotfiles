@@ -1,0 +1,56 @@
+{
+  "DOF":{
+    "BlurCurve":10,
+    "BlurCurveNear":20,
+    "BlurFar":0.25,
+    "BlurNear":0,
+    "Enable":false,
+    "EnableAutoFocus":false,
+    "EnableDebugMode":false,
+    "FocusAperture":100,
+    "FocusDistance":250
+  },
+  "EnablePostFX":true,
+  "HDR1":{
+    "ColorCorrectionRamp2":"lua/ge/client/postFx/default_color_ramp.png",
+    "Enable":true,
+    "adaptRate":0.1,
+    "blueShiftColor":"0.34279561042786 0.34279671311378 0.92865186929703 1",
+    "brightPassThreshold":6,
+    "enableBloom":true,
+    "enableBlueShift":false,
+    "enableToneMapping":false,
+    "enabledHSL":true,
+    "factorHSL":"1 1 1",
+    "gaussMean":0.2,
+    "gaussMultiplier":0.2,
+    "gaussStdDev":2,
+    "keyValue":1,
+    "minLuminace":1,
+    "whiteCutoff":0
+  },
+  "SSAO":{
+    "Enable":true,
+    "blurDepthTol":0.3,
+    "blurNormalTol":0,
+    "lDepthMax":5,
+    "lDepthMin":0.165877,
+    "lDepthPow":0.2,
+    "lNormalPow":2,
+    "lNormalTol":2,
+    "lRadius":0.782834,
+    "lStrength":0.473934,
+    "overallStrength":19.6517,
+    "quality":0,
+    "sDepthMax":50,
+    "sDepthMin":0.402844,
+    "sDepthPow":1,
+    "sNormalPow":2,
+    "sNormalTol":2,
+    "sRadius":0.0957678,
+    "sStrength":0.56872
+  },
+  "header":{
+    "version":1.2
+  }
+}

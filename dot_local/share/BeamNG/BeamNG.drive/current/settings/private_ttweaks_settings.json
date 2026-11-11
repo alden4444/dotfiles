@@ -1,0 +1,11 @@
+{
+  "BlendEnd":0.16699999570847,
+  "BlendStart":0.27099999785423,
+  "defaultPreset":"tTweaks Dynamic Preset (Day)",
+  "dynPresetMidday":"tTweaks Dynamic Preset (Day)",
+  "dynPresetNight":"tTweaks Dynamic Preset (Night)",
+  "dynamicPresetsEnabled":true,
+  "lockBlendSliders":true,
+  "mergeCenterpoint":0.1875,
+  "use24hClock":false
+}

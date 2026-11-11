@@ -1,0 +1,95 @@
+{
+  "$pref": {
+    "TS": {
+      "detailAdjust": 2,
+      "maxDecalCount": 4000,
+      "skipRenderDLs": 0,
+      "smallestVisiblePixelSize": -1
+    },
+    "ProjectedShadow": {
+      "fadeStartPixelSize": 200,
+      "fadeEndPixelSize": 35
+    },
+    "Reflect": {
+      "depthPrepass": true,
+      "deferredLighting": false,
+      "frameLimitMS": 10,
+      "maxLights": 4,
+      "refractTexScale": 1
+    },
+    "BeamNGVehicle": {
+      "dynamicReflection": {
+        "textureSize": 128,
+        "detail": 0,
+        "debugEnabled": false,
+        "enabled": false,
+        "facesPerUpdate": 2,
+        "distance": 50
+      },
+      "dynamicMirrors": {
+        "textureSize": 256,
+        "enabled": true,
+        "detail": 0.5,
+        "distance": 100
+      }
+    },
+    "Video": {
+      "unavailableTexturePath": "core/art/unavailable.dds",
+      "defaultAnisotropy": 16,
+      "textureReductionLevel": 0,
+      "missingTexturePath": "core/art/missingTexture.dds",
+      "disableNormalmapping": false,
+      "ShaderQualityGroup": "High",
+      "disableNormalMapping": false,
+      "disableParallaxMapping": false,
+      "disablePixSpecular": false,
+      "disableCubemapping": false,
+      "gpu": "GPU",
+      "displayDevice": "Vulkan"
+    },
+    "Shadows": {
+      "filterMode": 1,
+      "disable": 0,
+      "textureScalar": 4
+    },
+    "Terrain": {
+      "detailScale": 1.5,
+      "lodScale": 0.75
+    },
+    "GroundCover": {
+      "densityScale": 1.39999998
+    },
+    "Water": {
+      "disableTrueReflections": false
+    },
+    "SFX": {
+      "AudioChannelMusic": 0,
+      "AudioChannelGui": 1,
+      "AudioChannelMaster": 1,
+      "AudioChannelOther": 0.800000012,
+      "AudioChannelEffects": 1,
+      "AudioChannelForcedInduction": 0.800000012,
+      "AudioChannelPower": 0.800000012,
+      "AudioChannelEnvironment": 0.800000012,
+      "AudioChannelTransmission": 0.800000012,
+      "AudioChannelSuspension": 0.800000012,
+      "AudioChannelCollision": 0.800000012,
+      "AudioChannelAero": 0.800000012,
+      "AudioChannelUi": 0.800000012,
+      "AudioChannelLfe": 0.5,
+      "AudioChannelIntercom": 0.800000012,
+      "providerName": "FMOD",
+      "AudioChannelMessages": 1,
+      "AudioChannelSurface": 0.800000012,
+      "AudioChannelAmbience": 1
+    },
+    "lightManager": "Advanced Lighting 1.5",
+    "Decals": {
+      "enabled": true
+    },
+    "windEffectRadius": 25,
+    "Directories": {
+      "Terrain": "levels/"
+    }
+  }
+}

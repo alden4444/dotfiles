@@ -1,0 +1,4 @@
+- FZF - fuzzy finder
+- EZA - better than ls
+- Bat - better than cat
+- Btop - better than htop/top

@@ -1,0 +1,4 @@
+- Terminal Emulators
+    - Software that emulates the function of a terminal
+    - Allows use of text-based programs within a GUI
+- Bourne-Again Shell (BASH), part of GNU project

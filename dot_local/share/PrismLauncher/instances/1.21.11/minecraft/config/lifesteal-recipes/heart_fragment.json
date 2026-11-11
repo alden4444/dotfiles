@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sds",
+    "dnd",
+    "sds"
+  ],
+  "key": {
+    "n": [
+      "minecraft:netherite_ingot"
+    ],
+    "d": [
+      "minecraft:diamond_block"
+    ],
+    "s": [
+      "minecraft:netherite_scrap"
+    ]
+  },
+  "result": {
+    "id": "lifesteal:heart_fragment",
+    "count": 1
+  }
+}

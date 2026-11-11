@@ -1,0 +1,21 @@
+filename = 'flex_hud-1.2.1-1.21.11-fabric.jar'
+name = 'Flex HUD'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.11' ]
+x-prismlauncher-release-type = 'beta'
+x-prismlauncher-version-number = '1.2.1-1.21.11'
+
+[download]
+hash = '73ab024ede8842bc70a81349d246b383dea3e45b72015d9f845dd3600cef9ddf93ea53da97ba01d716a8481e417b2f11fb1ba630c6489ef51d7efdc067d1bd88'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/sJd4aIJv/versions/MZZGbKvC/flex_hud-1.2.1-1.21.11-fabric.jar'
+
+[update.modrinth]
+mod-id = 'sJd4aIJv'
+version = 'MZZGbKvC'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'P7dR8mSH'
+type = 'REQUIRED'

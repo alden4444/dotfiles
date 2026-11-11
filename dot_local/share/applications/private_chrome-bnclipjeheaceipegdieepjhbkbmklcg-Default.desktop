@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=aiming.pro
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=bnclipjeheaceipegdieepjhbkbmklcg
+Icon=/home/alden/.local/share/icons/hicolor/256x256/apps/chrome-bnclipjeheaceipegdieepjhbkbmklcg-Default.png
+StartupWMClass=crx_bnclipjeheaceipegdieepjhbkbmklcg

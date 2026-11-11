@@ -1,0 +1,5 @@
+- Sampling: measuring the amplitude of the analogue sound wave at regular, discrete time intervals
+- Sapling rate (frequency): the number of sound samples captured every second, measured in Hz
+- Sampling resolution (bit depth): the number of bits allocated to store the amplitude value of each sample
+- The Nyquist Theorem: to record a sound without distortion, the sampling rate must be at least double the highest frequency
+- File size = sampling rate x sampling resolution x duration

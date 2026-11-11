@@ -1,0 +1,20 @@
+{
+  "displayData":{
+    "clusterMode":"automatic",
+    "defaultFreeroamAction":"configureFreeroam",
+    "displaySize":"medium",
+    "groupMode":"system",
+    "showAuxContent":false,
+    "showFavouritesMode":"reducedClusters",
+    "showRecentMode":"unclustered",
+    "sorting":"automatic"
+  },
+  "favourites":{},
+  "recentItems":[
+    "spawnPoint_west_coast_usa_spawns_redwood_forest",
+    "spawnPoint_west_coast_usa_spawns_refinery",
+    "spawnPoint_west_coast_usa_spawns_industrial",
+    "spawnPoint_Utah_spawn_west_highway"
+  ],
+  "version":13
+}

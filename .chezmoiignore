@@ -36,13 +36,34 @@
 .local/share/PrismLauncher/instances/*/minecraft/flashback/**
 .local/share/PrismLauncher/instances/*/minecraft/.fabric/**
 .local/share/PrismLauncher/instances/*/minecraft/.mixin.out/**
+.local/share/PrismLauncher/meta/**
+.local/share/PrismLauncher/translations/**
+.local/share/PrismLauncher/instances/*/minecraft/hs_err_pid*.log
+.local/share/PrismLauncher/instances/*/minecraft/usercache.json
+.local/share/PrismLauncher/instances/*/minecraft/servers.dat_old
+.local/share/PrismLauncher/instances/*/minecraft/oneconfig/sounds/**
 .local/share/PrismLauncher/instances/*/minecraft/mods/Flashback*.jar
 
-# Application cache / desktop caches
+# Application & icon caches
 .local/share/applications/mimeinfo.cache
+.local/share/icons/hicolor/icon-theme.cache
+.config/OpenRGB/logs/**
+
+# Game logs & runtime state
+.config/WarThunder/.game_logs/**
+.config/WarThunder/downloads/**
+.config/WarThunder/Saves/lastlogin.blk
+BeamMP/BeamMP-Launcher/bin/key
+BeamMP/BeamMP-Launcher/bin/*.log
+BeamMP/BeamMP-Launcher/bin/CMake*
+BeamMP/BeamMP-Launcher/bin/cmake_install.cmake
+BeamMP/BeamMP-Launcher/bin/Makefile
+BeamMP/BeamMP-Launcher/bin/vcpkg_installed/**
 
 # Secrets, OAuth tokens, and host-specific compliance
 .git-credentials
+.ssh/id_*
+.ssh/vector/**
 .config/rclone/**
 .config/cyber-compliance/**
 .config/trwy_canvas-lms-tui/**
@@ -53,4 +74,8 @@
 .config/ytm-player/crashes/**
 .config/kdeconnect/privateKey.pem
 .config/kdeconnect/certificate.pem
+.config/antigravity/credential-user-scope
+.config/antigravity/plugin-secrets.json
+.gemini/jetski-standalone-oauth-token
 
+.gemini/config/plugins/gdrive/auth.json

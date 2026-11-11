@@ -1,0 +1,3 @@
+- Need an SSH agent for external devices to connect remotely
+- Need password and secret management
+- Need git hosting

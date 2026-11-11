@@ -1,0 +1,10 @@
+- In a bitmap image:
+    - Pixel: smallest picture element in an image
+    - Image Resolution: the number of pixel a physical screen can display per unit of length (DPI (dots per inch))
+    - Color/Bit Depth: the number of bits needed to represent the color of a single pixel:
+        - 1 bit = 2^1 = 2 colours (black and white)
+- Vector graphics:
+    - Use mathematical formulas and coordinates to construct images. Composed of drawing objects like lines and circles and properties like radius and fill color
+    - Vectors are infinitely scaleable, they can be enlarged or shrunk without any pixelation or loss of quality
+- File size:
+    - = width x height x color depth

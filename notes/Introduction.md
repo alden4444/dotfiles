@@ -1,0 +1,4 @@
+- Should learn Penetration Testing from Linux and Windows, as each has different uses
+- Must have a well set-up, reliable, and effiecient environment before work begins
+- Should have a well-understood environment without much bloat
+- Penetration testers must be able to adapt to different tools

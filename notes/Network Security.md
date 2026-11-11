@@ -1,0 +1,5 @@
+- Never trust, always verify
+- Providers such as Netbird, Tailscale, and Twingate focus on Zero Trust Network Access (ZTNA), a relatively new framework
+- Netbird for simple, automated setup for secure access
+- Tailscale for minimal configuration and perfect for use cases such as securing remote employees connections to internal services
+- Twingate for things like securing access to databases

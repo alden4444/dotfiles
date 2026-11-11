@@ -1,0 +1,13 @@
+{
+  "format": 2,
+  "categories": {
+    "Key Binds": {
+      "groups": {
+        "Rebind Quick Swap": {
+          "expanded": true,
+          "options": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+/p invite RX7_RS
+/leave
+/msg RX7_RS -125 120 -105
+/withdrawheart 1

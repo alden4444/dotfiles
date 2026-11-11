@@ -1,0 +1,372 @@
+{
+	"status-effect-bars": {
+		"path:general_settings/background_color": -2147483648,
+		"path:inventory_layout/collinear_offset": 0,
+		"path:hud_layout/orthogonal_offset": 2,
+		"path:general_settings/neutral_bar_color": -2130706433,
+		"path:inventory_layout/orthogonal_offset": 3,
+		"path:hud_layout/collinear_padding": 3,
+		"path:general_settings/maximum_remaining_duration": 2147483647,
+		"path:inventory_layout/direction": {
+			"class": "io.github.a5b84.statuseffectbars.config.Direction",
+			"value": "LEFT_TO_RIGHT"
+		},
+		"path:inventory_layout/thickness": 1,
+		"path:general_settings/beneficial_bar_color": -2130706433,
+		"path:hud_layout/thickness": 1,
+		"path:hud_layout/collinear_offset": 0,
+		"path:general_settings/harmful_bar_color": -2130706433,
+		"path:hud_layout/align_to_bottom_right": true,
+		"path:general_settings/minimum_beacon_effect_age": 90,
+		"path:inventory_layout/collinear_padding": 4,
+		"path:inventory_layout/enabled": true,
+		"path:hud_layout/direction": {
+			"class": "io.github.a5b84.statuseffectbars.config.Direction",
+			"value": "LEFT_TO_RIGHT"
+		},
+		"path:hud_layout/enabled": true,
+		"path:inventory_layout/align_to_bottom_right": true,
+		"path:general_settings/color_mode": {
+			"class": "io.github.a5b84.statuseffectbars.config.ColorMode",
+			"value": "EFFECT_COLOR"
+		}
+	},
+	"zoomify": {
+		"path:behavior/basic/affect_hand_fov": true,
+		"path:controls/relative_sensitivity": 100,
+		"path:secondary_zoom/zoom_out_time": 1.0,
+		"path:behavior/scrolling/remember_zoom_steps": false,
+		"path:controls/cinematic_camera": 0,
+		"path:behavior/scrolling/enable_scroll_zoom": true,
+		"path:secondary_zoom/hide_hud_on_zoom": true,
+		"path:behavior/spyglass/overlay_visibility": {
+			"class": "dev.isxander.zoomify.config.OverlayVisibility",
+			"value": "HOLDING"
+		},
+		"path:behavior/basic/zoom_in_transition": {
+			"class": "dev.isxander.zoomify.utils.TransitionType",
+			"value": "EASE_OUT_EXP"
+		},
+		"path:behavior/basic/initial_zoom": 4,
+		"path:controls/relative_view_bobbing": true,
+		"path:secondary_zoom/zoom_in_time": 10.0,
+		"path:behavior/basic/zoom_out_transition": {
+			"class": "dev.isxander.zoomify.utils.TransitionType",
+			"value": "EASE_OUT_EXP"
+		},
+		"path:behavior/scrolling/scroll_zoom_smoothness": 70,
+		"path:behavior/spyglass/zoom_behavior": {
+			"class": "dev.isxander.zoomify.config.SpyglassBehaviour",
+			"value": "COMBINE"
+		},
+		"path:behavior/spyglass/sound_behavior": {
+			"class": "dev.isxander.zoomify.config.SoundBehaviour",
+			"value": "WITH_OVERLAY"
+		},
+		"path:behavior/basic/zoom_in_time": 1.0,
+		"path:controls/keybind_scrolling": false,
+		"path:behavior/basic/zoom_out_time": 0.5,
+		"path:secondary_zoom/zoom_amount": 4,
+		"path:behavior/scrolling/zoom_per_step": 150,
+		"path:controls/zoom_key_behavior": {
+			"class": "dev.isxander.zoomify.config.ZoomKeyBehaviour",
+			"value": "HOLD"
+		},
+		"path:behavior/scrolling/scroll_step_count": 10
+	},
+	"freecam": {
+		"path:general/collision_options/general/collision_options/always_check_initial_collision": false,
+		"path:general/utility_options/general/utility_options/freeze_player": false,
+		"path:general/visual_options/general/visual_options/full_brightness": false,
+		"path:general/key_bindings/general/key_bindings/config_gui": {
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind"
+		},
+		"path:general/visual_options/general/visual_options/show_submersion_fog": false,
+		"path:general/utility_options/general/utility_options/disable_on_damage": true,
+		"path:general/collision_options/general/collision_options/ignore_all_collision": true,
+		"path:general/movement_options/general/movement_options/vertical_speed": 100,
+		"path:general/notification_options/general/notification_options/freecam_notifications": true,
+		"path:general/utility_options/general/utility_options/interaction_mode": {
+			"class": "net.xolt.freecam.config.model.ModConfigDTO$InteractionMode",
+			"value": "CAMERA"
+		},
+		"path:general/collision_options/general/collision_options/ignore_regular_expressions": [],
+		"path:general/visual_options/general/visual_options/show_hand": false,
+		"path:general/collision_options/general/collision_options/custom_ignore_list": false,
+		"path:general/visual_options/general/visual_options/show_player": true,
+		"path:general/key_bindings/general/key_bindings/toggle_freecam": {
+			"keyCodes": [
+				"key.keyboard.f4"
+			],
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind"
+		},
+		"path:general/multiplayer_options/general/multiplayer_options/whitelist": [],
+		"path:general/utility_options/general/utility_options/allow_interaction": false,
+		"path:general/multiplayer_options/general/multiplayer_options/blacklist": [],
+		"path:general/multiplayer_options/general/multiplayer_options/restriction_mode": {
+			"class": "net.xolt.freecam.config.model.ModConfigDTO$ServerRestriction",
+			"value": "NONE"
+		},
+		"path:general/notification_options/general/notification_options/tripod_notifications": true,
+		"path:general/key_bindings/general/key_bindings/control_player": {
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind"
+		},
+		"path:general/collision_options/general/collision_options/ignore_ids": [],
+		"path:general/collision_options/general/collision_options/ignore_openable_blocks": false,
+		"path:general/movement_options/general/movement_options/horizontal_speed": 100,
+		"path:general/key_bindings/general/key_bindings/reset_tripod": {
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind"
+		},
+		"path:general/visual_options/general/visual_options/outline_player": false,
+		"path:general/movement_options/general/movement_options/flight_mode": {
+			"class": "net.xolt.freecam.config.model.FlightMode",
+			"value": "DEFAULT"
+		},
+		"path:general/visual_options/general/visual_options/initial_perspective": {
+			"class": "net.xolt.freecam.config.model.Perspective",
+			"value": "INSIDE"
+		},
+		"path:general/key_bindings/general/key_bindings/toggle_outline_player": {
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind"
+		},
+		"path:general/collision_options/general/collision_options/ignore_transparent_blocks": false
+	},
+	"voicechat": {
+		"path:general/recording_destination": "",
+		"path:general/mute_on_join": false,
+		"path:hud_icons/group_chat_hud_icon_y_position": 4,
+		"path:general/offline_player_volume_adjustment": false,
+		"path:audio/push_to_talk_deactivation_delay": 5,
+		"path:audio/output_buffer_size": 5,
+		"path:audio/microphone_deactivation_delay": 25,
+		"path:hud_icons/group_chat_hud_icon_x_position": 4,
+		"path:hud_icons/show_voice_chat_name_tag_icons": true,
+		"path:hud_icons/group_chat_hud_icon_orientation": {
+			"class": "de.maxhenkel.voicechat.voice.client.GroupPlayerIconOrientation",
+			"value": "VERTICAL"
+		},
+		"path:hud_icons/show_yourself_in_the_group_chat_hud": true,
+		"path:hud_icons/group_chat_hud_icon_scale": 2.0,
+		"path:general/run_in_singleplayer_or_lan_worlds": true,
+		"path:hud_icons/voice_chat_hud_icon_scale": 1.0,
+		"path:hud_icons/voice_chat_hud_icon_x_position": 16,
+		"path:hud_icons/show_voice_chat_hud_icons": true,
+		"path:audio/audio_packet_threshold": 3,
+		"path:general/freecam_mode": {
+			"class": "de.maxhenkel.voicechat.integration.freecam.FreecamMode",
+			"value": "CAMERA"
+		},
+		"path:hud_icons/voice_chat_hud_icon_y_position": -16
+	},
+	"appleskin": {
+		"path:text.autoconfig.appleskin.category.default/show_saturation_overlay": true,
+		"path:text.autoconfig.appleskin.category.default/animate_hud_icons_to_match_minecraft": true,
+		"path:text.autoconfig.appleskin.category.default/show_estimated_health_overlay": true,
+		"path:text.autoconfig.appleskin.category.default/max_alpha_of_flashing_hud_icons": 0.65,
+		"path:text.autoconfig.appleskin.category.default/show_hunger_restored_from_held_food": true,
+		"path:text.autoconfig.appleskin.category.default/always_show_food_values_in_tooltip": true,
+		"path:text.autoconfig.appleskin.category.default/show_exhaustion_underlay": true,
+		"path:text.autoconfig.appleskin.category.default/show_overlays_for_food_in_off-hand": true,
+		"path:text.autoconfig.appleskin.category.default/show_food_values_in_tooltip": true
+	},
+	"combat-hitboxes": {
+		"path:weapon_filter/cobweb": true,
+		"path:projectiles/enemy_pearl_color": -52429,
+		"path:weapon_filter/totem": true,
+		"path:general/render_eye_height": true,
+		"path:weapon_filter/water_bucket": false,
+		"path:weapon_filter/elytra": true,
+		"path:weapon_filter/end_crystal": true,
+		"path:general/render_look_direction": true,
+		"path:weapon_filter/weapon_filter_enabled": false,
+		"path:weapon_filter/wind_charge": true,
+		"path:weapon_filter/xp_bottle": false,
+		"path:general/hide_fireworks": true,
+		"path:general/look_direction_as_line": false,
+		"path:weapon_filter/obsidian": false,
+		"path:colors_lines/distance_for_width_2": 32.0,
+		"path:weapon_filter/shovels": false,
+		"path:weapon_filter/lava_bucket": true,
+		"path:colors_lines/shield_color": -12480,
+		"path:projectiles/pearl_line_width": 2.5,
+		"path:weapon_filter/crossbow": true,
+		"path:weapon_filter/splash_potion": false,
+		"path:projectiles/unknown_pearl_color": -13412916,
+		"path:weapon_filter/armor_stand": false,
+		"path:projectiles/show_own_pearls": true,
+		"path:projectiles/ender_pearls_2": true,
+		"path:weapon_filter/ender_pearl": true,
+		"path:colors_lines/target_hitbox_color": -65536,
+		"path:projectiles/show_unknown_pearls": true,
+		"path:weapon_filter/pickaxes": false,
+		"path:weapon_filter/trident": true,
+		"path:weapon_filter/golden_carrot": false,
+		"path:weapon_filter/axes": true,
+		"path:colors_lines/eye_height_color": -65536,
+		"path:projectiles/show_enemy_pearls": true,
+		"path:general/enabled": true,
+		"path:weapon_filter/golden_apple": true,
+		"path:weapon_filter/flint_and_steel": false,
+		"path:colors_lines/outline_size_multiplier": 2.0,
+		"path:weapon_filter/steak": false,
+		"path:colors_lines/look_direction_color": -16776961,
+		"path:general/render_distance": 72.0,
+		"path:weapon_filter/mace": true,
+		"path:weapon_filter/respawn_anchor": true,
+		"path:colors_lines/base_hitbox_color": -1,
+		"path:projectiles/own_pearl_color": -16755201,
+		"path:general/shield_only_on_target": false,
+		"path:general/hide_stuck_arrows": false,
+		"path:colors_lines/outline_enabled": false,
+		"path:weapon_filter/swords": true,
+		"path:colors_lines/line_width_2": 2.5,
+		"path:weapon_filter/glowstone": true,
+		"path:colors_lines/outline_color": -16777216,
+		"path:weapon_filter/check_off_hand": true,
+		"path:colors_lines/line_width_1": 2.5,
+		"path:weapon_filter/fishing_rod": false,
+		"path:general/shield_color": true,
+		"path:weapon_filter/spear": true,
+		"path:weapon_filter/bow": true,
+		"path:weapon_filter/firework": false
+	},
+	"gammautils": {
+		"path:gamma/show_status_effect": false,
+		"path:other/namespaced_commands": false,
+		"path:night_vision/hud_message/night_vision/hud_message/color_0_-_100": 43520,
+		"path:night_vision/limiter/night_vision/limiter/enable_limiter": true,
+		"path:night_vision/limiter/night_vision/limiter/maximum_night_vision_limit": 100,
+		"path:gamma/gamma_percentage_step": 10,
+		"path:gamma/hud_message/gamma/hud_message/color_0": 11141120,
+		"path:night_vision/smooth_transition/night_vision/smooth_transition/transition_speed": 200,
+		"path:night_vision/reset_on_close": false,
+		"path:night_vision/dimension_preference/night_vision/dimension_preference/nether_preference": 100,
+		"path:gamma/dynamic_gamma/gamma/dynamic_gamma/enable_dynamic_gamma": false,
+		"path:night_vision/smooth_transition/night_vision/smooth_transition/enable_smooth_transition": false,
+		"path:night_vision/hud_message/night_vision/hud_message/color_0": 11141120,
+		"path:night_vision/dynamic_night_vision/night_vision/dynamic_night_vision/maximum_night_vision_strength": 100,
+		"path:gamma/dynamic_gamma/gamma/dynamic_gamma/minimum_gamma_strength": 100,
+		"path:night_vision/night_vision_percentage_step": 2,
+		"path:gamma/smooth_transition/gamma/smooth_transition/enable_smooth_transition": false,
+		"path:night_vision/dynamic_night_vision/night_vision/dynamic_night_vision/enable_dynamic_night_vision": false,
+		"path:gamma/dynamic_gamma/gamma/dynamic_gamma/sky_brightness_override": 0,
+		"path:gamma/dynamic_gamma/gamma/dynamic_gamma/averaging_light_level_range": 8,
+		"path:night_vision/hud_message/night_vision/hud_message/color_100": 16755200,
+		"path:night_vision/hud_message/night_vision/hud_message/color_enabled": 43520,
+		"path:gamma/hud_message/gamma/hud_message/color_100": 16755200,
+		"path:gamma/dynamic_gamma/gamma/dynamic_gamma/maximum_gamma_strength": 1000,
+		"path:gamma/update_toggle_value": false,
+		"path:gamma/default_gamma_percentage": 100,
+		"path:night_vision/dimension_preference/night_vision/dimension_preference/overworld_preference": 100,
+		"path:gamma/dimension_preference/gamma/dimension_preference/enable_dimension_preference": false,
+		"path:gamma/dimension_preference/gamma/dimension_preference/end_preference": 1500,
+		"path:night_vision/hud_message/night_vision/hud_message/show_hud_message": true,
+		"path:gamma/toggled_gamma_percentage": 1500,
+		"path:night_vision/limiter/night_vision/limiter/gamma_compatibility_limiter": true,
+		"path:gamma/dimension_preference/gamma/dimension_preference/nether_preference": 1500,
+		"path:night_vision/show_status_effect": false,
+		"path:gamma/dynamic_gamma/gamma/dynamic_gamma/transition_speed": 200,
+		"path:night_vision/hud_message/night_vision/hud_message/color_disabled": 11141120,
+		"path:night_vision/dynamic_night_vision/night_vision/dynamic_night_vision/transition_speed": 15,
+		"path:night_vision/brighten_fog_color": true,
+		"path:night_vision/limiter/night_vision/limiter/minimum_night_vision_limit": 0,
+		"path:night_vision/dynamic_night_vision/night_vision/dynamic_night_vision/sky_brightness_override": 0,
+		"path:gamma/limiter/gamma/limiter/enable_limiter": true,
+		"path:gamma/smooth_transition/gamma/smooth_transition/transition_speed": 3000,
+		"path:night_vision/update_toggle_value": false,
+		"path:night_vision/dynamic_night_vision/night_vision/dynamic_night_vision/averaging_light_level_range": 8,
+		"path:gamma/limiter/gamma/limiter/minimum_gamma_limit": -750,
+		"path:night_vision/toggled_night_vision_percentage": 100,
+		"path:night_vision/dimension_preference/night_vision/dimension_preference/end_preference": 100,
+		"path:night_vision/dimension_preference/night_vision/dimension_preference/enable_dimension_preference": false,
+		"path:gamma/reset_on_close": false,
+		"path:gamma/hud_message/gamma/hud_message/color_0_-_100": 43520,
+		"path:gamma/limiter/gamma/limiter/maximum_gamma_limit": 1500,
+		"path:gamma/hud_message/gamma/hud_message/show_hud_message": true,
+		"path:gamma/dimension_preference/gamma/dimension_preference/overworld_preference": 1500,
+		"path:night_vision/dynamic_night_vision/night_vision/dynamic_night_vision/minimum_night_vision_strength": 0
+	},
+	"cloth-config": {
+		"path:config_demo/colors/config_demo/colors/a_color_field": 65535,
+		"path:config_demo/dependencies/config_demo/dependencies/even_lists": [
+			1, 
+			2, 
+			3
+		],
+		"path:config_demo/colors/config_demo/colors/inner_colors/inner_inner_colors/lol_apple": [
+			"minecraft:apple"
+		],
+		"path:config_demo/colors/config_demo/colors/lol_apple": [
+			"minecraft:apple"
+		],
+		"path:config_demo/dependencies/config_demo/dependencies/sub-categories_can_have_requirements_too.../another_example...": true,
+		"path:config_demo/colors/config_demo/colors/lol_apple_2": [
+			"minecraft:apple"
+		],
+		"path:config_demo/a_list_of_doubles": [
+			1.0, 
+			2.0, 
+			3.0
+		],
+		"path:config_demo/colors/config_demo/colors/lol_apple_3": [
+			"minecraft:apple"
+		],
+		"path:config_demo/colors/config_demo/colors/an_alpha_color_field_2": -1,
+		"path:config_demo/colors/config_demo/colors/lol_apple_4": [
+			"minecraft:apple"
+		],
+		"path:config_demo/colors/config_demo/colors/lol_apple_5": [
+			"minecraft:apple"
+		],
+		"path:config_demo/colors/config_demo/colors/inner_colors/lol_apple": [
+			"minecraft:apple"
+		],
+		"path:config_demo/a_list_of_longs": [
+			1, 
+			2, 
+			3
+		],
+		"path:config_demo/dependencies/config_demo/dependencies/select_a_good_or_bad_option": {
+			"class": "me.shedaniel.clothconfig2.ClothConfigDemo$1DependencyDemoEnum",
+			"value": "OKAY"
+		},
+		"path:config_demo/colors/config_demo/colors/inner_colors/lol_apple_3": [
+			"minecraft:apple"
+		],
+		"path:config_demo/dependencies/config_demo/dependencies/i_only_work_when_numbers_are_extreme": true,
+		"path:config_demo/colors/config_demo/colors/inner_colors/lol_apple_2": [
+			"minecraft:apple"
+		],
+		"path:config_demo/suggestion_random_int": 10,
+		"path:config_demo/cool_modifier_key": {
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind",
+			"mods": 2,
+			"keyCodes": [
+				"key.keyboard.o"
+			]
+		},
+		"path:config_demo/dependencies/config_demo/dependencies/sub-categories_can_have_requirements_too.../example_entry": true,
+		"path:config_demo/cool_key": {
+			"class": "org.polyfrost.oneconfig.api.ui.v1.keybind.OneConfigKeybind"
+		},
+		"path:config_demo/dependencies/config_demo/dependencies/a_cool_toggle": false,
+		"path:config_demo/dependencies/config_demo/dependencies/i_only_appear_when_cool_is_toggled...": true,
+		"path:config_demo/dependencies/config_demo/dependencies/i_only_work_when_cool_is_toggled...": true,
+		"path:config_demo/dependencies/config_demo/dependencies/i_only_work_when_cool_matches_both_of_these_toggles": true,
+		"path:config_demo/dependencies/config_demo/dependencies/i_need_a_good_option_and_a_cool_toggle": true,
+		"path:config_demo/dependencies/config_demo/dependencies/select_something_big_or_small": 50,
+		"path:config_demo/colors/config_demo/colors/an_alpha_color_field": -16711681,
+		"path:config_demo/selection_random_int": "10",
+		"path:config_demo/dependencies/config_demo/dependencies/i_only_work_when_a_good_option_is_chosen...": true,
+		"path:config_demo/colors/config_demo/colors/inner_colors/inner_inner_colors/lol_apple_3": [
+			"minecraft:apple"
+		],
+		"path:config_demo/colors/config_demo/colors/inner_colors/inner_inner_colors/lol_apple_2": [
+			"minecraft:apple"
+		],
+		"path:config_demo/a_list_of_strings": [
+			"abc", 
+			"xyz"
+		]
+	}
+}

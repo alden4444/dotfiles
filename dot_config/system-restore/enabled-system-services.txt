@@ -1,0 +1,12 @@
+bluetooth.service
+coolercontrold.service
+docker.service
+getty@.service
+NetworkManager-dispatcher.service
+NetworkManager.service
+NetworkManager-wait-online.service
+ollama.service
+remote-fs.target
+systemd-timesyncd.service
+systemd-userdbd.socket
+wire-pod.service

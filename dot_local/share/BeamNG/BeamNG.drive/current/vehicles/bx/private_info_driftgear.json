@@ -1,0 +1,35 @@
+{
+  "Configuration":"DriftGear",
+  "defaultMultiPaintSetup":{
+    "name":"driftgear Multi Paint Setup",
+    "paint1":"Tangerine Rush",
+    "paint2":{
+      "baseColor":[
+        0.029999999329448,
+        0.050000000745058,
+        0.14000000059605,
+        1.2000000476837
+      ],
+      "class":"hidden",
+      "clearcoat":0.800000012,
+      "clearcoatRoughness":0.0700000003,
+      "metallic":0.800000012,
+      "name":"driftgear Paint 2",
+      "roughness":0.649999976
+    },
+    "paint3":{
+      "baseColor":[
+        1,
+        1,
+        1,
+        1.2000000476837
+      ],
+      "class":"hidden",
+      "clearcoat":0,
+      "clearcoatRoughness":0,
+      "metallic":0.100000001,
+      "name":"driftgear Paint 3",
+      "roughness":0.0700000003
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "Configuration":"Street",
+  "defaultMultiPaintSetup":{
+    "name":"street Multi Paint Setup",
+    "paint1":{
+      "baseColor":[
+        0.62000000476837,
+        0.62000000476837,
+        0.62000000476837,
+        1.2000000476837
+      ],
+      "class":"hidden",
+      "clearcoat":0.800000012,
+      "clearcoatRoughness":0.0700000003,
+      "metallic":0.800000012,
+      "name":"street Paint 1",
+      "roughness":0.649999976
+    },
+    "paint2":{
+      "baseColor":[
+        0.62000000476837,
+        0.62000000476837,
+        0.62000000476837,
+        1.2000000476837
+      ],
+      "class":"hidden",
+      "clearcoat":0.800000012,
+      "clearcoatRoughness":0.0700000003,
+      "metallic":0.800000012,
+      "name":"street Paint 2",
+      "roughness":0.649999976
+    },
+    "paint3":{
+      "baseColor":[
+        0.62000000476837,
+        0.62000000476837,
+        0.62000000476837,
+        1.2000000476837
+      ],
+      "class":"hidden",
+      "clearcoat":0.800000012,
+      "clearcoatRoughness":0.0700000003,
+      "metallic":0.800000012,
+      "name":"street Paint 3",
+      "roughness":0.649999976
+    }
+  }
+}

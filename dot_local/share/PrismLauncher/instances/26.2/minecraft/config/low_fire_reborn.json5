@@ -1,0 +1,8 @@
+{
+	"enableLowFire": true,
+	"shouldRenderFire": true,
+	"fireOffset": -0.3,
+	"fireOffsetCycleUpperKeyLimit": 0.0,
+	"fireOffsetCycleLowerKeyLimit": -0.5,
+	"fireOffsetChange": 0.1
+}

@@ -1,0 +1,2 @@
+- Will use BlackArch in a VM, although Parrot OS also works
+- Maybe not BlackArch - should reduce bloat where possible

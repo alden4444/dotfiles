@@ -1,0 +1,1 @@
+- Should learn file structure and tools to use on Windows, should know how to navigate externally

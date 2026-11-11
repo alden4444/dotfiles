@@ -1,0 +1,4 @@
+- Allow users to access and control a computer over a networl:
+    - XFREERDP
+    - RDESKTOP
+    - Rustdesk

@@ -1,0 +1,632 @@
+{
+  "_language":"en-US",
+  "levelName":"west_coast_usa",
+  "options":{
+    "environment_date":1781978400,
+    "environment_timeOfDay":"default",
+    "environment_timePlay":"disabled",
+    "traffic_trafficMode":"disabled"
+  },
+  "spawnPointName":"spawns_redwood_forest",
+  "spawnPointTile":{
+    "buttonInfo":{},
+    "description":"Explore the West Coast of the USA. Representative of various locations in California.",
+    "headerTitle":"Redwood Forest (West Coast, USA)",
+    "key":"spawnPoint_west_coast_usa_spawns_redwood_forest",
+    "levelName":"west_coast_usa",
+    "levelTitle":"West Coast, USA",
+    "preview":"/levels/west_coast_usa/spawns_redwood_forest.jpg",
+    "spawnPointObjectName":"spawns_redwood_forest",
+    "specifications":[
+      [
+        {
+          "icon":"scale",
+          "label":"Size",
+          "value":"1.27mi x 1.27mi (1.62sq mi)"
+        },
+        {
+          "icon":"terrain",
+          "label":"Biome",
+          "value":"Coastal, Urban, Semi-arid"
+        },
+        {
+          "icon":"roadStack",
+          "label":"Roads",
+          "value":"90% Paved"
+        },
+        {
+          "icon":"flag",
+          "label":"Suitable for",
+          "value":"Racing, Chases, Cruising, Exploration, Delivery"
+        },
+        {
+          "icon":"info",
+          "label":"Features",
+          "value":"Belasco City, Racing Complex, Redwood Forest, Suburbs, Highways, River Channel, Dockyards"
+        },
+        {
+          "icon":"flag",
+          "label":"Country",
+          "value":"United States"
+        }
+      ]
+    ],
+    "tags":[
+      {
+        "icon":"beamNG",
+        "label":"BeamNG - Official"
+      }
+    ],
+    "validationFiles":[
+      "/levels/west_coast_usa/west_coast_usa_preview1.jpg",
+      "/levels/west_coast_usa/main/"
+    ]
+  },
+  "vehicle":{
+    "additionalData":{
+      "paint":"Pleasant Blue",
+      "paint2":"Pleasant Blue",
+      "paint3":"Pleasant Blue"
+    },
+    "config":"Taxi 533",
+    "model":"pessima"
+  },
+  "vehicleTile":{
+    "additionalData":{
+      "paint":"Pleasant Blue",
+      "paint2":"Pleasant Blue",
+      "paint3":"Pleasant Blue"
+    },
+    "brand":"Ibishu",
+    "buttonInfo":[
+      {
+        "buttonId":29,
+        "canClearFilters":true,
+        "icon":"carPlus",
+        "label":"Spawn New",
+        "uiEvent":"action_2"
+      },
+      {
+        "buttonId":30,
+        "canClearFilters":true,
+        "icon":"carsChange",
+        "isDoubleClickAction":true,
+        "label":"Replace Current",
+        "primary":true,
+        "uiEvent":"ok"
+      }
+    ],
+    "configDetails":{
+      "Configuration":"Taxi 533",
+      "Name":"Pessima Taxi 533",
+      "Source":"Custom",
+      "aggregates":{
+        "Body Style":{
+          "Sedan":true
+        },
+        "Brand":{
+          "Ibishu":true
+        },
+        "Country":{
+          "Japan":true
+        },
+        "Derby Class":{
+          "Mid-Size Car":true
+        },
+        "InsuranceClass":{
+          "dailyDriver":true
+        },
+        "Region":{
+          "northAmerica":true
+        },
+        "Source":{
+          "BeamNG - Official":true,
+          "Custom":true
+        },
+        "Type":{
+          "Car":true
+        },
+        "Years":{
+          "max":1991,
+          "min":1988
+        }
+      },
+      "allowPaintSelectionInSelector":true,
+      "defaultPaint":{
+        "_official":true,
+        "baseColor":[
+          0.35,
+          0.5,
+          0.65,
+          1.2
+        ],
+        "class":"factory",
+        "clearcoat":0,
+        "clearcoatRoughness":0,
+        "id":"pleasant_blue",
+        "metallic":0,
+        "name":"Pleasant Blue",
+        "roughness":0.07
+      },
+      "defaultPaintName1":"Pleasant Blue",
+      "defaultPaintName2":"Pleasant Blue",
+      "defaultPaintName3":"Pleasant Blue",
+      "is_default_config":false,
+      "key":"Taxi 533",
+      "model_key":"pessima",
+      "multiPaintSetups":[
+        {
+          "_official":false,
+          "generated":true,
+          "id":"Pessima Taxi 533 default paints",
+          "isDefaultForConfigByKey":{
+            "Taxi 533":true
+          },
+          "name":"Pessima Taxi 533 default paints",
+          "paintName1":"Pleasant Blue",
+          "paintName2":"Pleasant Blue",
+          "paintName3":"Pleasant Blue",
+          "usedByConfigByKey":{
+            "Taxi 533":true
+          }
+        }
+      ],
+      "paints":{},
+      "pcFilename":"/vehicles/pessima/Taxi 533.pc",
+      "preview":"/ui/images/appDefault.png"
+    },
+    "configKey":"Taxi 533",
+    "generalSpecs":[
+      {
+        "isFromConfig":false,
+        "key":"Years",
+        "value":"1988 - 1991"
+      },
+      {
+        "isFromConfig":false,
+        "key":"Country",
+        "value":"Japan"
+      }
+    ],
+    "headerTitle":"Ibishu Pessima Taxi 533",
+    "iconTags":{},
+    "isStandalonePC":true,
+    "modelKey":"pessima",
+    "paints":{
+      "allowPaintSelection":true,
+      "factoryPaints":[
+        {
+          "_official":true,
+          "baseColor":[
+            0.08,
+            0.2,
+            0.28,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"bermuda_blue",
+          "metallic":0.8,
+          "name":"Bermuda Blue",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.02,
+            0.02,
+            0.02,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"black",
+          "metallic":0,
+          "name":"Black",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.07,
+            0.37,
+            0.72,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"brilliant_blue",
+          "metallic":0,
+          "name":"Brilliant Blue",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.28,
+            0.08,
+            0.08,
+            1.1
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"burgundy",
+          "metallic":0,
+          "name":"Burgundy",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.5,
+            0.42,
+            0.39,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":1,
+          "clearcoatRoughness":0.05,
+          "id":"canyon_sand",
+          "metallic":0.8,
+          "name":"Canyon Sand",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.33,
+            0.33,
+            0.33,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"carbon_gray",
+          "metallic":0.8,
+          "name":"Carbon Gray",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.79,
+            0.75,
+            0.69,
+            1
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"cream",
+          "metallic":0.1,
+          "name":"Cream",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.689,
+            0.118,
+            0.118,
+            0.85
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"fire_red",
+          "metallic":0,
+          "name":"Fire Red",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.525,
+            0.41,
+            0.3,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"light_brown",
+          "metallic":0,
+          "name":"Light Brown",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.025,
+            0.065,
+            0.2,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"navy_blue",
+          "metallic":0,
+          "name":"Navy Blue",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.27,
+            0.35,
+            0.23,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"olive_green",
+          "metallic":0,
+          "name":"Olive Green",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.8,
+            0.42,
+            0.1,
+            1
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"orange",
+          "metallic":0,
+          "name":"Orange",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.35,
+            0.5,
+            0.65,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"pleasant_blue",
+          "metallic":0,
+          "name":"Pleasant Blue",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.52,
+            0.485,
+            0.46,
+            1.3
+          ],
+          "class":"factory",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"quicksilver",
+          "metallic":0.8,
+          "name":"Quicksilver",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.05,
+            0.15,
+            0.08,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"royal_green",
+          "metallic":0.8,
+          "name":"Royal Green",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.58,
+            0.12,
+            0.12,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"scarlet_red",
+          "metallic":0.8,
+          "name":"Scarlet Red",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.16,
+            0.28,
+            0.56,
+            1
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"sea_blue",
+          "metallic":0,
+          "name":"Sea Blue",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.24,
+            0.48,
+            0.48,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"seafoam_green",
+          "metallic":0.8,
+          "name":"Seafoam Green",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.623,
+            0.623,
+            0.623,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"silver",
+          "metallic":0.8,
+          "name":"Silver",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.81,
+            0.6,
+            0.1,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"solar_yellow",
+          "metallic":0.1,
+          "name":"Solar Yellow",
+          "roughness":0.07
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.478,
+            0.543,
+            0.578,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0.8,
+          "clearcoatRoughness":0.07,
+          "id":"steel_gray",
+          "metallic":0.8,
+          "name":"Steel Gray",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.8,
+            0.42,
+            0.1,
+            1
+          ],
+          "class":"custom",
+          "clearcoat":1,
+          "clearcoatRoughness":0.05,
+          "id":"tangerine_rush",
+          "metallic":0.8,
+          "name":"Tangerine Rush",
+          "roughness":0.65
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.85,
+            0.68,
+            0.1,
+            1.2
+          ],
+          "class":"custom",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"taxi_yellow",
+          "metallic":0,
+          "name":"Taxi Yellow",
+          "roughness":0.06
+        },
+        {
+          "_official":true,
+          "baseColor":[
+            0.83,
+            0.83,
+            0.83,
+            1.2
+          ],
+          "class":"factory",
+          "clearcoat":0,
+          "clearcoatRoughness":0,
+          "id":"white",
+          "metallic":0,
+          "name":"White",
+          "roughness":0.07
+        }
+      ],
+      "multiPaintSetups":[
+        {
+          "_official":false,
+          "generated":true,
+          "id":"Pessima Taxi 533 default paints",
+          "isDefault":true,
+          "isDefaultForConfigByKey":{
+            "Taxi 533":true
+          },
+          "name":"Pessima Taxi 533 default paints",
+          "paintName1":"Pleasant Blue",
+          "paintName2":"Pleasant Blue",
+          "paintName3":"Pleasant Blue",
+          "usedByConfigByKey":{
+            "Taxi 533":true
+          }
+        }
+      ]
+    },
+    "preview":"/ui/images/appDefault.png",
+    "specificationsList":[
+      {
+        "label":"Other",
+        "specifications":[
+          {
+            "isFromConfig":false,
+            "key":"Type",
+            "value":"Car"
+          },
+          {
+            "isFromConfig":false,
+            "key":"Derby Class",
+            "value":"Mid-Size Car"
+          }
+        ]
+      }
+    ],
+    "tags":[
+      {
+        "icon":"wrench",
+        "label":"Custom"
+      }
+    ],
+    "validationFiles":[
+      "/vehicles/pessima/Taxi 533.pc",
+      "/ui/images/appDefault.png"
+    ]
+  },
+  "version":1
+}

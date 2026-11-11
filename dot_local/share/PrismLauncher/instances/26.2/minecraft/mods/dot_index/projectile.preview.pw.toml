@@ -1,0 +1,18 @@
+filename = 'ProjectilePreview-26.2+.jar'
+name = 'Projectile Preview'
+side = 'client'
+x-prismlauncher-dependencies = []
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '26.2' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'v1.1.5'
+
+[download]
+hash = 'a472636ef8a78d4e9738f9cec438bf1cdf9e9bf504d0c4bb7a639cd4624cc9ee232bab383f0ef85089d61161c8ce34d3a189ba8496a84cbb2e51555e372212fd'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/v2LcuzmG/versions/4clhOu4Z/ProjectilePreview-26.2%2B.jar'
+
+[update.modrinth]
+mod-id = 'v2LcuzmG'
+version = '4clhOu4Z'

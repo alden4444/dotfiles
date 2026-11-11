@@ -1,0 +1,3 @@
+- An abstraction of physical computing resources
+- Should always use a virtual machine when penetration testing
+    - BlackArch run as a VM

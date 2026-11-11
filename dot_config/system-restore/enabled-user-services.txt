@@ -1,0 +1,11 @@
+hypridle.service
+notes-sync.timer
+openrgb.service
+p11-kit-server.socket
+pipewire-pulse.service
+pipewire-pulse.socket
+pipewire.service
+pipewire.socket
+rclone-gdrive.service
+wireplumber.service
+xdg-user-dirs.service

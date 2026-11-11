@@ -1,0 +1,91 @@
+{
+  "fonts": {
+    "cairo_bold": {
+      "fileName": "Cairo-Bold.ttf",
+      "glyphRanges": [
+        "arabic"
+      ],
+      "sizeScale": 1.3
+    },
+    "cairo_regular": {
+      "fileName": "Cairo-Regular.ttf",
+      "glyphRanges": [
+        "arabic"
+      ],
+      "sizeScale": 1.3
+    },
+    "cairo_regular_medium": {
+      "fileName": "Cairo-Regular.ttf",
+      "glyphRanges": [
+        "arabic"
+      ],
+      "sizeScale": 1.8
+    },
+    "cairo_semibold_large": {
+      "fileName": "Cairo-SemiBold.ttf",
+      "glyphRanges": [
+        "arabic"
+      ],
+      "sizeScale": 2
+    },
+    "icons": {
+      "fileName": "fa-solid-900.ttf",
+      "glyphRanges": [
+        "F000",
+        "F010"
+      ],
+      "sizeScale": 3
+    },
+    "notosans_jp_regular": {
+      "fileName": "Noto_Sans_JP/static/NotoSansJP-Regular.ttf",
+      "glyphRanges": [
+        "japanese"
+      ],
+      "sizeScale": 1
+    },
+    "notosans_kr_regular": {
+      "fileName": "Noto_Sans_KR/static/NotoSansKR-Regular.ttf",
+      "glyphRanges": [
+        "korean"
+      ],
+      "sizeScale": 1
+    },
+    "notosans_sc_regular": {
+      "fileName": "Noto_Sans_SC/static/NotoSansSC-Regular.ttf",
+      "glyphRanges": [
+        "chineseSimplifiedCommon"
+      ],
+      "sizeScale": 1
+    },
+    "notosans_tc_regular": {
+      "fileName": "Noto_Sans_TC/static/NotoSansTC-Regular.ttf",
+      "glyphRanges": [
+        "chineseFull"
+      ],
+      "sizeScale": 1
+    },
+    "opensans_regular": {
+      "fileName": "Open_Sans/static/OpenSans-Regular.ttf",
+      "glyphRanges": [
+        "default"
+      ],
+      "sizeScale": 1
+    },
+    "prompt_regular": {
+      "fileName": "Prompt-Regular.ttf",
+      "glyphRanges": [
+        "thai"
+      ],
+      "sizeScale": 1
+    },
+    "robotomono_regular": {
+      "fileName": "Roboto_Mono/static/RobotoMono-Regular.ttf",
+      "glyphRanges": [
+        "default"
+      ],
+      "sizeScale": 1
+    }
+  },
+  "fontsVersion": 4,
+  "iniVersion": 3
+}

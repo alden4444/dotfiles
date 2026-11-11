@@ -1,0 +1,50 @@
+/give fjcruzr minecraft:mace[minecraft:unbreakable={}]
+/enchant fjcruzr minecraft:density 5
+/enchant fjcruzr minecraft:mending
+/enchant fjcruzr minecraft:unbreaking 3
+/gamemode survival
+/give fjcruzr minecraft:mace[minecraft:unbreakable={}]
+/enchant fjcruzr minecraft:density 5
+/give fjcruzr minecraft:totem_of_undying 3
+/give fjcruzr minecraft:experience_bottle 64
+/p chat
+/p invite RX7_RS
+/msg RX7_RS bruh accept
+/msg RX7_RS i fucking did do /join
+/msg RX7_RS /p join fjcruzr
+/p invite RX7_RS
+/pc
+/p invite RX7_RS
+/pc
+/w RX7_RS that was so fun
+/me fell from a high place
+/p invite RX7_RS
+/leave
+/enchant fjcruzr minecraft:wind_burst 1
+/kill
+/give Stratopilot minecraft:mace[minecraft:unbreakable={}]
+/enchant Stratopilot minecraft:density 5
+/p invite RX7_RS
+/duel RX7_RS
+/me was slain by enderman
+/leave
+/friend add RX7_RS
+/rtp
+/tpa RX7_RS
+/rtp
+/msg Amiiaw how do i find a kit
+/kit
+/tpahere RX7_RS
+/kits
+/rtp
+/kits
+/duelgui
+/msg Stratolot added u to group
+/msg Stratolot what do we do
+/msg Stratolot come
+/msg Stratolot sooo we could js ban them
+/w Stratolot lmao
+/w Stratolot :(
+/w Stratolot go
+/w Stratolot shipwreck
+/w Stratolot sooo

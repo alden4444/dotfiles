@@ -1,0 +1,9 @@
+- ZSH:
+    - Advanced tab completion
+    - Syntax highlighting
+    - Autosuggestions
+    - One extension (framework) is ohmyzsh, and Powerlevel10k adds aesthetic bonus
+- Bash:
+    - Default in many distros
+- Fish:
+    - What I am used to

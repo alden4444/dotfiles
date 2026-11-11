@@ -1,0 +1,57 @@
+{
+  "profiles":{
+    "Map Default":{
+      "brightness":2,
+      "colorizeAmount":0,
+      "exposure":0.40000000596046,
+      "flareScale":5,
+      "logWeight":0.99,
+      "occlusionScale":0.025000000372529,
+      "rayleighScattering":0.0020000000949949,
+      "shadowDistance":2000,
+      "shadowSoftness":0.125,
+      "skyBrightness":40,
+      "sunSize":0.5,
+      "texSize":2048
+    },
+    "TEON's Tweaks":{
+      "brightness":3,
+      "exposure":0.6,
+      "flareScale":10,
+      "logWeight":0.99,
+      "occlusionScale":0.025,
+      "rayleighScattering":0.004,
+      "shadowDistance":2000,
+      "shadowSoftness":0.125,
+      "skyBrightness":35,
+      "sunSize":0.6,
+      "texSize":2048
+    },
+    "tTweaks Dynamic Preset (Day)":{
+      "brightness":2,
+      "exposure":0.4,
+      "flareScale":5,
+      "logWeight":0.99,
+      "occlusionScale":0.025,
+      "rayleighScattering":0.002,
+      "shadowDistance":2000,
+      "shadowSoftness":0.125,
+      "skyBrightness":40,
+      "sunSize":0.5,
+      "texSize":2048
+    },
+    "tTweaks Dynamic Preset (Night)":{
+      "brightness":3.5,
+      "exposure":0.4,
+      "flareScale":15,
+      "logWeight":0.99,
+      "occlusionScale":0.025,
+      "rayleighScattering":0.007,
+      "shadowDistance":2000,
+      "shadowSoftness":0.125,
+      "skyBrightness":100,
+      "sunSize":0.8,
+      "texSize":2048
+    }
+  }
+}

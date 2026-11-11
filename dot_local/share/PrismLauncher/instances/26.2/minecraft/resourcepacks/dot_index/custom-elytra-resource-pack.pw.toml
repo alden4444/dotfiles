@@ -1,0 +1,18 @@
+filename = 'custom-elytra_0.2.zip'
+name = 'Custom Elytra'
+side = 'client'
+x-prismlauncher-dependencies = []
+x-prismlauncher-loaders = []
+x-prismlauncher-mc-versions = [ '1.21.9', '1.21.10' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = '0.2'
+
+[download]
+hash = 'b4badcdf1eb5fe09091054c1826a9d4b3a62785d736fa9c7ec79a529dd7326b9fafe0cd09218be38b052579bf4f74a1b054303257ca469a4d45c4ed8e249421e'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/lqOumoq8/versions/5TP8aOkv/custom-elytra_0.2.zip'
+
+[update.modrinth]
+mod-id = 'lqOumoq8'
+version = '5TP8aOkv'

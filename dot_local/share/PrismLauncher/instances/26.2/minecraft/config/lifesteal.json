@@ -1,0 +1,41 @@
+{
+  "maxHearts": 20,
+  "startingHearts": 10,
+  "craftedHeartCap": 10,
+  "reviveHearts": 3,
+  "minimumHeartsEnabled": false,
+  "minimumHearts": 1,
+  "egaHeartLimitEnabled": false,
+  "egaHeartThreshold": 12,
+  "deathBanType": "BAN",
+  "finalDeathSound": "minecraft:entity.wither.spawn",
+  "heartEquipSound": "minecraft:block.respawn_anchor.charge",
+  "heartDeathSound": "minecraft:block.respawn_anchor.deplete",
+  "heartEquipSoundChunkRadius": 4,
+  "gracePeriodEnabled": false,
+  "gracePeriodSeconds": 1800,
+  "fullHeartOnGain": false,
+  "withdrawFullInventoryAction": "DROP",
+  "craftedHeartWithdrawAction": "SPECIFIC",
+  "craftedHeartWithdrawCap": 10,
+  "customRecipes": {
+    "lifesteal:beacon_of_life": "beacon_of_life.json",
+    "lifesteal:crafted_heart": "crafted_heart.json",
+    "lifesteal:heart_fragment": "heart_fragment.json"
+  },
+  "bannedItems": [],
+  "uniqueItems": [
+    "minecraft:mace",
+    "minecraft:netherite_chestplate"
+  ],
+  "uniqueDragonEgg": true,
+  "disableTotems": false,
+  "disableEnderPearls": false,
+  "disableElytras": false,
+  "disableWindCharges": false,
+  "disableEGA": false,
+  "disableTNTCarts": false,
+  "blockedEffects": [
+    "minecraft:luck 3"
+  ]
+}

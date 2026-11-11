@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "hhh",
+    "hrh",
+    "nnn"
+  ],
+  "key": {
+    "h": [
+      "lifesteal:heart"
+    ],
+    "r": [
+      "minecraft:recovery_compass"
+    ],
+    "n": [
+      "minecraft:netherite_ingot"
+    ]
+  },
+  "result": {
+    "id": "lifesteal:beacon_of_life",
+    "count": 1
+  }
+}

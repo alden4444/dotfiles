@@ -1,0 +1,32 @@
+{
+  "configVersion": 2,
+  "autoSwitch": false,
+  "autoSwitchThreshold": 5,
+  "titles": true,
+  "hud": true,
+  "hudCorner": "TOP_RIGHT",
+  "watchArmor": true,
+  "watchOffhand": true,
+  "language": "AUTO",
+  "alertScale": 4.0,
+  "alertAnchor": "CENTER",
+  "alertBackdrop": true,
+  "alertSeconds": 3.0,
+  "alerts": [
+    {
+      "hits": 100,
+      "message": "\u0026b{hits} hits left",
+      "sound": "orb"
+    },
+    {
+      "hits": 50,
+      "message": "\u0026e{hits} hits left",
+      "sound": "levelup"
+    },
+    {
+      "hits": 10,
+      "message": "\u0026c{item} is about to break",
+      "sound": "anvil"
+    }
+  ]
+}

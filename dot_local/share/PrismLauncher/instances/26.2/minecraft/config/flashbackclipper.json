@@ -1,0 +1,9 @@
+{
+  "clipDurationSeconds": 120,
+  "chunkLengthSeconds": 10,
+  "autoStartBuffer": false,
+  "bufferRetentionSeconds": 0,
+  "clipsFolderName": "clips",
+  "recordVoiceChat": true,
+  "showToasts": true
+}

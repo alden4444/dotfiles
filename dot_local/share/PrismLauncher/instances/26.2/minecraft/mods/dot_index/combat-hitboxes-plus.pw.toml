@@ -1,0 +1,29 @@
+filename = 'combat-hitbox+-1.2.1+26.2.jar'
+name = 'Combat Hitboxes+'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '26.2' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = '1.2.1+26.2'
+
+[download]
+hash = 'a28354cad4e38d55c1498a8b6dff34a30d686669d8bc393acf8e31b16daf354f214a54f17b34ac8f0174c353355d14b6f707361da3c440f3c0e2e8700ead4e12'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/jhIMhAcy/versions/uDC8PvMz/combat-hitbox%2B-1.2.1%2B26.2.jar'
+
+[update.modrinth]
+mod-id = 'jhIMhAcy'
+version = 'uDC8PvMz'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'mOgUt4GM'
+type = 'OPTIONAL'
+
+[[x-prismlauncher-dependencies]]
+addonId = '9s6osm5g'
+type = 'REQUIRED'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'P7dR8mSH'
+type = 'REQUIRED'

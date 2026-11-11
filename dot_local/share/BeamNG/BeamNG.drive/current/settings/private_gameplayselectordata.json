@@ -1,0 +1,20 @@
+{
+  "displayData":{
+    "clusterMode":"automatic",
+    "clusterModeRally":"none",
+    "defaultFreeroamAction":"configureFreeroam",
+    "displaySize":"medium",
+    "groupMode":"system",
+    "groupModeRally":"type",
+    "showAuxContent":false,
+    "showCareerContent":false,
+    "showFavouritesMode":"unclustered",
+    "showRecentMode":"unclustered",
+    "sorting":"automatic"
+  },
+  "favourites":{},
+  "recentItems":[
+    "mission_italy/rallyLoop/ngrc25"
+  ],
+  "version":12
+}

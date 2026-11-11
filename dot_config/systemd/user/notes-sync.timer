@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodic sync of ~/notes to Google Drive
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

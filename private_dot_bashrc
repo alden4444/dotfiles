@@ -18,3 +18,9 @@ export PATH="/home/alden/.local/bin:$PATH"
 
 
 
+
+# Chromium / Electron Wayland & GPU Acceleration
+export ELECTRON_OZONE_PLATFORM_HINT="auto"
+export NIXOS_OZONE_WL="1"
+export CHROME_OZONE_PLATFORM_HINT="auto"
+export CHROMIUM_USER_FLAGS="--ozone-platform=wayland --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy"

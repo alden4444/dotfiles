@@ -1,0 +1,47 @@
+{
+  "": {
+    "HUD Positioning Mode": "Auto Adjust"
+  },
+  "Armor HUD": {
+    "Enabled": true,
+    "Start with Head": false
+  },
+  "Potion HUD": {
+    "Enabled": true
+  },
+  "Misc HUD": {
+    "Enabled": true,
+    "Tracked Items": "minecraft:golden_apple,minecraft:ender_pearl,minecraft:cobweb,minecraft:enchanted_golden_apple,minecraft:experience_bottle",
+    "Vertical Stack": true
+  },
+  "Arrow HUD": {
+    "Enabled": true
+  },
+  "Damage Indicator": {
+    "Enabled": true,
+    "Display Mode": "Hearts",
+    "Scale": "1.2",
+    "Lifetime (ticks)": "22"
+  },
+  "Potion Particles": {
+    "Enabled": true
+  },
+  "Low Fire": {
+    "Enabled": true,
+    "HUD YOffset": "0.3"
+  },
+  "Shield": {
+    "Enabled": true,
+    "Idle Rotation": true,
+    "Idle Rotation Angle": "90",
+    "Idle X Offset": "0.1",
+    "Idle Y Offset": "-0.1",
+    "Idle Z Offset": "-0.2",
+    "Blocking X Offset": "0",
+    "Blocking Y Offset": "-0.25",
+    "Blocking Z Offset": "0"
+  },
+  "Explosion": {
+    "Disable Explosion Particles": true
+  }
+}

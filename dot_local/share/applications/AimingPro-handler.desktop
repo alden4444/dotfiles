@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=aiming
+Exec=/home/alden/Downloads/squashfs-root/usr/bin/AimingPro %u
+Terminal=false
+MimeType=x-scheme-handler/aimingpro;
+NoDisplay=true

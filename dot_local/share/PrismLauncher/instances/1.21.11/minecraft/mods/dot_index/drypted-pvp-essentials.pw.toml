@@ -1,0 +1,26 @@
+filename = 'pvp-essentials-2.2.1.1-1.21.11.jar'
+name = 'PVP Essentials'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.11' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'v2.2.1.1+mc-1.21.11'
+
+[download]
+hash = '7f2b89f7115ae574aeb32ecc21345e988a8de006a63c0c04eb6b0b42d15266c92f0152418df3ef30c820876a769fff17f710cd1217db2dead4e78d81d42b69b9'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/dmRZ3797/versions/3p8dCJfn/pvp-essentials-2.2.1.1-1.21.11.jar'
+
+[update.modrinth]
+mod-id = 'dmRZ3797'
+version = '3p8dCJfn'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'P7dR8mSH'
+type = 'REQUIRED'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'Iz8w3MCj'
+type = 'REQUIRED'
+version = 'kSb29tfB'

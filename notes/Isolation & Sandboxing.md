@@ -1,0 +1,3 @@
+- Used to restrict and control the execution environment of apps like browsers, preventing unauthorised access to system resources or other processes
+- Processes are separated to prevent them from interacting with eachother
+- Firejail is a sandboxing tool to run untrusted apps in

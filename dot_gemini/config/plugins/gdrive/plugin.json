@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gdrive",
+  "displayName": "Google Drive",
+  "version": "0.0.11",
+  "description": "Search, upload, download, and share files.",
+  "logo": "https://www.gstatic.com/images/branding/productlogos/drive_2026/v2/web/192px.svg",
+  "suggestedPrompts": [
+    "Find last quarter's budget and share it with Alex",
+    "Move this week's design exports into the Launch folder",
+    "Download the Q3 report as a PDF"
+  ],
+  "extensions": {
+    "com.google.antigravity": {
+      "contextProviders": {
+        "drive": {
+          "trigger": "drive",
+          "label": "Google Drive",
+          "iconUri": "https://www.gstatic.com/images/branding/productlogos/drive_2026/v2/web/192px.svg",
+          "command": [
+            "${PLUGIN_ROOT}/skills/gdrive/scripts/gdrive",
+            "context-provider"
+          ],
+          "persistent": true,
+          "debounceMs": 300,
+          "options": [
+            "multi-word"
+          ],
+          "uriPatterns": [
+            "^https://docs\\.google\\.com/(?:corp/)?(?:a/[^/#?]+/)?(?:u/\\d+/)?(?:document|spreadsheets|presentation|forms|drawings|open|uc)(?:[/?#]|$)",
+            "^https://drive\\.google\\.com(?:[/?#]|$)",
+            "^https://(?:colab\\.research\\.google\\.com|colab\\.corp\\.google\\.com)/(?:corp/)?(?:a/[^/#?]+/)?(?:u/\\d+/)?drive/[a-zA-Z0-9_-]+(?:[/?#]|$)"
+          ]
+        }
+      }
+    }
+  }
+}

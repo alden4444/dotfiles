@@ -1,0 +1,29 @@
+//waypoints config options
+usingMultiworldDetection:false
+ignoreServerLevelId:false
+defaultMultiworldId:mw0,1,0
+teleportationEnabled:true
+usingDefaultTeleportCommand:true
+sortType:NONE
+sortReversed:false
+
+//other config options
+ignoreHeightmaps:false
+
+//dimension types (DO NOT EDIT)
+dimensionType:minecraft$ht_vanilla_desert:minecraft$overworld
+dimensionType:minecraft$plains_stadium:minecraft$overworld
+dimensionType:minecraft$uhc-lobby:minecraft$overworld
+dimensionType:minecraft$spawn:minecraft$overworld
+dimensionType:minecraft$knight:minecraft$overworld
+dimensionType:minecraft$badlands:minecraft$overworld
+dimensionType:minecraft$sand_stadium:minecraft$overworld
+dimensionType:minecraft$ht_cart:minecraft$overworld
+dimensionType:minecraft$kitroom:minecraft$overworld
+dimensionType:minecraft$colosseum:minecraft$overworld
+dimensionType:minecraft$desert:minecraft$overworld
+dimensionType:minecraft$plains:minecraft$overworld
+dimensionType:minecraft$courtyard:minecraft$overworld
+dimensionType:minecraft$dragon:minecraft$overworld
+dimensionType:minecraft$badlands_stadium:minecraft$overworld
+//third-party waypoints

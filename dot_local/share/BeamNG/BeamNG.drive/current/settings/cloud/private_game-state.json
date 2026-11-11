@@ -1,0 +1,14 @@
+{
+  "lastLevelName":"west_coast_usa",
+  "levels":{
+    "industrial":{
+      "defaultSpawnPointName":"spawn_industrial1"
+    },
+    "utah":{
+      "defaultSpawnPointName":"spawn_west_highway"
+    },
+    "west_coast_usa":{
+      "defaultSpawnPointName":"spawns_industrial"
+    }
+  }
+}

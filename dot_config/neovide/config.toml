@@ -1,0 +1,14 @@
+# Neovide Application Configuration
+# Neovide is a GUI client that automatically loads your Neovim config (~/.config/nvim/init.lua).
+# This file configures the GUI application window and renderer settings.
+
+fork = false
+idle = true
+maximized = false
+no-multigrid = false
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+size = 11.0
+hinting = "slight"
+edging = "subpixelantialias"

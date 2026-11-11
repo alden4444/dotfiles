@@ -1,0 +1,39 @@
+filename = 'compose-bundle-2.1.0+compose.1.13.0-alpha02.jar'
+name = 'Compose Multiplatform'
+side = ''
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [
+    '1.21',
+    '1.21.1',
+    '1.21.2',
+    '1.21.3',
+    '1.21.4',
+    '1.21.5',
+    '1.21.6',
+    '1.21.7',
+    '1.21.8',
+    '1.21.9',
+    '1.21.10',
+    '1.21.11',
+    '26.1',
+    '26.1.1',
+    '26.1.2',
+    '26.2',
+    '26.3'
+]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'v2.1.0+compose.1.13.0-alpha02'
+
+[download]
+hash = '6367dcf17f93cd664c95a7d1e9b16e4461726e342a6af8be207aa82ecbacfb213738efb856668d26f8332bcca0367fe08e57a575fc237340469ead9e9d4fc9dd'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/eHe8QhtD/versions/bMhjbdhu/compose-bundle-2.1.0%2Bcompose.1.13.0-alpha02.jar'
+
+[update.modrinth]
+mod-id = 'eHe8QhtD'
+version = 'bMhjbdhu'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'Ha28R6CL'
+type = 'REQUIRED'

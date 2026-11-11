@@ -1,0 +1,5 @@
+https://github.com/alden4444/dotfiles.git ~/.local/share/chezmoi
+https://github.com/alden4444/chartroom.git ~/chartroom
+https://github.com/alden4444/roam.git ~/roam
+https://github.com/alden4444/simcas_odoo_custom.git ~/odoo-dev/custom_addons/simcas_odoo_custom
+https://github.com/kercre123/wire-pod.git ~/wire-pod

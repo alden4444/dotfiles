@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=BeamMP Launcher
+Comment=Multiplayer Mod for BeamNG.drive
+Exec=/home/alden/BeamMP/BeamMP-Launcher/bin/BeamMP-Launcher
+Path=/home/alden/BeamMP/BeamMP-Launcher/bin/
+Terminal=true
+Categories=Game;
+Icon=steam_icon_284160

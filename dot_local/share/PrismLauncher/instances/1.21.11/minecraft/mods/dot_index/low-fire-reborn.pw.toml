@@ -1,0 +1,33 @@
+filename = 'low-fire-reborn-1.0.10.jar'
+name = 'Low Fire Reborn'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.11' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = '1.0.10'
+
+[download]
+hash = '2e21e0f83221c6545da722ac916bb18219ae3a208ff3f91a20c71ce32c8e08272d0c5738d73ec5d5333ca499a3c9d3d13feb6a2dc71e9beaa1a22d2a491dd6cd'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/9ZPMzrQQ/versions/ObulIxaM/low-fire-reborn-1.0.10.jar'
+
+[update.modrinth]
+mod-id = '9ZPMzrQQ'
+version = 'ObulIxaM'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'ccKDOlHs'
+type = 'REQUIRED'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'Ha28R6CL'
+type = 'REQUIRED'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'P7dR8mSH'
+type = 'REQUIRED'
+
+[[x-prismlauncher-dependencies]]
+addonId = 'mOgUt4GM'
+type = 'OPTIONAL'

@@ -1,0 +1,2 @@
+- Should always keep backups of the system, and know to look for them in weak systems
+- Pika Backup is a good tool

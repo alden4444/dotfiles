@@ -1,0 +1,9 @@
+1password
+antigravity
+antigravity-cli
+audiorelay
+coolercontrol-bin
+google-chrome
+ttf-google-sans
+yay-bin
+yay-bin-debug

@@ -1,0 +1,2 @@
+- Using an LLM locally comes with a lot of benefits, including privacy and speed
+- LM Studio is a good option

@@ -1,0 +1,9 @@
+- Not a virtual machine, just an isolated group of processes, running on a single host
+- Docker:
+    - Isolates application into containers, similar to OS virtualisation
+    - Simplifies the deployment of apps
+    - Docker Engine is the main component of container virtualisation:
+        - Provides the interface between host resources and running containers
+- Vagrant:
+    - Allows creation and management of virtual machines or virtual machine environments
+    - Not created manually but described as code within a Vagrantfile, which can include additional code files

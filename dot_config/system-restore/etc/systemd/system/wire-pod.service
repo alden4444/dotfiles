@@ -1,0 +1,16 @@
+[Unit]
+Description=Wire Escape Pod (coqui)
+Wants=network.target
+After=network.target
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=5s
+WorkingDirectory=/home/alden/wire-pod/chipper
+ExecStart=/home/alden/wire-pod/chipper/start.sh
+
+[Install]
+WantedBy=multi-user.target

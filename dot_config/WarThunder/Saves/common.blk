@@ -1,0 +1,28 @@
+content{
+  timesIntroVideoPlayed:i=1
+  languageId:i=0
+  speechLanguageId:i=0
+  uniqueId:t="6ACF0AC641A4D16C61E2E61"
+  runCount:i=1
+  autologin:b=no
+  loginWndStyle:t="compact"
+  lastLoginType:t="nonguest"
+  agreedEulaVersion:i=14
+
+  gpuBenchmark{
+    seen:b=yes
+    gpuName:t="NVIDIA GeForce RTX 5070"
+  }
+
+  gui_options{
+    OPTIONS_MODE_GAMEPLAY{}
+    OPTIONS_MODE_TRAINING{}
+    OPTIONS_MODE_CAMPAIGN{}
+    OPTIONS_MODE_SINGLE_MISSION{}
+    OPTIONS_MODE_DYNAMIC{}
+    OPTIONS_MODE_USER_MISSION{}
+    OPTIONS_MODE_MP_DOMINATION{}
+    OPTIONS_MODE_MP_SKIRMISH{}
+    OPTIONS_MODE_SEARCH{}
+  }
+}

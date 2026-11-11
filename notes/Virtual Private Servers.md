@@ -1,0 +1,3 @@
+- A Virtual Private Server (VPS) is an isolated environment created on a physical server using virtualisation technology
+- Part of Infrastructure-as-a-Service (IaaS) solutions
+- Also referred to as a Virtual Dedicated Server as it is unrestricted to the user

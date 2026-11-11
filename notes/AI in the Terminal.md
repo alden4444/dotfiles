@@ -1,0 +1,3 @@
+- LM Studio also comes with a python libraary which allows downloaded LLMs to programmatically utilise them in code
+- Virtual environment needs to be created first
+- Wave Terminal can be used with AI capabilities

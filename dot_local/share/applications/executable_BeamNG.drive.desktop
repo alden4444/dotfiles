@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=BeamNG.drive
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/284160
+Icon=steam_icon_284160
+Terminal=false
+Type=Application
+Categories=Game;

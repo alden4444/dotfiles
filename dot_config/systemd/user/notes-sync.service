@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync ~/notes to Google Drive
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone copy /home/alden/notes gdrive:Notes --fast-list
