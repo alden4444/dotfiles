@@ -336,3 +336,9 @@ hl.device({
     sensitivity = 1.0
 })
 
+-- Target the keyd virtual pointer
+hl.device({
+    name = "keyd-virtual-pointer",
+    accel_profile = "flat",
+    sensitivity = 1.0
+})
