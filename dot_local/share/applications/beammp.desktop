@@ -2,7 +2,7 @@
 Type=Application
 Name=BeamMP Launcher
 Comment=Multiplayer Mod for BeamNG.drive
-Exec=/home/alden/BeamMP/BeamMP-Launcher/bin/BeamMP-Launcher
+Exec=systemd-inhibit --what=idle:sleep --who="BeamMP Launcher" --why="BeamMP/BeamNG.drive is running" env RESHADE_ENABLE=1 /home/alden/BeamMP/BeamMP-Launcher/bin/BeamMP-Launcher
 Path=/home/alden/BeamMP/BeamMP-Launcher/bin/
 Terminal=true
 Categories=Game;

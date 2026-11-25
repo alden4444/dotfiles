@@ -16,21 +16,25 @@ if is_file_exists(qsDir .. "/wlogout/layout") then
         wlogoutCmd = wlogoutCmd .. " -C " .. qsDir .. "/wlogout/style.css"
     end
 end
-local logoutCmd = "out=$(" .. qsIpcCall .. " logout toggle 2>&1); if [ $? -ne 0 ] || echo \"$out\" | grep -q \"Target not found\"; then pkill wlogout || " .. wlogoutCmd .. "; fi"
+local logoutCmd = "if qs -c caelestia ipc call drawers toggle session >/dev/null 2>&1; then exit 0; fi; out=$(" .. qsIpcCall .. " logout toggle 2>&1); if [ $? -ne 0 ] || echo \"$out\" | grep -q \"Target not found\"; then pkill wlogout || " .. wlogoutCmd .. "; fi"
 
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd(logoutCmd))
 hl.bind("SUPER + BackSpace", hl.dsp.exec_cmd(logoutCmd), { description = "Session: Power menu" })
 
-hl.bind("XF86MonBrightnessUp", hl.dsp.global("quickshell:brightnessUp"),
-    { locked = true, repeating = true, description = "Screen: Brightness up" })
-hl.bind("XF86MonBrightnessDown", hl.dsp.global("quickshell:brightnessDown"),
-    { locked = true, repeating = true, description = "Screen: Brightness down" })
+hl.bind("XF86MonBrightnessUp", function()
+    hl.dispatch(hl.dsp.global("quickshell:brightnessUp"))
+    hl.dispatch(hl.dsp.global("caelestia:brightnessUp"))
+end, { locked = true, repeating = true, description = "Screen: Brightness up" })
+hl.bind("XF86MonBrightnessDown", function()
+    hl.dispatch(hl.dsp.global("quickshell:brightnessDown"))
+    hl.dispatch(hl.dsp.global("caelestia:brightnessDown"))
+end, { locked = true, repeating = true, description = "Screen: Brightness down" })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.5"),
     { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),
     { locked = true, repeating = true })
 
-hl.bind("CTRL + SUPER + R", hl.dsp.exec_cmd("killall ydotool qs quickshell; qs -p " .. qsDir .. " &"),
+hl.bind("CTRL + SUPER + R", hl.dsp.exec_cmd("if pgrep -f 'qs.*-c caelestia' >/dev/null; then caelestia shell -r -d; else killall ydotool qs quickshell; qs -p " .. qsDir .. " & fi"),
     { description = "Shell: Restart widgets" })
 hl.bind("CTRL + SUPER + P", hl.dsp.global("quickshell:panelFamilyCycle"), { description = "Shell: Cycle panel family" })
 
@@ -310,6 +314,7 @@ hl.bind("SUPER + ALT + Equal",
 --##! Session
 hl.bind("SUPER + L", function()
     hl.dispatch(hl.dsp.global("quickshell:lock"))
+    hl.dispatch(hl.dsp.global("caelestia:lock"))
     hl.exec_cmd("loginctl lock-session")
 end, { description = "Session: Lock" })
 hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"),
@@ -329,13 +334,30 @@ hl.bind("CTRL + SUPER + SHIFT + ALT + W", hl.dsp.exec_cmd(officeSoftware), { des
 hl.bind("SUPER + X", hl.dsp.exec_cmd(textEditor),    { description = "App: Text editor" })
 hl.bind("CTRL + SUPER + V", hl.dsp.exec_cmd(volumeMixer), { description = "App: Volume mixer" })
 
---##! Dynamic island
-hl.bind("SUPER + Space",  hl.dsp.global("quickshell:launcher"),  { description = "Shell: Launcher" })
-hl.bind("SUPER + T",      hl.dsp.global("quickshell:theme"),     { description = "Shell: Theme switcher" })
-hl.bind("SUPER + SHIFT + T", hl.dsp.global("quickshell:wallpaper"))
-hl.bind("SUPER + Comma",  hl.dsp.global("quickshell:settings"),  { description = "Shell: Settings" })
-hl.bind("SUPER + B",      hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
-hl.bind("SUPER + U",      hl.dsp.global("quickshell:controlcenter"), { description = "Shell: Control center (Quick Settings)" })
+--##! Dynamic island / Caelestia
+hl.bind("SUPER + Space", hl.dsp.exec_cmd(
+    "qs -c caelestia ipc call drawers toggle launcher >/dev/null 2>&1 || " ..
+    "qs -p " .. HOME .. "/.config/quickshell/ii ipc call search toggle >/dev/null 2>&1 || " ..
+    "qs -p " .. qsDir .. " ipc call launcher toggle >/dev/null 2>&1"
+), { release = true, description = "Shell: Launcher" })
+hl.bind("SUPER + T", function()
+    hl.dispatch(hl.dsp.global("quickshell:theme"))
+    hl.dispatch(hl.dsp.global("caelestia:nexus"))
+end, { description = "Shell: Theme switcher" })
+hl.bind("SUPER + SHIFT + T", function()
+    hl.dispatch(hl.dsp.global("quickshell:wallpaper"))
+    hl.dispatch(hl.dsp.global("caelestia:nexus"))
+end, { description = "Shell: Wallpaper picker" })
+hl.bind("SUPER + Comma", function()
+    hl.dispatch(hl.dsp.global("quickshell:settings"))
+    hl.dispatch(hl.dsp.global("caelestia:nexus"))
+end, { description = "Shell: Settings" })
+-- hl.bind("SUPER + B",      hl.dsp.global("quickshell:bar"),       { description = "Shell: Toggle top bar" })
+hl.bind("SUPER + B",      hl.dsp.exec_cmd("~/.local/bin/toggle-shell"), { description = "Shell: Toggle Quickshell / Caelestia" })
+hl.bind("SUPER + U", function()
+    hl.dispatch(hl.dsp.global("quickshell:controlcenter"))
+    hl.dispatch(hl.dsp.global("caelestia:utilities"))
+end, { description = "Shell: Control center (Quick Settings)" })
 
 if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then
     require("custom.keybinds")

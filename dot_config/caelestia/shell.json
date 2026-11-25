@@ -1,0 +1,43 @@
+{
+    "appearance": {
+        "font": {
+            "body": {
+                "family": "Google Sans Flex"
+            },
+            "headline": {
+                "family": "Google Sans Flex"
+            },
+            "label": {
+                "family": "Google Sans Flex"
+            },
+            "mono": {
+                "family": "JetBrainsMono Nerd Font Propo"
+            },
+            "title": {
+                "family": "Google Sans Flex"
+            }
+        },
+        "transparency": {
+            "base": 0.92,
+            "enabled": false,
+            "layers": 0.4
+        }
+    },
+    "background": {
+        "enabled": true,
+        "wallpaperEnabled": true
+    },
+    "lock": {
+        "useWallpaper": true
+    },
+    "paths": {
+        "wallpaperDir": "/home/alden/.config/colorschemes/industrial/wallpapers"
+    },
+    "services": {
+        "clockFormat": "TwentyFourHour",
+        "defaultPlayer": "Chrome",
+        "smartScheme": false,
+        "weatherLocation": "Boulder",
+        "weatherUnits": "Celsius"
+    }
+}

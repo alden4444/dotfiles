@@ -1,0 +1,52 @@
+{
+  "panelFamily": "ii",
+  "appearance": {
+    "extraBackgroundTint": true,
+    "fakeScreenRounding": 2,
+    "fonts": {
+      "main": "Google Sans Flex",
+      "numbers": "Google Sans Flex",
+      "title": "Google Sans Flex",
+      "iconNerd": "JetBrains Mono NF",
+      "monospace": "JetBrains Mono NF",
+      "reading": "Google Sans Flex",
+      "expressive": "Google Sans Flex"
+    },
+    "transparency": {
+      "enable": false,
+      "automatic": false,
+      "backgroundTransparency": 0.11,
+      "contentTransparency": 0.57
+    },
+    "wallpaperTheming": {
+      "enableAppsAndShell": false,
+      "enableQtApps": false,
+      "enableTerminal": false
+    },
+    "palette": {
+      "type": "scheme-monochrome",
+      "accentColor": ""
+    }
+  },
+  "background": {
+    "wallpaperPath": "/home/alden/.config/colorschemes/industrial/wallpapers/DSCF0126.jpeg",
+    "thumbnailPath": "",
+    "hideWhenFullscreen": true
+  },
+  "bar": {
+    "weather": {
+      "enable": true,
+      "enableGPS": false,
+      "city": "Boulder",
+      "useUSCS": false,
+      "fetchInterval": 10
+    }
+  },
+  "conflictKiller": {
+    "autoKillNotificationDaemons": false,
+    "autoKillTrays": false
+  },
+  "overview": {
+    "enable": false
+  }
+}

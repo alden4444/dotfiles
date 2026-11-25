@@ -1,0 +1,181 @@
+#!/usr/bin/env bash
+# Cycle through 3 desktop shell states using /tmp/shell-toggle-state:
+#   custom -> caelestia -> ii -> custom
+
+set -euo pipefail
+
+STATE_FILE="/tmp/shell-toggle-state"
+DEFAULT_QS_DIR="$HOME/.config/quickshell-active"
+if [ ! -e "$DEFAULT_QS_DIR" ]; then
+    DEFAULT_QS_DIR="$HOME/.config/quickshell"
+fi
+
+CAELESTIA_CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/caelestia"
+CAELESTIA_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/caelestia"
+II_QS_DIR="$HOME/.config/quickshell/ii"
+II_CFG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/illogical-impulse/config.json"
+II_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/quickshell/user"
+STATIC_WALLPAPER="/home/alden/.config/colorschemes/industrial/wallpapers/DSCF0126.jpeg"
+
+resolve_active_wallpaper() {
+    local wall="$STATIC_WALLPAPER"
+    if [ -f "$DEFAULT_QS_DIR/config.json" ] && command -v python3 >/dev/null 2>&1; then
+        local detected
+        detected="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("wallpaper",""))' "$DEFAULT_QS_DIR/config.json" 2>/dev/null || true)"
+        if [ -n "$detected" ] && [ -f "$detected" ]; then
+            wall="$detected"
+        fi
+    fi
+    printf '%s' "$wall"
+}
+
+is_caelestia_running() {
+    if pgrep -x "caelestia-shell" >/dev/null 2>&1; then
+        return 0
+    fi
+    if pgrep -f '(^|/)(qs|quickshell)([[:space:]].*)?[[:space:]]-c[[:space:]]+caelestia([[:space:]]|$)' >/dev/null 2>&1; then
+        return 0
+    fi
+    if command -v qs >/dev/null 2>&1; then
+        local out
+        out="$(qs -c caelestia list 2>/dev/null || true)"
+        if [ -n "$out" ] && [[ "$out" != "No running instances"* ]]; then
+            return 0
+        fi
+    fi
+    return 1
+}
+
+is_ii_running() {
+    if pgrep -f "(^|/)(qs|quickshell)([[:space:]].*)?[[:space:]]-p[[:space:]]+$II_QS_DIR([[:space:]]|$)" >/dev/null 2>&1; then
+        return 0
+    fi
+    if command -v qs >/dev/null 2>&1; then
+        local out
+        out="$(qs -p "$II_QS_DIR" list 2>/dev/null || true)"
+        if [ -n "$out" ] && [[ "$out" != "No running instances"* ]]; then
+            return 0
+        fi
+    fi
+    return 1
+}
+
+detect_current_state() {
+    if [ -f "$STATE_FILE" ]; then
+        local saved
+        saved="$(tr -d '[:space:]' < "$STATE_FILE" 2>/dev/null || true)"
+        case "$saved" in
+            custom|caelestia|ii)
+                printf '%s' "$saved"
+                return
+                ;;
+        esac
+    fi
+
+    if is_caelestia_running; then
+        printf 'caelestia'
+    elif is_ii_running; then
+        printf 'ii'
+    elif pgrep -x qs >/dev/null 2>&1 || pgrep -x quickshell >/dev/null 2>&1; then
+        printf 'custom'
+    else
+        printf 'ii'
+    fi
+}
+
+stop_all_shells() {
+    if command -v caelestia >/dev/null 2>&1; then
+        caelestia shell -k >/dev/null 2>&1 || qs -c caelestia kill >/dev/null 2>&1 || true
+    else
+        qs -c caelestia kill >/dev/null 2>&1 || true
+    fi
+    pkill -x "caelestia-shell" 2>/dev/null || true
+
+    qs -p "$II_QS_DIR" kill >/dev/null 2>&1 || true
+    qs -p "$DEFAULT_QS_DIR" kill >/dev/null 2>&1 || true
+    pkill -x qs 2>/dev/null || pkill -x quickshell 2>/dev/null || true
+
+    for _ in {1..30}; do
+        if ! is_caelestia_running && ! pgrep -x qs >/dev/null 2>&1 && ! pgrep -x quickshell >/dev/null 2>&1; then
+            break
+        fi
+        sleep 0.05
+    done
+
+    pkill -9 -x "caelestia-shell" 2>/dev/null || true
+    pkill -9 -x qs 2>/dev/null || true
+    pkill -9 -x quickshell 2>/dev/null || true
+}
+
+sync_caelestia_state() {
+    mkdir -p "$CAELESTIA_STATE_DIR/wallpaper"
+    local wall
+    wall="$(resolve_active_wallpaper)"
+
+    if [ -f "$wall" ]; then
+        printf '%s' "$wall" > "$CAELESTIA_STATE_DIR/wallpaper/path.txt"
+        ln -sfn "$wall" "$CAELESTIA_STATE_DIR/wallpaper/current"
+        if command -v python3 >/dev/null 2>&1; then
+            python3 - "$wall" "$CAELESTIA_STATE_DIR/wallpaper/thumbnail.jpg" <<'PY' >/dev/null 2>&1 || true
+import sys
+from PIL import Image
+with Image.open(sys.argv[1]) as img:
+    img = img.convert("RGB")
+    img.thumbnail((128, 128), Image.Resampling.NEAREST)
+    img.save(sys.argv[2], "JPEG")
+PY
+        fi
+    fi
+
+    if [ -f "$CAELESTIA_CFG_DIR/scheme.json" ] && [ ! -f "$CAELESTIA_STATE_DIR/scheme.json" ]; then
+        cp -f "$CAELESTIA_CFG_DIR/scheme.json" "$CAELESTIA_STATE_DIR/scheme.json"
+    fi
+}
+
+sync_ii_state() {
+    mkdir -p "$II_STATE_DIR/generated/wallpaper"
+    local wall
+    wall="$(resolve_active_wallpaper)"
+
+    if [ ! -f "$II_STATE_DIR/first_run.txt" ]; then
+        printf '%s' "This file is just here to confirm you've been greeted :>" > "$II_STATE_DIR/first_run.txt"
+    fi
+
+    if [ -f "$wall" ]; then
+        printf '%s\n' "$wall" > "$II_STATE_DIR/generated/wallpaper/path.txt"
+        if [ -f "$II_CFG_FILE" ] && command -v jq >/dev/null 2>&1; then
+            jq --arg w "$wall" '.background.wallpaperPath = $w' "$II_CFG_FILE" > "$II_CFG_FILE.tmp" && mv "$II_CFG_FILE.tmp" "$II_CFG_FILE"
+        fi
+    fi
+}
+
+CURRENT_STATE="$(detect_current_state)"
+case "$CURRENT_STATE" in
+    custom)    NEXT_STATE="caelestia" ;;
+    caelestia) NEXT_STATE="ii" ;;
+    ii|*)      NEXT_STATE="custom" ;;
+esac
+
+stop_all_shells
+
+case "$NEXT_STATE" in
+    custom)
+        nohup qs -p "$DEFAULT_QS_DIR" >/dev/null 2>&1 &
+        ;;
+    caelestia)
+        sync_caelestia_state
+        if command -v caelestia-shell >/dev/null 2>&1; then
+            caelestia-shell >/dev/null 2>&1 &
+        elif command -v caelestia >/dev/null 2>&1; then
+            caelestia shell -d >/dev/null 2>&1 || nohup qs -c caelestia -n >/dev/null 2>&1 &
+        else
+            nohup qs -c caelestia -n >/dev/null 2>&1 &
+        fi
+        ;;
+    ii)
+        sync_ii_state
+        nohup qs -p "$II_QS_DIR" >/dev/null 2>&1 &
+        ;;
+esac
+
+printf '%s\n' "$NEXT_STATE" > "$STATE_FILE"

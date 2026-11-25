@@ -153,6 +153,7 @@ ShellRoot {
     // the Polkit singleton so the agent registers at startup, before any request
     // shows up. Without that, escalation prompts just silently fail.
     Connections { target: Polkit }
+    Connections { target: IdleInhibit }
 
     Connections {
         target: GlobalState

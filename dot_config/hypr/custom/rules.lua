@@ -4,3 +4,7 @@
 
 hl.workspace_rule({ workspace = "1", monitor = "eDP-1", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-1", default = true })
+
+-- Prevent idle/lockscreen/sleep while BeamNG.drive (BeamMP) is open
+hl.window_rule({ match = { class = "^(BeamNG\\.drive)$" }, idle_inhibit = "always" })
+
